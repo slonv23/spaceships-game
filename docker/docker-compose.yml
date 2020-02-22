@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+    game-server:
+        build: ./images/debian-buster
+        volumes:
+            - ../project:/project
+        ports:
+            - 5000:5000
+        working_dir: /project
+        command: tail -f /dev/null

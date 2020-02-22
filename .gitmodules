@@ -1,0 +1,6 @@
+[submodule "project/client"]
+	path = project/client
+	url = https://github.com/slonv23/spaceships-game-client.git
+[submodule "project/server"]
+	path = project/server
+	url = https://github.com/slonv23/spaceships-game-server
