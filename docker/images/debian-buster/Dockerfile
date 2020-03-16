@@ -19,3 +19,26 @@ RUN cd /tmp && git clone https://github.com/libnice/libnice.git \
 RUN apt-get update && apt-get -y install gtk-doc-tools
 
 RUN cd /tmp/libnice	&& ./autogen.sh && ./configure && make && make install	
+
+# Install boost (required by https://github.com/meltwater/served)
+
+## gcc:8 image uses different version of gfortran (build from sources),
+## commands below allow to avoid warnings during gfortran package installation which is dependency of boost
+RUN dpkg-divert --remove /usr/bin/gfortran
+RUN dpkg-divert --divert /usr/bin/gfortran.orig --rename /usr/local/bin/gfortran
+
+RUN apt-get -y install libboost-all-dev
+
+# Install packages required by VSCode
+RUN apt-get -y install --no-install-recommends apt-utils dialog 2>&1 \
+    # 
+    # Verify git, process tools, lsb-release (useful for CLI installs) installed
+    && apt-get -y install git iproute2 procps lsb-release \
+    #
+    # Install C++ tools
+    && apt-get -y install build-essential cppcheck valgrind \
+    #
+    # Clean up
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
