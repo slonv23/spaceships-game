@@ -1,6 +1,7 @@
 const logger = require('./utils/logger');
 const net = require('net');
 const fs = require('fs');
+const MessageDecoder = require('./service/MessageDecoder');
 
 class SocketServer {
 
@@ -9,9 +10,13 @@ class SocketServer {
         this.connections = {};
     }
 
-    start() {
+    async start() {
         // check for failed cleanup
         logger.debug('Checking for leftover socket');
+
+        /** @type {MessageDecoder} */
+        this.messageDecoder = new MessageDecoder();
+        await this.messageDecoder.loadProtoDefinitions();
 
         // eslint-disable-next-line no-unused-vars
         fs.stat(this.sockerFilePath, (err, stats) => {
@@ -53,6 +58,8 @@ class SocketServer {
 
     _handleDataReceived(clientId, msg) {
         // messages are buffers, convert to string
+        this.messageDecoder.decode(msg);
+
         msg = msg.toString();
         logger.debug(`Incoming message from #${clientId}: ${msg}`);
     }

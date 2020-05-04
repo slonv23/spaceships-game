@@ -42,3 +42,24 @@ RUN apt-get -y install --no-install-recommends apt-utils dialog 2>&1 \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
+
+# Install nodejs
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get update \
+    && apt-get -y install nodejs
+
+# Install netcat (for testing sockets)
+RUN apt-get -y install netcat-openbsd
+
+# Install protobuf compiler (protoc) and protobuf runtime
+RUN apt-get -y install libprotobuf-dev && apt-get -y install protobuf-compiler
+# or from sources (slower)
+#RUN apt-get -y install autoconf automake libtool curl make g++ unzip \
+#	&& mkdir protobuf \
+#   && wget -c https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protobuf-all-3.6.1.tar.gz -O - | tar -xz -C protobuf	
+#RUN cd protobuf/protobuf-3.6.1 \
+#	&& ./autogen.sh \
+#	&& ./configure \
+#	&& make check \
+#	&& make install \
+#	&& ldconfig

@@ -30,8 +30,9 @@
   },
   "dependencies": {
     "di-container-js": "^0.2.4",
-    "three": "^0.110.0",
-    "simple-node-logger": "^18.12.24"
+    "protobufjs": "~6.9.0",
+    "simple-node-logger": "^18.12.24",
+    "three": "^0.110.0"
   },
   "sideEffects": false
 }
