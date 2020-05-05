@@ -11,12 +11,15 @@ class SocketServer {
     }
 
     async start() {
+        debugger;
         // check for failed cleanup
         logger.debug('Checking for leftover socket');
 
         /** @type {MessageDecoder} */
         this.messageDecoder = new MessageDecoder();
         await this.messageDecoder.loadProtoDefinitions();
+
+        debugger;
 
         // eslint-disable-next-line no-unused-vars
         fs.stat(this.sockerFilePath, (err, stats) => {

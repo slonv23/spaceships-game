@@ -20,7 +20,7 @@ class MessageDecoder {
         const size = msg.readInt16LE();
         logger.isInfo('Msg size: ' + size);
 
-        msg = msg.slice(0, 2);
+        msg = msg.slice(2);
         const decodedMsg = this.HelloWorld.decode(msg);
 
         logger.isInfo('Msg decoded: ' + JSON.stringify(decodedMsg));

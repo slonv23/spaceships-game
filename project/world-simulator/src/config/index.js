@@ -1,5 +1,5 @@
 const path = require("path");
 
 module.exports = {
-    protoDir: path.resolve(__dirname, "../../../../common/proto")
+    protoDir: path.resolve(__dirname, "../../../common/proto")
 };

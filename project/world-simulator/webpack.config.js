@@ -3,12 +3,13 @@ const path = require('path');
 const webpack = require('webpack'); 
 
 module.exports = {
-  entry: './src/index.js',
+  entry: '../src/index.js',
   mode: "development",
   optimization: {
-    minimize: true
+    minimize: false, // true, ('debugger' statement is removed if true)
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map', //'inline-source-map',
+  //devtool: new webpack.SourceMapDevToolPlugin({}),
   target: 'node',
   output: {
     filename: 'main.js',
@@ -39,6 +40,8 @@ module.exports = {
     modules: [path.resolve(__dirname, 'node_modules')]
   },
   node: {
-    __dirname: true
-  }
+    __dirname: true,
+    __filename: true,
+  },
+  context: path.resolve(__dirname, 'dist')
 };
