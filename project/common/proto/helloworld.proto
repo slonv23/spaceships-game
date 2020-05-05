@@ -3,5 +3,16 @@ syntax = "proto3";
 package helloworld;
 
 message HelloWorld {
+    oneof event {
+        SubMessage1 submsg1 = 1;
+        SubMessage2 submsg2 = 2;
+    }
+}
+
+message SubMessage1 {
     string message = 1;
+}
+
+message SubMessage2 {
+    int32 num = 1;
 }

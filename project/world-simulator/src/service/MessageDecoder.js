@@ -14,16 +14,22 @@ class MessageDecoder {
     }
 
     /**
-     * @param {Buffer} msg 
+     * @param {Buffer} buffer
      */
-    decode(msg) {
-        const size = msg.readInt16LE();
-        logger.isInfo('Msg size: ' + size);
+    decodeMsgs(buffer) {
+        const msgs = [];
+        while (buffer.length) {
+            const size = buffer.readUInt32LE();
+            logger.debug('Msg size: ' + size);
 
-        msg = msg.slice(2);
-        const decodedMsg = this.HelloWorld.decode(msg);
+            buffer = buffer.slice(4);
+            const decodedMsg = this.HelloWorld.decode(buffer.slice(0, size));
+            buffer = buffer.slice(size);
 
-        logger.isInfo('Msg decoded: ' + JSON.stringify(decodedMsg));
+            msgs.push(decodedMsg);
+
+            logger.debug('Msg decoded: ' + JSON.stringify(decodedMsg));
+        }
     }
 
 }

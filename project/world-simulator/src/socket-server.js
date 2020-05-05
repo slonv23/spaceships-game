@@ -61,7 +61,7 @@ class SocketServer {
 
     _handleDataReceived(clientId, msg) {
         // messages are buffers, convert to string
-        this.messageDecoder.decode(msg);
+        this.messageDecoder.decodeMsgs(msg);
 
         msg = msg.toString();
         logger.debug(`Incoming message from #${clientId}: ${msg}`);

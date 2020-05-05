@@ -37358,19 +37358,25 @@ var MessageDecoder = function () {
         }
 
         /**
-         * @param {Buffer} msg 
+         * @param {Buffer} buffer
          */
 
     }, {
-        key: "decode",
-        value: function decode(msg) {
-            var size = msg.readInt16LE();
-            logger.isInfo('Msg size: ' + size);
+        key: "decodeMsgs",
+        value: function decodeMsgs(buffer) {
+            var msgs = [];
+            while (buffer.length) {
+                var size = buffer.readUInt32LE();
+                logger.debug('Msg size: ' + size);
 
-            msg = msg.slice(2);
-            var decodedMsg = this.HelloWorld.decode(msg);
+                buffer = buffer.slice(4);
+                var decodedMsg = this.HelloWorld.decode(buffer.slice(0, size));
+                buffer = buffer.slice(size);
 
-            logger.isInfo('Msg decoded: ' + JSON.stringify(decodedMsg));
+                msgs.push(decodedMsg);
+
+                logger.debug('Msg decoded: ' + JSON.stringify(decodedMsg));
+            }
         }
     }]);
 
@@ -37468,7 +37474,7 @@ var SocketServer = function () {
         key: '_handleDataReceived',
         value: function _handleDataReceived(clientId, msg) {
             // messages are buffers, convert to string
-            this.messageDecoder.decode(msg);
+            this.messageDecoder.decodeMsgs(msg);
 
             msg = msg.toString();
             logger.debug('Incoming message from #' + clientId + ': ' + msg);
