@@ -21,7 +21,33 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
         const offer = await this._createOffer();
         await this._gatherIceCandidates();
 
+        const params = new URLSearchParams();
+        params.append("offer", offer.sdp);
+        this.candidates.forEach(candidate => {
+            params.append("candidates", candidate.candidate);
+        });
+        
         debugger;
+        const reponse =
+            await fetch('http://127.0.0.1:8080/connect', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: params
+            }).then((res) => {
+                return res.text()
+            }).then((paramsEncoded) => {
+                debugger;
+                const params = new URLSearchParams(paramsEncoded);
+                debugger;
+                return {
+                    answer: params.get('answer'),
+                    candidates: params.getAll('candidates')
+                }
+            });
+        debugger;
+        console.log(reponse);
     }
 
     _createPeerConnection() {
