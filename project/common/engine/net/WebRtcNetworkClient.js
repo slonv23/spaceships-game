@@ -8,46 +8,17 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
     /** @type {RTCDataChannel} */
     dataChannel;
 
-    candidates = [];
-
     async connect() {
-        this._createPeerConnection();
-        this._setupDataChannel();
+        try {
+            this._createPeerConnection();
+            this._setupDataChannel();
 
-
-
-        debugger;
-
-        const offer = await this._createOffer();
-        await this._gatherIceCandidates();
-
-        const params = new URLSearchParams();
-        params.append("offer", offer.sdp);
-        this.candidates.forEach(candidate => {
-            params.append("candidates", candidate.candidate);
-        });
-        
-        debugger;
-        const reponse =
-            await fetch('http://127.0.0.1:8080/connect', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: params
-            }).then((res) => {
-                return res.text()
-            }).then((paramsEncoded) => {
-                debugger;
-                const params = new URLSearchParams(paramsEncoded);
-                debugger;
-                return {
-                    answer: params.get('answer'),
-                    candidates: params.getAll('candidates')
-                }
-            });
-        debugger;
-        console.log(reponse);
+            const offer = await this._createOffer();
+            const candidates = await this._gatherIceCandidates();
+            await this._negotiateConnection(offer, candidates);
+        } catch (e) {
+            console.error("Failed to connect using WebRTC datachannel, error: " + e);
+        }
     }
 
     _createPeerConnection() {
@@ -65,6 +36,7 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
         this.dataChannel = this.peerConnection.createDataChannel('spaceships-main-channel');
 
         this.dataChannel.onopen = e => {
+            debugger;
             console.debug('DataChannel ready');
         };
   
@@ -89,16 +61,58 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
     }
 
     _gatherIceCandidates() {
+        const candidates = [];
+
         return new Promise((resolve, reject) => {
             this.peerConnection.onicecandidate = (event) => {
                 if (event.candidate) {
-                    this.candidates.push(event.candidate);
+                    candidates.push(event.candidate);
                 } else {
                     console.debug("All local candidates received");
-                    resolve();
+                    resolve(candidates);
                 }
             };
         })
+    }
+
+    /**
+     * @param {RTCSessionDescriptionInit} offer 
+     * @param {RTCIceCandidate[]} candidates 
+     */
+    async _negotiateConnection(offer, candidates) {
+        debugger;
+        const {answer, candidates: serverCandidates} = await this._requestAnswerAndCandidates(offer, candidates);
+        debugger;
+        const sessionDescription = new RTCSessionDescription({type: "answer", "sdp": answer});
+        await this.peerConnection.setRemoteDescription(sessionDescription);
+        for (const candidate of serverCandidates) {
+            debugger;
+            const rtcIceCandidate = new RTCIceCandidate({candidate, sdpMLineIndex: 0});
+            await this.peerConnection.addIceCandidate(rtcIceCandidate);
+        }
+    }
+
+    _requestAnswerAndCandidates(offer, candidates) {
+        const params = new URLSearchParams();
+        params.append("offer", offer.sdp);
+        candidates.forEach(candidate => {
+            params.append("candidates", candidate.candidate);
+        });
+
+        return fetch('http://127.0.0.1:8080/connect', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: params
+            }).then((res) => {
+                return res.text()
+            }).then((paramsEncoded) => {
+                const params = new URLSearchParams(paramsEncoded);
+
+                return {
+                    answer: params.get('answer'),
+                    candidates: params.getAll('candidates')
+                }
+            });
     }
 
 }
