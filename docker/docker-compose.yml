@@ -1,12 +1,15 @@
 version: '3.7'
 services:
     game-server:
-        build: ./images/debian-buster
+        build:
+            context: ./images/debian-buster
+            network: host
         volumes:
             - ../project:/project
         ports:
-            - 5000:5000
-            - 8080:8080
+#            - 5000:5000
+            - 8083:8080
             - 9222:9222
         working_dir: /project
         command: tail -f /dev/null
+        network_mode: "host"

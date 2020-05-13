@@ -30,6 +30,12 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
                 ]
             }]
         });
+
+        this.peerConnection.onicecandidateerror = e => {
+            debugger;
+            console.log(e);
+        }
+        window.myPeerConnection = this.peerConnection;
     }
 
     _setupDataChannel() {
@@ -45,6 +51,7 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
         };
   
         this.dataChannel.onerror = e => {
+            debugger;
             console.error('DataChannel error: ' + e);
         };
   
@@ -99,7 +106,7 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
             params.append("candidates", candidate.candidate);
         });
 
-        return fetch('http://127.0.0.1:8080/connect', {
+        return fetch('http://127.0.0.1:8083/connect', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 body: params
