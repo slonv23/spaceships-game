@@ -6,10 +6,10 @@ services:
             network: host
         volumes:
             - ../project:/project
-        ports:
+#        ports:
 #            - 5000:5000
-            - 8083:8080
-            - 9222:9222
+#            - 8083:8080
+#            - 9222:9222
         working_dir: /project
         command: tail -f /dev/null
         network_mode: "host"

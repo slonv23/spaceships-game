@@ -39,14 +39,17 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
     }
 
     _setupDataChannel() {
-        this.dataChannel = this.peerConnection.createDataChannel('spaceships-main-channel');
+        this.dataChannel = this.peerConnection.createDataChannel('testChannel'); // , {id: 1, negotiated: true}
+
+        this.peerConnection.createDataChannel('channel2');
 
         this.dataChannel.onopen = e => {
             debugger;
-            console.debug('DataChannel ready');
+            console.debug('DataChannel ready: ' + e);
         };
   
         this.dataChannel.onclose = () => {
+            debugger
             console.debug('DataChannel closed');
         };
   
@@ -94,7 +97,8 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
         await this.peerConnection.setRemoteDescription(sessionDescription);
         for (const candidate of serverCandidates) {
             debugger;
-            const rtcIceCandidate = new RTCIceCandidate({candidate, sdpMLineIndex: 0});
+            // , sdpMLineIndex: 0
+            const rtcIceCandidate = new RTCIceCandidate({candidate,  sdpMLineIndex: 0});
             await this.peerConnection.addIceCandidate(rtcIceCandidate);
         }
     }
@@ -106,7 +110,7 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
             params.append("candidates", candidate.candidate);
         });
 
-        return fetch('http://127.0.0.1:8083/connect', {
+        return fetch('http://54.93.230.161:8080/connect', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 body: params
