@@ -3,13 +3,15 @@ services:
     game-server:
         build:
             context: ./images/debian-buster
-            network: host
+#            network: host
         volumes:
             - ../project:/project
-#        ports:
+        ports:
+            - 8080:8080
+            - "9001-9010:9001-9010/udp"
 #            - 5000:5000
 #            - 8083:8080
 #            - 9222:9222
         working_dir: /project
         command: tail -f /dev/null
-        network_mode: "host"
+#        network_mode: "host"

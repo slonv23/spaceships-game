@@ -23,12 +23,11 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
 
     _createPeerConnection() {
         this.peerConnection = new RTCPeerConnection({
-            iceServers: [{
+            /*iceServers: [{
                 urls: [
-                    "stun:stun.l.google.com:19302" // this work (06.05.2020)
-                    // "stun:global.stun:3478?transport=udp" // this not work anymore
+                    "stun:stun.l.google.com:19302"
                 ]
-            }]
+            }]*/
         });
 
         this.peerConnection.onicecandidateerror = e => {
@@ -41,16 +40,16 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
     _setupDataChannel() {
         this.dataChannel = this.peerConnection.createDataChannel('testChannel'); // , {id: 1, negotiated: true}
 
-        this.peerConnection.createDataChannel('channel2');
+        // this.peerConnection.createDataChannel('channel2');
 
         this.dataChannel.onopen = e => {
             debugger;
             console.debug('DataChannel ready: ' + e);
         };
   
-        this.dataChannel.onclose = () => {
+        this.dataChannel.onclose = (e) => {
             debugger
-            console.debug('DataChannel closed');
+            console.debug('DataChannel closed' + e);
         };
   
         this.dataChannel.onerror = e => {
@@ -76,6 +75,7 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
         return new Promise((resolve, reject) => {
             this.peerConnection.onicecandidate = (event) => {
                 if (event.candidate) {
+                    debugger;
                     candidates.push(event.candidate);
                 } else {
                     console.debug("All local candidates received");
@@ -95,7 +95,8 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
         debugger;
         const sessionDescription = new RTCSessionDescription({type: "answer", "sdp": answer});
         await this.peerConnection.setRemoteDescription(sessionDescription);
-        for (const candidate of serverCandidates) {
+        for (let candidate of serverCandidates) {
+            candidate = candidate.replace('172.19.0.2'/* docker ip */, '192.168.148.35'/* local ip */)
             debugger;
             // , sdpMLineIndex: 0
             const rtcIceCandidate = new RTCIceCandidate({candidate,  sdpMLineIndex: 0});
@@ -110,7 +111,7 @@ export default class WebRtcNetworkClient extends AbstractNetworkClient {
             params.append("candidates", candidate.candidate);
         });
 
-        return fetch('http://54.93.230.161:8080/connect', {
+        return fetch('http://127.0.0.1:8080/connect', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 body: params
