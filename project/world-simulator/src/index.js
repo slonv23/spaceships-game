@@ -3,6 +3,7 @@ import './engine/net/format';
 import './engine/state';
 
 import {diContainer} from './engine';
+import FlyingObject from './engine/physics/object/FlyingObject';
 
 const logger = require('./utils/logger');
 const SocketServer = require('./service/SocketServer');
@@ -37,3 +38,10 @@ const SOCKET_FILE = '/tmp/spaceships-world-simulator.sock';
     
     process.on('SIGINT', shutdown);
 })();
+
+function createBot() {
+    let gameObject = new FlyingObject(/* something */);
+    gameObject.object3d.matrixAutoUpdate = false;
+    this.renderer.scene.add(gameObject.object3d);
+    this.stateManager.addObject(gameObject);
+}

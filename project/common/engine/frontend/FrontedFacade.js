@@ -67,12 +67,12 @@ export default class FrontendFacade {
         requestAnimationFrame(this.gameLoop);
     };
 
-    async createObject(classRef, modelName) {
+    async createObject(id, classRef, modelName) {
         if (!(classRef.prototype instanceof AbstractObject)) {
             throw new Error('Class must be inherited from AbstractObject');
         }
 
-        let gameObject = new classRef(this.assetManager.getModel(modelName));
+        let gameObject = new classRef(id, this.assetManager.getModel(modelName));
         gameObject.object3d.matrixAutoUpdate = false;
         this.renderer.scene.add(gameObject.object3d);
         this.stateManager.addObject(gameObject);

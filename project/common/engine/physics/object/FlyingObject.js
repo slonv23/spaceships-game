@@ -32,6 +32,8 @@ export default class FlyingObject extends AbstractObject {
     /** @type {THREE.Vector3} */
     velocity = new THREE.Vector3(0, 0, -0.005);
 
+    position = new THREE.Vector3(0, 0, 0);
+
     rotAccChangeDirectionDt = 0;
 
     rotAccStopDt = 0;
@@ -76,12 +78,14 @@ export default class FlyingObject extends AbstractObject {
         this.ny = (new THREE.Vector3(0, 1, 0)).applyQuaternion(this.quaternion);
         this.nz = (new THREE.Vector3(0, 0, 1)).applyQuaternion(this.quaternion);
 
+        /** Update position */
+        this.position.addScaledVector(this.nz, this.velocity.z * dt);
+
+        /** Update object3d */
         this.object3d.matrix.makeBasis(this.nx, this.ny, this.nz);
         // this.object3d.matrix.makeRotationFromQuaternion(this.quaternion);
 
-        /** Update position */
-        this.object3d.position.addScaledVector(this.nz, this.velocity.z * dt);
-        this.object3d.matrix.setPosition(this.object3d.position);
+        this.object3d.matrix.setPosition(this.position);
     }
 
     /**
