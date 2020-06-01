@@ -106,6 +106,7 @@ export default class FlyingObjectControls extends AbstractControls {
     updateCameraAndControlParams(delta) {
         this._updateControlAxes(delta);
         this._updateYawAndPitchVelocities(delta);
+        // TODO move next call to other component because this class will be also used on backend
         this.cameraManager.updateCamera(this.wYawTarget, this.wPitchTarget, delta);
 
         this.camera.matrixWorldInverse.getInverse(this.camera.matrixWorld);

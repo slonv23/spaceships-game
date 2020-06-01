@@ -4,15 +4,18 @@
 
 export default class AbstractObject {
 
-    /**
-     * @type {Object3D}
-     */
+    /** @type {Object3D} */
     object3d;
 
-    /**
-     * @param {Object3D} object3d 
-     */
-    constructor(object3d) {
+    /** @type {*} */
+    id;
+
+     /**
+      * @param {*} id 
+      * @param {Object3D} object3d 
+      */
+    constructor(id, object3d) {
+        this.id = id;
         this.object3d = object3d;
     }
 

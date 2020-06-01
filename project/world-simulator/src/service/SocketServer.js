@@ -1,25 +1,28 @@
-const logger = require('./utils/logger');
+/**
+ * @typedef {import('../engine/net/format/MessageEncoderDecoder').default} MessageEncoderDecoder
+ * @typedef {import('net').Socket} Socket
+ */
+
+const logger = require('../utils/logger');
 const net = require('net');
 const fs = require('fs');
-const MessageDecoder = require('./service/MessageDecoder');
 
 class SocketServer {
 
-    constructor(sockerFilePath) {
+    /** @type {MessageEncoderDecoder} */
+    messageEncoderDecoder;
+
+    /** @type {Object.<string, Socket>} */
+    connections = {};
+
+    constructor(sockerFilePath, messageEncoderDecoder) {
         this.sockerFilePath = sockerFilePath;
-        this.connections = {};
+        this.messageEncoderDecoder = messageEncoderDecoder;
     }
 
     async start() {
-        debugger;
         // check for failed cleanup
         logger.debug('Checking for leftover socket');
-
-        /** @type {MessageDecoder} */
-        this.messageDecoder = new MessageDecoder();
-        await this.messageDecoder.loadProtoDefinitions();
-
-        debugger;
 
         // eslint-disable-next-line no-unused-vars
         fs.stat(this.sockerFilePath, (err, stats) => {
@@ -32,7 +35,7 @@ class SocketServer {
                 logger.debug('Removing leftover socket')
                 fs.unlink(this.sockerFilePath, (err) => {
                     if (err) {
-                        // this should never happen.
+                        // this should never happen
                         logger.error(err);
                     }
 
@@ -54,17 +57,27 @@ class SocketServer {
         }
     }
 
+    broadcast(data) {
+        for (const clientId in this.connections) {
+            this.connections[clientId].write(data, (err) => {
+                if (err) {
+                    logger.warn("Failed to write to socket, error: " + err);
+                }
+            });
+        }
+    }
+
     _handleClientDisconnected(clientId) {
         logger.debug(`Client #${clientId} disconnected`);
         delete this.connections[clientId];
     }
 
-    _handleDataReceived(clientId, msg) {
-        // messages are buffers, convert to string
-        this.messageDecoder.decodeMsgs(msg);
-
-        msg = msg.toString();
-        logger.debug(`Incoming message from #${clientId}: ${msg}`);
+    _handleDataReceived(clientId, data) {
+        //logger.debug("Received data: " + data.toString());
+        const messages = this.messageEncoderDecoder.decodeMsgs(data);
+        for (const message of messages) {
+            logger.debug("Incoming message: " + JSON.stringify(message));
+        }
     }
 
     _createServer() {
@@ -75,6 +88,7 @@ class SocketServer {
 
             const clientId = Date.now();
             this.connections[clientId] = stream;
+            //stream.
             stream.on('end', this._handleClientDisconnected.bind(this, clientId));
             stream.on('data', this._handleDataReceived.bind(this, clientId));
         })

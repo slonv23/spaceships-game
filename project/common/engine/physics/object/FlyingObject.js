@@ -29,7 +29,8 @@ export default class FlyingObject extends AbstractObject {
 
     nyFake = new THREE.Vector3(0, 1, 0);
 
-    speedAbs = -0.005;
+    /** @type {THREE.Vector3} */
+    velocity = new THREE.Vector3(0, 0, -0.005);
 
     rotAccChangeDirectionDt = 0;
 
@@ -41,11 +42,12 @@ export default class FlyingObject extends AbstractObject {
 
     angleChange = new THREE.Vector3(0, 0, 0);
 
-    /**
-     * @param {THREE.Object3D} object3d 
-     */
-    constructor(object3d) {
-        super(object3d);
+     /**
+      * @param {*} id 
+      * @param {THREE.Object3D} object3d 
+      */
+    constructor(id, object3d) {
+        super(id, object3d);
         this.quaternion.setFromAxisAngle(new THREE.Vector3(1, 1, 1), 0);
 
         this._updateAngularVelocityAndAcceleration.tmpVector = new THREE.Vector3();
@@ -78,12 +80,12 @@ export default class FlyingObject extends AbstractObject {
         // this.object3d.matrix.makeRotationFromQuaternion(this.quaternion);
 
         /** Update position */
-        this.object3d.position.addScaledVector(this.nz, this.speedAbs * dt);
+        this.object3d.position.addScaledVector(this.nz, this.velocity.z * dt);
         this.object3d.matrix.setPosition(this.object3d.position);
     }
 
     /**
-     * @param {Number} dt timestep
+     * @param {number} dt - timestep
      * @returns {THREE.Vector3} angle change
      */
     _updateAngularVelocityAndAcceleration(dt) {

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package multiplayer;
+
+import "object-state.proto";
+
+message WorldState {
+    repeated ObjectState objectStates = 1;
+}

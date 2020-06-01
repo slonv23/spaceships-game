@@ -8,6 +8,7 @@ export default class AbstractNetworkClient {
 
     constructor(messageEncoderDecoder) {
         this.messageEncoderDecoder = messageEncoderDecoder;
+        debugger;
     }
 
     connect() {

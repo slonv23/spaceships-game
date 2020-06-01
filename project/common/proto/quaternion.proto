@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package multiplayer;
+
+import "float-vector.proto";
+
+message Quaternion {
+    FloatVector imag = 1; // x y z
+    float real = 2; // w
+}

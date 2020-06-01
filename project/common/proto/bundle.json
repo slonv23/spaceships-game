@@ -1,0 +1,145 @@
+{
+  "nested": {
+    "multiplayer": {
+      "nested": {
+        "ControlsState": {
+          "fields": {
+            "msgId": {
+              "type": "int32",
+              "id": 1
+            },
+            "yawTarget": {
+              "type": "float",
+              "id": 2
+            },
+            "pitchTarget": {
+              "type": "float",
+              "id": 3
+            },
+            "rollTarget": {
+              "type": "float",
+              "id": 4
+            }
+          }
+        },
+        "FloatVector": {
+          "fields": {
+            "x": {
+              "type": "float",
+              "id": 1
+            },
+            "y": {
+              "type": "float",
+              "id": 2
+            },
+            "z": {
+              "type": "float",
+              "id": 3
+            }
+          }
+        },
+        "ObjectState": {
+          "fields": {
+            "id": {
+              "type": "int32",
+              "id": 1
+            },
+            "objectType": {
+              "type": "int32",
+              "id": 2
+            },
+            "position": {
+              "type": "FloatVector",
+              "id": 3
+            },
+            "quaternion": {
+              "type": "Quaternion",
+              "id": 4
+            },
+            "velocity": {
+              "type": "FloatVector",
+              "id": 5
+            },
+            "acceleration": {
+              "type": "FloatVector",
+              "id": 6
+            },
+            "wVelocity": {
+              "type": "FloatVector",
+              "id": 7
+            },
+            "wAcceleration": {
+              "type": "FloatVector",
+              "id": 8
+            },
+            "angleToControlX": {
+              "type": "float",
+              "id": 9
+            }
+          }
+        },
+        "Quaternion": {
+          "fields": {
+            "imag": {
+              "type": "FloatVector",
+              "id": 1
+            },
+            "real": {
+              "type": "float",
+              "id": 2
+            }
+          }
+        },
+        "WorldState": {
+          "fields": {
+            "objectStates": {
+              "rule": "repeated",
+              "type": "ObjectState",
+              "id": 1
+            }
+          }
+        }
+      }
+    },
+    "helloworld": {
+      "nested": {
+        "HelloWorld": {
+          "oneofs": {
+            "event": {
+              "oneof": [
+                "submsg1",
+                "submsg2"
+              ]
+            }
+          },
+          "fields": {
+            "submsg1": {
+              "type": "SubMessage1",
+              "id": 1
+            },
+            "submsg2": {
+              "type": "SubMessage2",
+              "id": 2
+            }
+          }
+        },
+        "SubMessage1": {
+          "fields": {
+            "message": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "SubMessage2": {
+          "fields": {
+            "num": {
+              "type": "int32",
+              "id": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

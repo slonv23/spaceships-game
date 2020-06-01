@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "../../common/proto/bundle.json":
+/*!*****************************************!*\
+  !*** /project/common/proto/bundle.json ***!
+  \*****************************************/
+/*! exports provided: nested, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"nested\":{\"multiplayer\":{\"nested\":{\"ControlsState\":{\"fields\":{\"msgId\":{\"type\":\"int32\",\"id\":1},\"yawTarget\":{\"type\":\"float\",\"id\":2},\"pitchTarget\":{\"type\":\"float\",\"id\":3},\"rollTarget\":{\"type\":\"float\",\"id\":4}}},\"FloatVector\":{\"fields\":{\"x\":{\"type\":\"float\",\"id\":1},\"y\":{\"type\":\"float\",\"id\":2},\"z\":{\"type\":\"float\",\"id\":3}}},\"ObjectState\":{\"fields\":{\"id\":{\"type\":\"int32\",\"id\":1},\"objectType\":{\"type\":\"int32\",\"id\":2},\"position\":{\"type\":\"FloatVector\",\"id\":3},\"quaternion\":{\"type\":\"Quaternion\",\"id\":4},\"velocity\":{\"type\":\"FloatVector\",\"id\":5},\"acceleration\":{\"type\":\"FloatVector\",\"id\":6},\"wVelocity\":{\"type\":\"FloatVector\",\"id\":7},\"wAcceleration\":{\"type\":\"FloatVector\",\"id\":8},\"angleToControlX\":{\"type\":\"float\",\"id\":9}}},\"Quaternion\":{\"fields\":{\"imag\":{\"type\":\"FloatVector\",\"id\":1},\"real\":{\"type\":\"float\",\"id\":2}}},\"WorldState\":{\"fields\":{\"objectStates\":{\"rule\":\"repeated\",\"type\":\"ObjectState\",\"id\":1}}}}},\"helloworld\":{\"nested\":{\"HelloWorld\":{\"oneofs\":{\"event\":{\"oneof\":[\"submsg1\",\"submsg2\"]}},\"fields\":{\"submsg1\":{\"type\":\"SubMessage1\",\"id\":1},\"submsg2\":{\"type\":\"SubMessage2\",\"id\":2}}},\"SubMessage1\":{\"fields\":{\"message\":{\"type\":\"string\",\"id\":1}}},\"SubMessage2\":{\"fields\":{\"num\":{\"type\":\"int32\",\"id\":1}}}}}}}");
+
+/***/ }),
+
 /***/ "../node_modules/@protobufjs/aspromise/index.js":
 /*!******************************************************!*\
   !*** ../node_modules/@protobufjs/aspromise/index.js ***!
@@ -1187,6 +1198,490 @@ utf8.write = function utf8_write(string, buffer, offset) {
     }
     return offset - start;
 };
+
+/***/ }),
+
+/***/ "../node_modules/di-container-js/ComponentProvider.js":
+/*!************************************************************!*\
+  !*** ../node_modules/di-container-js/ComponentProvider.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _getArgNames = __webpack_require__(/*! ./util/getArgNames */ "../node_modules/di-container-js/util/getArgNames.js");
+
+var _getArgNames2 = _interopRequireDefault(_getArgNames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ComponentProvider = function () {
+    function ComponentProvider(classRef, config) {
+        _classCallCheck(this, ComponentProvider);
+
+        this.dependencies = [];
+
+        if (typeof classRef.dependencies === "function") {
+            this.dependencies = classRef.dependencies();
+        } else {
+            this.dependencies = (0, _getArgNames2.default)(classRef.prototype.constructor);
+        }
+        this.classRef = classRef;
+        this.config = config;
+    }
+
+    /**
+     * @returns {Promise<any>}
+     */
+
+
+    _createClass(ComponentProvider, [{
+        key: "provide",
+        value: function provide() {
+            var instance = new (Function.prototype.bind.apply(this.classRef, [null].concat(Array.prototype.slice.call(arguments))))();
+            if (typeof instance.postConstruct === 'function') {
+                var result = instance.postConstruct(this.config);
+                if (result instanceof Promise) {
+                    return result.then(function () {
+                        return instance;
+                    });
+                }
+            }
+
+            return Promise.resolve(instance);
+        }
+    }, {
+        key: "setConfig",
+        value: function setConfig(config) {
+            this.config = config;
+        }
+    }, {
+        key: "getDependencies",
+        value: function getDependencies() {
+            return this.dependencies;
+        }
+    }]);
+
+    return ComponentProvider;
+}();
+
+exports.default = ComponentProvider;
+
+/***/ }),
+
+/***/ "../node_modules/di-container-js/CyclicDependencyError.js":
+/*!****************************************************************!*\
+  !*** ../node_modules/di-container-js/CyclicDependencyError.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CyclicDependencyError = function (_Error) {
+    _inherits(CyclicDependencyError, _Error);
+
+    function CyclicDependencyError(requiredComponent) {
+        _classCallCheck(this, CyclicDependencyError);
+
+        var _this = _possibleConstructorReturn(this, (CyclicDependencyError.__proto__ || Object.getPrototypeOf(CyclicDependencyError)).call(this));
+
+        _this.requestingComponentsChain = [];
+        _this.requiredComponent = requiredComponent;
+        _this.constructor = CyclicDependencyError;
+        _this.__proto__ = CyclicDependencyError.prototype;
+        return _this;
+    }
+
+    return CyclicDependencyError;
+}(Error);
+
+exports.default = CyclicDependencyError;
+
+/***/ }),
+
+/***/ "../node_modules/di-container-js/DependencyGraph.js":
+/*!**********************************************************!*\
+  !*** ../node_modules/di-container-js/DependencyGraph.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @typedef {object} Node
+ * @property {number} level
+ * @property {string} dependencyRef
+ */
+
+var DependencyGraph = function () {
+
+    /**
+     * @param {string} [dependencyRef]
+     * @param {number} level 
+     */
+    function DependencyGraph(dependencyRef) {
+        var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+        _classCallCheck(this, DependencyGraph);
+
+        /** @type {Node[]} */
+        this.nodes = [];
+
+        if (dependencyRef) {
+            this.nodes.push({
+                level: level,
+                dependencyRef: dependencyRef
+            });
+        }
+    }
+
+    /**
+     * @param {DependencyGraph} dependencySubGraph 
+     */
+
+
+    _createClass(DependencyGraph, [{
+        key: "addDependencies",
+        value: function addDependencies(dependencySubGraph) {
+            var _this = this;
+
+            dependencySubGraph.nodes.forEach(function (node) {
+                node = Object.assign({}, node);
+                _this.nodes.push(node);
+            });
+        }
+    }, {
+        key: "level",
+        value: function level() {
+            return this.nodes.length ? this.nodes[0].level : -1;
+        }
+    }]);
+
+    return DependencyGraph;
+}();
+
+exports.default = DependencyGraph;
+
+/***/ }),
+
+/***/ "../node_modules/di-container-js/DiContainer.js":
+/*!******************************************************!*\
+  !*** ../node_modules/di-container-js/DiContainer.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _CyclicDependencyError = __webpack_require__(/*! ./CyclicDependencyError */ "../node_modules/di-container-js/CyclicDependencyError.js");
+
+var _CyclicDependencyError2 = _interopRequireDefault(_CyclicDependencyError);
+
+var _DependencyGraph = __webpack_require__(/*! ./DependencyGraph */ "../node_modules/di-container-js/DependencyGraph.js");
+
+var _DependencyGraph2 = _interopRequireDefault(_DependencyGraph);
+
+var _ComponentProvider = __webpack_require__(/*! ./ComponentProvider */ "../node_modules/di-container-js/ComponentProvider.js");
+
+var _ComponentProvider2 = _interopRequireDefault(_ComponentProvider);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var diContainerRef = "diContainer";
+
+var DiContainer = function () {
+    function DiContainer() {
+        _classCallCheck(this, DiContainer);
+
+        this.instances = {};
+        this.dependencyProviders = {};
+        this.dependencyGraphs = {};
+
+        this.instances[diContainerRef] = this;
+    }
+
+    /**
+     * @param {symbol|string} componentRef 
+     * @param {ComponentProvider} componentProvider 
+     */
+
+
+    _createClass(DiContainer, [{
+        key: "register",
+        value: function register(componentRef, componentProvider) {
+            if (componentRef === diContainerRef) {
+                throw new Error("\"" + diContainerRef + "\" is not owerwritable component");
+            }
+            this.dependencyProviders[componentRef] = componentProvider;
+        }
+
+        /**
+         * @param {symbol|string} componentRef 
+         * @param {Function} classRef - reference to a class 
+         * @param {object} config 
+         */
+
+    }, {
+        key: "registerClass",
+        value: function registerClass(componentRef, classRef, config) {
+            this.register(componentRef, new _ComponentProvider2.default(classRef, config));
+        }
+
+        /**
+         * @param {symbol|string} componentRef 
+         * @param {object} config 
+         */
+
+    }, {
+        key: "configure",
+        value: function configure(componentRef, config) {
+            if (!this.isProvided(componentRef)) {
+                throw new Error("Cannot configure component '" + componentRef.toString() + "' because it is not provided");
+            }
+
+            this.dependencyProviders[componentRef].setConfig(config);
+        }
+
+        /**
+         * @param {symbol|string} componentRef
+         * @returns {Promise<any>}
+         */
+
+    }, {
+        key: "get",
+        value: function get(componentRef) {
+            var _this = this;
+
+            if (!this.isInitialized(componentRef)) {
+                return this._initInstance(componentRef).then(function () {
+                    return _this.instances[componentRef];
+                });
+            }
+
+            return this.instances[componentRef];
+        }
+
+        /**
+         * @param {symbol|string} componentRef 
+         * @returns {boolean}
+         */
+
+    }, {
+        key: "isInitialized",
+        value: function isInitialized(componentRef) {
+            return Object.prototype.hasOwnProperty.call(this.instances, componentRef);
+        }
+
+        /**
+         * @param {symbol|string} componentRef 
+         * @returns {boolean}
+         */
+
+    }, {
+        key: "isProvided",
+        value: function isProvided(componentRef) {
+            return Object.prototype.hasOwnProperty.call(this.dependencyProviders, componentRef);
+        }
+    }, {
+        key: "_initInstance",
+        value: async function _initInstance(componentRef) {
+            var dependencyGraph = this._buildDependencyGraph(componentRef);
+
+            var lowestLevel = dependencyGraph.nodes.reduce(function (p, v) {
+                return p.level > v.level ? p : v;
+            }, dependencyGraph.nodes[0]).level;
+
+            for (var i = lowestLevel; i >= 0; i--) {
+                // init components on the lowest level first, because they don't have dependencies
+                for (var j = 0; j < dependencyGraph.nodes.length; j++) {
+                    var node = dependencyGraph.nodes[j];
+                    if (node.level === i && !this.isInitialized(node.dependencyRef)) {
+                        var _dependencyProviders$;
+
+                        var resolvedDependencies = [];
+                        for (var k = j + 1; k < dependencyGraph.nodes.length; k++) {
+                            var childNode = dependencyGraph.nodes[k];
+                            if (childNode.level <= node.level) {
+                                // not a child node, all child nodes are passed
+                                break;
+                            }
+                            if (childNode.level > node.level + 1) {
+                                // not a direct child node
+                                continue;
+                            }
+
+                            console.assert(childNode.dependencyRef in this.instances, "Attempting to get dependency to inject into parent node, but it is not initialized");
+
+                            resolvedDependencies.push(this.instances[childNode.dependencyRef]);
+                        }
+
+                        this.instances[node.dependencyRef] = await (_dependencyProviders$ = this.dependencyProviders[node.dependencyRef]).provide.apply(_dependencyProviders$, resolvedDependencies);
+                    }
+                }
+            }
+        }
+    }, {
+        key: "_buildDependencyGraph",
+        value: function _buildDependencyGraph(dependencyRef) {
+            var dependencyGraph = new _DependencyGraph2.default();
+            try {
+                this._addDependencySubGraph(dependencyRef, dependencyGraph, 0);
+                return dependencyGraph;
+            } catch (e) {
+                if (e instanceof _CyclicDependencyError2.default) {
+                    var requestChain = e.requestingComponentsChain.reverse().map(function (e) {
+                        return e.toString();
+                    }).join(' -> ');
+                    console.error("Cyclic dependency found " + requestChain + " -> " + e.requiredComponent);
+                }
+                throw e;
+            }
+        }
+    }, {
+        key: "_addDependencySubGraph",
+        value: function _addDependencySubGraph(dependencyRef, superGraph, level) {
+            var _this2 = this;
+
+            var dependencySubGraph = void 0;
+            if (this.dependencyGraphs[dependencyRef]) {
+                if (this.dependencyGraphs[dependencyRef].level() < level) {
+                    throw new _CyclicDependencyError2.default(dependencyRef);
+                }
+                dependencySubGraph = this.dependencyGraphs[dependencyRef];
+                superGraph.addDependencies(dependencySubGraph);
+                return;
+            }
+
+            dependencySubGraph = new _DependencyGraph2.default(dependencyRef, level);
+            this.dependencyGraphs[dependencyRef] = dependencySubGraph;
+
+            if (this.dependencyProviders[dependencyRef]) {
+                this.dependencyProviders[dependencyRef].getDependencies().forEach(function (arg) {
+                    if (!_this2.instances[arg] && !_this2.isProvided(arg)) {
+                        throw new Error("Unsatisfied dependency '" + arg.toString() + "' for component '" + dependencyRef.toString() + "'");
+                    }
+
+                    try {
+                        _this2._addDependencySubGraph(arg, dependencySubGraph, level + 1);
+                    } catch (e) {
+                        if (e instanceof _CyclicDependencyError2.default) {
+                            e.requestingComponentsChain.push(dependencyRef);
+                        }
+
+                        throw e;
+                    }
+                });
+            }
+
+            superGraph.addDependencies(dependencySubGraph);
+        }
+    }]);
+
+    return DiContainer;
+}();
+
+exports.default = DiContainer;
+
+/***/ }),
+
+/***/ "../node_modules/di-container-js/index.js":
+/*!************************************************!*\
+  !*** ../node_modules/di-container-js/index.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DiContainer = exports.ComponentProvider = undefined;
+
+var _DiContainer = __webpack_require__(/*! ./DiContainer */ "../node_modules/di-container-js/DiContainer.js");
+
+var _DiContainer2 = _interopRequireDefault(_DiContainer);
+
+var _ComponentProvider = __webpack_require__(/*! ./ComponentProvider */ "../node_modules/di-container-js/ComponentProvider.js");
+
+var _ComponentProvider2 = _interopRequireDefault(_ComponentProvider);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _DiContainer2.default;
+exports.ComponentProvider = _ComponentProvider2.default;
+exports.DiContainer = _DiContainer2.default;
+
+/***/ }),
+
+/***/ "../node_modules/di-container-js/util/getArgNames.js":
+/*!***********************************************************!*\
+  !*** ../node_modules/di-container-js/util/getArgNames.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = getArgNames;
+var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg,
+    ARGUMENT_NAMES = /([^\s,]+)/g;
+
+function getArgNames(func) {
+    var fnStr = func.toString().replace(STRIP_COMMENTS, '');
+    var result = fnStr.slice(fnStr.indexOf('(') + 1, fnStr.indexOf(')')).match(ARGUMENT_NAMES);
+    if (result === null) {
+        result = [];
+    }
+
+    return result;
+}
 
 /***/ }),
 
@@ -37282,9 +37777,349 @@ module.exports = function (module) {
 var path = __webpack_require__(/*! path */ "path");
 
 module.exports = {
-    protoDir: path.resolve(__dirname, "../../../common/proto")
+    protoDir: path.resolve(__dirname, "../../../common/proto"),
+    packetPeriodMs: 200
 };
 /* WEBPACK VAR INJECTION */}.call(this, "../src/config"))
+
+/***/ }),
+
+/***/ "../src/engine/globals.js":
+/*!********************************!*\
+  !*** ../src/engine/globals.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.diContainer = undefined;
+
+var _diContainerJs = __webpack_require__(/*! di-container-js */ "../node_modules/di-container-js/index.js");
+
+var _diContainerJs2 = _interopRequireDefault(_diContainerJs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var diContainer = new _diContainerJs2.default();
+
+exports.diContainer = diContainer;
+
+/***/ }),
+
+/***/ "../src/engine/index.js":
+/*!******************************!*\
+  !*** ../src/engine/index.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.createFrontendFacade = exports.diContainer = undefined;
+
+var _globals = __webpack_require__(/*! ./globals */ "../src/engine/globals.js");
+
+function createFrontendFacade(filepaths) {
+    _globals.diContainer.configure('assetManager', { filepaths: filepaths });
+    return _globals.diContainer.get("frontendFacade");
+}
+
+exports.diContainer = _globals.diContainer;
+exports.createFrontendFacade = createFrontendFacade;
+
+/***/ }),
+
+/***/ "../src/engine/net/format/MessageEncoderDecoder.js":
+/*!*********************************************************!*\
+  !*** ../src/engine/net/format/MessageEncoderDecoder.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @typedef {import('three').Vector3} Vector3
+ * @typedef {import('three').Quaternion} Quaternion
+ */
+
+// eslint-disable-next-line no-undef
+var protobuf = __webpack_require__(/*! protobufjs */ "../node_modules/protobufjs/index.js");
+
+var MessageEncoderDecoder = function () {
+    function MessageEncoderDecoder() {
+        _classCallCheck(this, MessageEncoderDecoder);
+    }
+
+    _createClass(MessageEncoderDecoder, [{
+        key: "postConstruct",
+        value: function postConstruct(_ref) {
+            var protoBundle = _ref.protoBundle;
+
+            this.protoBundle = protoBundle;
+            return this.loadProtoDefinitions();
+        }
+    }, {
+        key: "loadProtoDefinitions",
+        value: function loadProtoDefinitions() {
+            var root = protobuf.Root.fromJSON(this.protoBundle);
+
+            this.HelloWorld = root.lookupType("helloworld.HelloWorld");
+            this.ObjectState = root.lookupType("multiplayer.ObjectState");
+            this.ControlsState = root.lookupType("multiplayer.ControlsState");
+            this.FloatVector = root.lookupType("multiplayer.FloatVector");
+            this.Quaternion = root.lookupType("multiplayer.Quaternion");
+            this.WorldState = root.lookupType("multiplayer.WorldState");
+            return Promise.resolve();
+            /*return protobuf.load(config.protoDir + "/helloworld.proto")
+                    .then((root) => {
+                        this.HelloWorld = root.lookupType("helloworld.HelloWorld");
+                        return Promise.resolve();
+                    });*/
+        }
+
+        /**
+         * @param {Buffer} buffer
+         * @returns {Array}
+         */
+
+    }, {
+        key: "decodeMsgs",
+        value: function decodeMsgs(buffer) {
+            var msgs = [];
+            while (buffer.length) {
+                var size = buffer.readUInt32LE();
+                // TODO if received buffer size < msg size, save msg part into buffer and wait for another chunk of data
+
+                buffer = buffer.slice(4);
+                var decodedMsg = this.HelloWorld.decode(buffer.slice(0, size));
+                buffer = buffer.slice(size);
+
+                msgs.push(decodedMsg);
+            }
+
+            return msgs;
+        }
+
+        /**
+         * @param {Vector3} vector
+         * @returns {*}
+         */
+
+    }, {
+        key: "convertVector",
+        value: function convertVector(vector) {
+            return this.FloatVector.create({ x: vector.x, y: vector.y, z: vector.z });
+        }
+
+        /**
+         * @param {Quaternion} quaternion
+         * @returns {*}
+         */
+
+    }, {
+        key: "convertQuaternion",
+        value: function convertQuaternion(quaternion) {
+            var real = this.FloatVector.create({ x: quaternion.x, y: quaternion.y, z: quaternion.z });
+            var imag = quaternion.w;
+
+            return this.Quaternion.create({ real: real, imag: imag });
+        }
+
+        /**
+         * @param {*} msgType
+         * @param {protobuf.Message} msg
+         * @returns {Uint8Array}
+         */
+
+    }, {
+        key: "encode",
+        value: function encode(msgType, msg) {
+            var writer = new protobuf.Writer();
+            msgType.encodeDelimited(msg, writer);
+            return writer.finish();
+        }
+    }]);
+
+    return MessageEncoderDecoder;
+}();
+
+exports.default = MessageEncoderDecoder;
+
+/***/ }),
+
+/***/ "../src/engine/net/format/index.js":
+/*!*****************************************!*\
+  !*** ../src/engine/net/format/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _globals = __webpack_require__(/*! ../../globals */ "../src/engine/globals.js");
+
+var _MessageEncoderDecoder = __webpack_require__(/*! ./MessageEncoderDecoder */ "../src/engine/net/format/MessageEncoderDecoder.js");
+
+var _MessageEncoderDecoder2 = _interopRequireDefault(_MessageEncoderDecoder);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_globals.diContainer.registerClass("messageEncoderDecoder", _MessageEncoderDecoder2.default);
+
+/***/ }),
+
+/***/ "../src/engine/physics/object/AbstractObject.js":
+/*!******************************************************!*\
+  !*** ../src/engine/physics/object/AbstractObject.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @typedef {import('three').Object3D} Object3D
+ */
+
+var AbstractObject = function () {
+
+    /**
+     * @param {*} id 
+     * @param {Object3D} object3d 
+     */
+
+
+    /** @type {Object3D} */
+    function AbstractObject(id, object3d) {
+        _classCallCheck(this, AbstractObject);
+
+        this.id = id;
+        this.object3d = object3d;
+    }
+
+    // eslint-disable-next-line no-unused-vars
+
+
+    /** @type {*} */
+
+
+    _createClass(AbstractObject, [{
+        key: "update",
+        value: function update(delta) {
+            throw new Error("Not implemented");
+        }
+    }]);
+
+    return AbstractObject;
+}();
+
+exports.default = AbstractObject;
+
+/***/ }),
+
+/***/ "../src/engine/state/StateManager.js":
+/*!*******************************************!*\
+  !*** ../src/engine/state/StateManager.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _AbstractObject = __webpack_require__(/*! ../physics/object/AbstractObject */ "../src/engine/physics/object/AbstractObject.js");
+
+var _AbstractObject2 = _interopRequireDefault(_AbstractObject);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var StateManager = function () {
+    function StateManager() {
+        _classCallCheck(this, StateManager);
+
+        this.allObjects = [];
+    }
+
+    /** @type {AbstractObject[]} */
+
+
+    _createClass(StateManager, [{
+        key: "update",
+        value: function update(delta) {
+            this.allObjects.forEach(function (object) {
+                return object.update(delta);
+            });
+        }
+    }, {
+        key: "addObject",
+        value: function addObject(gameObject) {
+            this.allObjects.push(gameObject);
+        }
+    }]);
+
+    return StateManager;
+}();
+
+exports.default = StateManager;
+
+/***/ }),
+
+/***/ "../src/engine/state/index.js":
+/*!************************************!*\
+  !*** ../src/engine/state/index.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _globals = __webpack_require__(/*! ../globals */ "../src/engine/globals.js");
+
+var _StateManager = __webpack_require__(/*! ./StateManager */ "../src/engine/state/StateManager.js");
+
+var _StateManager2 = _interopRequireDefault(_StateManager);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_globals.diContainer.registerClass("stateManager", _StateManager2.default);
 
 /***/ }),
 
@@ -37298,33 +38133,53 @@ module.exports = {
 "use strict";
 
 
-var logger = __webpack_require__(/*! ./utils/logger */ "../src/utils/logger.js");
-var SocketServer = __webpack_require__(/*! ./socket-server */ "../src/socket-server.js");
+__webpack_require__(/*! ./engine/net/format */ "../src/engine/net/format/index.js");
+
+__webpack_require__(/*! ./engine/state */ "../src/engine/state/index.js");
+
+var _engine = __webpack_require__(/*! ./engine */ "../src/engine/index.js");
+
+var logger = __webpack_require__(/*! ./utils/logger */ "../src/utils/logger.js"); // initialize required modules
+
+var SocketServer = __webpack_require__(/*! ./service/SocketServer */ "../src/service/SocketServer.js");
+var Simulation = __webpack_require__(/*! ./service/Simulation */ "../src/service/Simulation.js");
+var StateDispatcher = __webpack_require__(/*! ./service/StateDispatcher */ "../src/service/StateDispatcher.js");
 
 var SOCKET_FILE = '/tmp/spaceships-world-simulator.sock';
 
-var sockerServer = new SocketServer(SOCKET_FILE);
-sockerServer.start();
+(async function () {
+    _engine.diContainer.configure('messageEncoderDecoder', { protoBundle: __webpack_require__(/*! ../../common/proto/bundle.json */ "../../common/proto/bundle.json") });
+    var messageEncoderDecoder = await _engine.diContainer.get('messageEncoderDecoder');
+    var stateManager = await _engine.diContainer.get('stateManager');
 
-function shutdown() {
-    if (!shutdown.shuttingDown && sockerServer) {
-        shutdown.shuttingDown = true;
-        logger.info('Terminating');
+    var sockerServer = new SocketServer(SOCKET_FILE, messageEncoderDecoder);
+    var stateDispatcher = new StateDispatcher(stateManager, sockerServer, messageEncoderDecoder);
+    var simulation = new Simulation(stateManager);
+    simulation.onIterCompleted(stateDispatcher.handleStateUpdated);
 
-        sockerServer.cleanup();
+    sockerServer.start();
+    simulation.startGameLoop();
 
-        process.exit(0);
+    function shutdown() {
+        if (!shutdown.shuttingDown && sockerServer) {
+            shutdown.shuttingDown = true;
+            logger.info('Terminating');
+
+            sockerServer.cleanup();
+
+            process.exit(0);
+        }
     }
-}
 
-process.on('SIGINT', shutdown);
+    process.on('SIGINT', shutdown);
+})();
 
 /***/ }),
 
-/***/ "../src/service/MessageDecoder.js":
-/*!****************************************!*\
-  !*** ../src/service/MessageDecoder.js ***!
-  \****************************************/
+/***/ "../src/service/Simulation.js":
+/*!************************************!*\
+  !*** ../src/service/Simulation.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -37335,62 +38190,92 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var protobuf = __webpack_require__(/*! protobufjs */ "../node_modules/protobufjs/index.js");
-
-var config = __webpack_require__(/*! ../config */ "../src/config/index.js");
 var logger = __webpack_require__(/*! ../utils/logger */ "../src/utils/logger.js");
 
-var MessageDecoder = function () {
-    function MessageDecoder() {
-        _classCallCheck(this, MessageDecoder);
+var Simulation = function () {
+    function Simulation(stateManager) {
+        var _this = this;
+
+        _classCallCheck(this, Simulation);
+
+        this.maxFPS = 60;
+        this.delta = 0;
+        this.timestep = 1000 / 60;
+
+        this.handleIterCompleted = function () {};
+
+        this.gameLoop = function () {
+            var timestamp = Date.now();
+            /*if (timestamp < this.lastFrameTimeMs + this.timestep) {
+                setTimeout(this.gameLoop);
+                return;
+            }*/
+
+            var timeoutDelay = timestamp - _this.lastFrameTimeMs - _this.timestep; // ideal case when delay = 0
+            if (timeoutDelay < 0) {
+                timeoutDelay = 0;
+            }
+
+            _this.delta += timestamp - _this.lastFrameTimeMs;
+            _this.lastFrameTimeMs = timestamp;
+
+            while (_this.delta >= _this.timestep) {
+                _this.stateManager.update(_this.timestep);
+                _this.delta -= _this.timestep;
+            }
+
+            var afterStateUpdatedTimestamp = Date.now();
+            var timeProcesing = afterStateUpdatedTimestamp - timestamp;
+            //logger.debug(`Time procesing: ` + timeProcesing);
+
+            var timeLeftToNextStateUpdate = _this.timestep - (timeProcesing + timeoutDelay);
+
+            if (timeLeftToNextStateUpdate < 0) {
+                timeLeftToNextStateUpdate = 0;
+                logger.warn("State update took too much time");
+            }
+
+            setTimeout(_this.gameLoop, timeLeftToNextStateUpdate);
+
+            _this.handleIterCompleted();
+            //logger.debug(`Next state update in ${timeLeftToNextStateUpdate} milliseconds`);
+        };
+
+        this.stateManager = stateManager;
     }
 
-    _createClass(MessageDecoder, [{
-        key: "loadProtoDefinitions",
-        value: function loadProtoDefinitions() {
-            var _this = this;
+    /** Timing */
 
-            return protobuf.load(config.protoDir + "/helloworld.proto") // "awesome.proto")
-            .then(function (root) {
-                _this.HelloWorld = root.lookupType("helloworld.HelloWorld");
-                return Promise.resolve();
-            });
+
+    _createClass(Simulation, [{
+        key: "onIterCompleted",
+        value: function onIterCompleted(callback) {
+            this.handleIterCompleted = callback;
         }
-
-        /**
-         * @param {Buffer} buffer
-         */
-
     }, {
-        key: "decodeMsgs",
-        value: function decodeMsgs(buffer) {
-            var msgs = [];
-            while (buffer.length) {
-                var size = buffer.readUInt32LE();
-                logger.debug('Msg size: ' + size);
+        key: "startGameLoop",
+        value: function startGameLoop() {
+            var _this2 = this;
 
-                buffer = buffer.slice(4);
-                var decodedMsg = this.HelloWorld.decode(buffer.slice(0, size));
-                buffer = buffer.slice(size);
+            setTimeout(function () {
+                _this2.lastFrameTimeMs = Date.now();
 
-                msgs.push(decodedMsg);
-
-                logger.debug('Msg decoded: ' + JSON.stringify(decodedMsg));
-            }
+                setTimeout(_this2.gameLoop, _this2.timestep);
+            }, this.timestep);
         }
     }]);
 
-    return MessageDecoder;
+    return Simulation;
 }();
 
-module.exports = MessageDecoder;
+module.exports = Simulation;
 
 /***/ }),
 
-/***/ "../src/socket-server.js":
-/*!*******************************!*\
-  !*** ../src/socket-server.js ***!
-  \*******************************/
+/***/ "../src/service/SocketServer.js":
+/*!**************************************!*\
+  !*** ../src/service/SocketServer.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -37401,33 +38286,37 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var logger = __webpack_require__(/*! ./utils/logger */ "../src/utils/logger.js");
+/**
+ * @typedef {import('../engine/net/format/MessageEncoderDecoder').default} MessageEncoderDecoder
+ * @typedef {import('net').Socket} Socket
+ */
+
+var logger = __webpack_require__(/*! ../utils/logger */ "../src/utils/logger.js");
 var net = __webpack_require__(/*! net */ "net");
 var fs = __webpack_require__(/*! fs */ "fs");
-var MessageDecoder = __webpack_require__(/*! ./service/MessageDecoder */ "../src/service/MessageDecoder.js");
 
 var SocketServer = function () {
-    function SocketServer(sockerFilePath) {
+
+    /** @type {MessageEncoderDecoder} */
+    function SocketServer(sockerFilePath, messageEncoderDecoder) {
         _classCallCheck(this, SocketServer);
 
-        this.sockerFilePath = sockerFilePath;
         this.connections = {};
+
+        this.sockerFilePath = sockerFilePath;
+        this.messageEncoderDecoder = messageEncoderDecoder;
     }
+
+    /** @type {Object.<string, Socket>} */
+
 
     _createClass(SocketServer, [{
         key: 'start',
         value: async function start() {
             var _this = this;
 
-            debugger;
             // check for failed cleanup
             logger.debug('Checking for leftover socket');
-
-            /** @type {MessageDecoder} */
-            this.messageDecoder = new MessageDecoder();
-            await this.messageDecoder.loadProtoDefinitions();
-
-            debugger;
 
             // eslint-disable-next-line no-unused-vars
             fs.stat(this.sockerFilePath, function (err, stats) {
@@ -37440,7 +38329,7 @@ var SocketServer = function () {
                     logger.debug('Removing leftover socket');
                     fs.unlink(_this.sockerFilePath, function (err) {
                         if (err) {
-                            // this should never happen.
+                            // this should never happen
                             logger.error(err);
                         }
 
@@ -37465,6 +38354,17 @@ var SocketServer = function () {
             }
         }
     }, {
+        key: 'broadcast',
+        value: function broadcast(data) {
+            for (var clientId in this.connections) {
+                this.connections[clientId].write(data, function (err) {
+                    if (err) {
+                        logger.warn("Failed to write to socket, error: " + err);
+                    }
+                });
+            }
+        }
+    }, {
         key: '_handleClientDisconnected',
         value: function _handleClientDisconnected(clientId) {
             logger.debug('Client #' + clientId + ' disconnected');
@@ -37472,12 +38372,33 @@ var SocketServer = function () {
         }
     }, {
         key: '_handleDataReceived',
-        value: function _handleDataReceived(clientId, msg) {
-            // messages are buffers, convert to string
-            this.messageDecoder.decodeMsgs(msg);
+        value: function _handleDataReceived(clientId, data) {
+            //logger.debug("Received data: " + data.toString());
+            var messages = this.messageEncoderDecoder.decodeMsgs(data);
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
 
-            msg = msg.toString();
-            logger.debug('Incoming message from #' + clientId + ': ' + msg);
+            try {
+                for (var _iterator = messages[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var message = _step.value;
+
+                    logger.debug("Incoming message: " + JSON.stringify(message));
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
         }
     }, {
         key: '_createServer',
@@ -37491,6 +38412,7 @@ var SocketServer = function () {
 
                 var clientId = Date.now();
                 _this3.connections[clientId] = stream;
+                //stream.
                 stream.on('end', _this3._handleClientDisconnected.bind(_this3, clientId));
                 stream.on('data', _this3._handleDataReceived.bind(_this3, clientId));
             }).listen(this.sockerFilePath).on('listening', function () {
@@ -37503,6 +38425,123 @@ var SocketServer = function () {
 }();
 
 module.exports = SocketServer;
+
+/***/ }),
+
+/***/ "../src/service/StateDispatcher.js":
+/*!*****************************************!*\
+  !*** ../src/service/StateDispatcher.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @typedef {import('./SocketServer')} SocketServer
+ * @typedef {import('../engine/state/StateManager').default} StateManager
+ * @typedef {import('../engine/net/format/MessageEncoderDecoder').default} MessageEncoderDecoder
+ */
+
+var packetPeriodMs = __webpack_require__(/*! ../config */ "../src/config/index.js").packetPeriodMs;
+var logger = __webpack_require__(/*! ../utils/logger */ "../src/utils/logger.js");
+
+var StateDispatcher = function () {
+
+    /**
+     * @param {StateManager} stateManager 
+     * @param {SocketServer} socketServer 
+     * @param {MessageEncoderDecoder} messageEncoderDecoder 
+     */
+    function StateDispatcher(stateManager, socketServer, messageEncoderDecoder) {
+        var _this = this;
+
+        _classCallCheck(this, StateDispatcher);
+
+        this.handleStateUpdated = function () {
+            var timestamp = Date.now();
+            if (timestamp - _this.lastDispatchTimestamp > packetPeriodMs) {
+                logger.debug('Dispatching new state');
+                _this.lastDispatchTimestamp = timestamp;
+                _this.dispatchState();
+            }
+        };
+
+        this.stateManager = stateManager;
+        this.socketServer = socketServer;
+        this.messageEncoderDecoder = messageEncoderDecoder;
+        this.lastDispatchTimestamp = Date.now();
+    }
+
+    _createClass(StateDispatcher, [{
+        key: 'dispatchState',
+        value: function dispatchState() {
+            var objectStates = [];
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.stateManager.allObjects[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var object = _step.value;
+
+                    var data = {
+                        id: object.id,
+                        objectType: 1,
+                        position: this.messageEncoderDecoder.convertVector(object.object3d.position)
+                    };
+
+                    if (object.quaternion) {
+                        data.quaternion = this.messageEncoderDecoder.convertQuaternion(object.quaternion);
+                    }
+                    if (object.velocity) {
+                        data.velocity = this.messageEncoderDecoder.convertVector(object.velocity);
+                    }
+                    if (object.acceleration) {
+                        data.acceleration = this.messageEncoderDecoder.convertVector(object.acceleration);
+                    }
+                    if (object.angularVelocity) {
+                        data.angularVelocity = this.messageEncoderDecoder.convertVector(object.angularVelocity);
+                    }
+                    if (object.angularVelocity) {
+                        data.wVelocity = this.messageEncoderDecoder.convertVector(object.angularVelocity);
+                    }
+                    if (object.angularAcceleration) {
+                        data.wAcceleration = this.messageEncoderDecoder.convertVector(object.angularAcceleration);
+                    }
+
+                    objectStates.push(this.messageEncoderDecoder.ObjectState.create(data));
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            var WorldState = this.messageEncoderDecoder.WorldState;
+            var encoded = this.messageEncoderDecoder.encode(WorldState, WorldState.create({ objectStates: objectStates }));
+            this.socketServer.broadcast(encoded);
+        }
+    }]);
+
+    return StateDispatcher;
+}();
+
+module.exports = StateDispatcher;
 
 /***/ }),
 

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package multiplayer;
+
+import "float-vector.proto";
+import "quaternion.proto";
+
+message ObjectState {
+    int32 id = 1;
+    int32 objectType = 2;
+    FloatVector position = 3;
+    Quaternion quaternion = 4;
+    FloatVector velocity = 5;
+    FloatVector acceleration = 6;
+    FloatVector wVelocity = 7;
+    FloatVector wAcceleration = 8;
+    float angleToControlX = 9;
+}

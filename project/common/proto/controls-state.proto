@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package multiplayer;
+
+message ControlsState {
+    int32 msgId = 1;
+    float yawTarget = 2;
+    float pitchTarget = 3;
+    float rollTarget = 4;
+}

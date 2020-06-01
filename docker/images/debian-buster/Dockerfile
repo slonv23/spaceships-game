@@ -27,6 +27,7 @@ RUN cd /tmp/libnice	&& ./autogen.sh && ./configure && make && make install
 RUN dpkg-divert --remove /usr/bin/gfortran
 RUN dpkg-divert --divert /usr/bin/gfortran.orig --rename /usr/local/bin/gfortran
 
+# TODO specify version of Boost library to install (last tested with 1.67)
 RUN apt-get -y install libboost-all-dev
 
 # Install packages required by VSCode
