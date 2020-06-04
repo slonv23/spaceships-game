@@ -4,3 +4,6 @@
 [submodule "project/server"]
 	path = project/server
 	url = https://github.com/slonv23/spaceships-game-server
+[submodule "project/common/engine"]
+	path = project/common/engine
+	url = https://github.com/slonv23/spaceships-game-engine
