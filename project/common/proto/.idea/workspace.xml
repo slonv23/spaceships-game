@@ -4,9 +4,10 @@
     <list default="true" id="066b3b7b-2eee-4642-82e1-aee0e6b3e3a5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../../client" beforeDir="false" afterPath="$PROJECT_DIR$/../../client" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine" beforeDir="false" afterPath="$PROJECT_DIR$/../engine" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/object-state.proto" beforeDir="false" afterPath="$PROJECT_DIR$/object-state.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../server" beforeDir="false" afterPath="$PROJECT_DIR$/../../server" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../world-simulator/src/engine" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../world-simulator/src/engine" beforeDir="false" afterPath="$PROJECT_DIR$/../../world-simulator/src/engine" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +39,9 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="066b3b7b-2eee-4642-82e1-aee0e6b3e3a5" name="Default Changelist" comment="" />
@@ -49,6 +53,10 @@
       <workItem from="1591603902191" duration="72000" />
       <workItem from="1591603987590" duration="2140000" />
       <workItem from="1591643075664" duration="625000" />
+      <workItem from="1591799159312" duration="614000" />
+      <workItem from="1591800147371" duration="619000" />
+      <workItem from="1591888736481" duration="163000" />
+      <workItem from="1591888913392" duration="1488000" />
     </task>
     <servers />
   </component>

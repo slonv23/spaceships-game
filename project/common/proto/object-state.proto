@@ -11,12 +11,10 @@ message ObjectState {
     FloatVector position = 3;
     Quaternion quaternion = 4;
     float speed = 5; // object moves along z axis
-    // FloatVector velocity = 5;
     float acceleration = 6;
     FloatVector angularVelocity = 7;
     FloatVector angularAcceleration = 8;
-    float rollAngle = 9; // angle btw object and control axes
-    float rollAngleTarget = 10;
+    float rollAngleBtwCurrentAndTargetOrientation = 9; // angle btw object and control axes
     FloatVector controlX = 11;
     Quaternion controlQuaternion = 12;
 }
