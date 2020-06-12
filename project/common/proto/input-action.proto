@@ -5,6 +5,6 @@ package multiplayer;
 message InputAction {
     float yaw = 1;
     float pitch = 2;
-    float rotationAcceleration = 3;
+    float rotationSpeed = 3;
     float rollAngle = 4;
 }

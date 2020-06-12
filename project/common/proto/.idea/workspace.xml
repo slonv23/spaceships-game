@@ -5,9 +5,9 @@
       <change beforePath="$PROJECT_DIR$/../../client" beforeDir="false" afterPath="$PROJECT_DIR$/../../client" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../engine" beforeDir="false" afterPath="$PROJECT_DIR$/../engine" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-state.proto" beforeDir="false" afterPath="$PROJECT_DIR$/object-state.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input-action.proto" beforeDir="false" afterPath="$PROJECT_DIR$/input-action.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../server" beforeDir="false" afterPath="$PROJECT_DIR$/../../server" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../world-simulator/src/engine" beforeDir="false" afterPath="$PROJECT_DIR$/../../world-simulator/src/engine" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../world-simulator/src/engine" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +57,7 @@
       <workItem from="1591800147371" duration="619000" />
       <workItem from="1591888736481" duration="163000" />
       <workItem from="1591888913392" duration="1488000" />
+      <workItem from="1591899029544" duration="973000" />
     </task>
     <servers />
   </component>
