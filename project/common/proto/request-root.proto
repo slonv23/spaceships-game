@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package multiplayer;
+
+import "input-action.proto";
+
+message RequestRoot {
+    oneof message {
+        InputAction inputAction = 1;
+    }
+}

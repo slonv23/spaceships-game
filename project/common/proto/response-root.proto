@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package multiplayer;
+
+import "world-state.proto";
+
+message ResponseRoot {
+    oneof message {
+        WorldState worldState = 1;
+    }
+}

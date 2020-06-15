@@ -38,6 +38,26 @@
             }
           }
         },
+        "InputAction": {
+          "fields": {
+            "yaw": {
+              "type": "float",
+              "id": 1
+            },
+            "pitch": {
+              "type": "float",
+              "id": 2
+            },
+            "rotationSpeed": {
+              "type": "float",
+              "id": 3
+            },
+            "rollAngle": {
+              "type": "float",
+              "id": 4
+            }
+          }
+        },
         "ObjectState": {
           "fields": {
             "id": {
@@ -56,25 +76,33 @@
               "type": "Quaternion",
               "id": 4
             },
-            "velocity": {
-              "type": "FloatVector",
+            "speed": {
+              "type": "float",
               "id": 5
             },
             "acceleration": {
-              "type": "FloatVector",
+              "type": "float",
               "id": 6
             },
-            "wVelocity": {
+            "angularVelocity": {
               "type": "FloatVector",
               "id": 7
             },
-            "wAcceleration": {
+            "angularAcceleration": {
               "type": "FloatVector",
               "id": 8
             },
-            "angleToControlX": {
+            "rollAngleBtwCurrentAndTargetOrientation": {
               "type": "float",
               "id": 9
+            },
+            "controlX": {
+              "type": "FloatVector",
+              "id": 11
+            },
+            "controlQuaternion": {
+              "type": "Quaternion",
+              "id": 12
             }
           }
         },
@@ -87,6 +115,36 @@
             "real": {
               "type": "float",
               "id": 2
+            }
+          }
+        },
+        "RequestRoot": {
+          "oneofs": {
+            "message": {
+              "oneof": [
+                "inputAction"
+              ]
+            }
+          },
+          "fields": {
+            "inputAction": {
+              "type": "InputAction",
+              "id": 1
+            }
+          }
+        },
+        "ResponseRoot": {
+          "oneofs": {
+            "message": {
+              "oneof": [
+                "worldState"
+              ]
+            }
+          },
+          "fields": {
+            "worldState": {
+              "type": "WorldState",
+              "id": 1
             }
           }
         },
