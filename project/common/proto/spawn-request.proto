@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package multiplayer;
+
+message SpawnRequest {
+    string nickName = 1;
+    string spawnRequestId = 2;
+}
