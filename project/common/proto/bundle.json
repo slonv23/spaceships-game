@@ -2,39 +2,18 @@
   "nested": {
     "multiplayer": {
       "nested": {
-        "ControlsState": {
-          "fields": {
-            "msgId": {
-              "type": "int32",
-              "id": 1
-            },
-            "yawTarget": {
-              "type": "float",
-              "id": 2
-            },
-            "pitchTarget": {
-              "type": "float",
-              "id": 3
-            },
-            "rollTarget": {
-              "type": "float",
-              "id": 4
+        "RequestRoot": {
+          "oneofs": {
+            "message": {
+              "oneof": [
+                "inputAction"
+              ]
             }
-          }
-        },
-        "FloatVector": {
+          },
           "fields": {
-            "x": {
-              "type": "float",
+            "inputAction": {
+              "type": "InputAction",
               "id": 1
-            },
-            "y": {
-              "type": "float",
-              "id": 2
-            },
-            "z": {
-              "type": "float",
-              "id": 3
             }
           }
         },
@@ -55,6 +34,38 @@
             "rollAngle": {
               "type": "float",
               "id": 4
+            },
+            "objectId": {
+              "type": "string",
+              "id": 5
+            }
+          }
+        },
+        "Quaternion": {
+          "fields": {
+            "imag": {
+              "type": "FloatVector",
+              "id": 1
+            },
+            "real": {
+              "type": "float",
+              "id": 2
+            }
+          }
+        },
+        "FloatVector": {
+          "fields": {
+            "x": {
+              "type": "float",
+              "id": 1
+            },
+            "y": {
+              "type": "float",
+              "id": 2
+            },
+            "z": {
+              "type": "float",
+              "id": 3
             }
           }
         },
@@ -106,30 +117,56 @@
             }
           }
         },
-        "Quaternion": {
+        "WorldState": {
           "fields": {
-            "imag": {
-              "type": "FloatVector",
+            "objectStates": {
+              "rule": "repeated",
+              "type": "ObjectState",
+              "id": 1
+            }
+          }
+        },
+        "ControlsState": {
+          "fields": {
+            "msgId": {
+              "type": "int32",
               "id": 1
             },
-            "real": {
+            "yawTarget": {
               "type": "float",
+              "id": 2
+            },
+            "pitchTarget": {
+              "type": "float",
+              "id": 3
+            },
+            "rollTarget": {
+              "type": "float",
+              "id": 4
+            }
+          }
+        },
+        "SpawnRequest": {
+          "fields": {
+            "nickName": {
+              "type": "string",
+              "id": 1
+            },
+            "spawnRequestId": {
+              "type": "string",
               "id": 2
             }
           }
         },
-        "RequestRoot": {
-          "oneofs": {
-            "message": {
-              "oneof": [
-                "inputAction"
-              ]
-            }
-          },
+        "SpawnResponse": {
           "fields": {
-            "inputAction": {
-              "type": "InputAction",
+            "assignedObjectId": {
+              "type": "string",
               "id": 1
+            },
+            "spawnRequestId": {
+              "type": "string",
+              "id": 2
             }
           }
         },
@@ -144,15 +181,6 @@
           "fields": {
             "worldState": {
               "type": "WorldState",
-              "id": 1
-            }
-          }
-        },
-        "WorldState": {
-          "fields": {
-            "objectStates": {
-              "rule": "repeated",
-              "type": "ObjectState",
               "id": 1
             }
           }

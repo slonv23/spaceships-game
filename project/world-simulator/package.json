@@ -31,7 +31,7 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "di-container-js": "^0.2.4",
+    "di-container-js": "^0.2.6",
     "protobufjs": "~6.9.0",
     "simple-node-logger": "^18.12.24",
     "three": "^0.110.0"
