@@ -3,9 +3,11 @@ syntax = "proto3";
 package multiplayer;
 
 import "input-action.proto";
+import "spawn-request.proto";
 
 message RequestRoot {
     oneof message {
         InputAction inputAction = 1;
+        SpawnRequest spawnRequest = 2;
     }
 }
