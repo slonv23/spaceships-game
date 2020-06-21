@@ -1,5 +1,5 @@
 /**
- * @typedef {import('../engine/net/format/MessageEncoderDecoder').default} MessageEncoderDecoder
+ * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
  * @typedef {import('net').Socket} Socket
  */
 
@@ -9,15 +9,15 @@ const fs = require('fs');
 
 class SocketServer {
 
-    /** @type {MessageEncoderDecoder} */
-    messageEncoderDecoder;
+    /** @type {MessageSerializerDeserializer} */
+    messageSerializerDeserializer;
 
-    /** @type {Object.<string, Socket>} */
+    /** @type {object.<string, Socket>} */
     connections = {};
 
-    constructor(sockerFilePath, messageEncoderDecoder) {
+    constructor(sockerFilePath, messageSerializerDeserializer) {
         this.sockerFilePath = sockerFilePath;
-        this.messageEncoderDecoder = messageEncoderDecoder;
+        this.messageSerializerDeserializer = messageSerializerDeserializer;
     }
 
     async start() {
@@ -73,9 +73,19 @@ class SocketServer {
     }
 
     _handleDataReceived(clientId, data) {
-        //logger.debug("Received data: " + data.toString());
-        const messages = this.messageEncoderDecoder.decodeMsgs(data);
+        const messages = this.messageSerializerDeserializer.deserializeRequest(data);
         for (const message of messages) {
+            if (!message.message) {
+                // not a valid message, should have message type
+                continue;
+            }
+
+            switch (message.message) {
+                case "spawnRequest":
+                    // message.requestId
+                    break;
+            }
+
             logger.debug("Incoming message: " + JSON.stringify(message));
         }
     }

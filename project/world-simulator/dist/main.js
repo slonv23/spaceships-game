@@ -93,7 +93,7 @@
 /*! exports provided: nested, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"nested\":{\"multiplayer\":{\"nested\":{\"RequestRoot\":{\"oneofs\":{\"message\":{\"oneof\":[\"inputAction\"]}},\"fields\":{\"inputAction\":{\"type\":\"InputAction\",\"id\":1}}},\"InputAction\":{\"fields\":{\"yaw\":{\"type\":\"float\",\"id\":1},\"pitch\":{\"type\":\"float\",\"id\":2},\"rotationSpeed\":{\"type\":\"float\",\"id\":3},\"rollAngle\":{\"type\":\"float\",\"id\":4},\"objectId\":{\"type\":\"string\",\"id\":5}}},\"Quaternion\":{\"fields\":{\"imag\":{\"type\":\"FloatVector\",\"id\":1},\"real\":{\"type\":\"float\",\"id\":2}}},\"FloatVector\":{\"fields\":{\"x\":{\"type\":\"float\",\"id\":1},\"y\":{\"type\":\"float\",\"id\":2},\"z\":{\"type\":\"float\",\"id\":3}}},\"ObjectState\":{\"fields\":{\"id\":{\"type\":\"int32\",\"id\":1},\"objectType\":{\"type\":\"int32\",\"id\":2},\"position\":{\"type\":\"FloatVector\",\"id\":3},\"quaternion\":{\"type\":\"Quaternion\",\"id\":4},\"speed\":{\"type\":\"float\",\"id\":5},\"acceleration\":{\"type\":\"float\",\"id\":6},\"angularVelocity\":{\"type\":\"FloatVector\",\"id\":7},\"angularAcceleration\":{\"type\":\"FloatVector\",\"id\":8},\"rollAngleBtwCurrentAndTargetOrientation\":{\"type\":\"float\",\"id\":9},\"controlX\":{\"type\":\"FloatVector\",\"id\":11},\"controlQuaternion\":{\"type\":\"Quaternion\",\"id\":12}}},\"WorldState\":{\"fields\":{\"objectStates\":{\"rule\":\"repeated\",\"type\":\"ObjectState\",\"id\":1}}},\"ControlsState\":{\"fields\":{\"msgId\":{\"type\":\"int32\",\"id\":1},\"yawTarget\":{\"type\":\"float\",\"id\":2},\"pitchTarget\":{\"type\":\"float\",\"id\":3},\"rollTarget\":{\"type\":\"float\",\"id\":4}}},\"SpawnRequest\":{\"fields\":{\"nickName\":{\"type\":\"string\",\"id\":1},\"spawnRequestId\":{\"type\":\"string\",\"id\":2}}},\"SpawnResponse\":{\"fields\":{\"assignedObjectId\":{\"type\":\"string\",\"id\":1},\"spawnRequestId\":{\"type\":\"string\",\"id\":2}}},\"ResponseRoot\":{\"oneofs\":{\"message\":{\"oneof\":[\"worldState\"]}},\"fields\":{\"worldState\":{\"type\":\"WorldState\",\"id\":1}}}}},\"helloworld\":{\"nested\":{\"HelloWorld\":{\"oneofs\":{\"event\":{\"oneof\":[\"submsg1\",\"submsg2\"]}},\"fields\":{\"submsg1\":{\"type\":\"SubMessage1\",\"id\":1},\"submsg2\":{\"type\":\"SubMessage2\",\"id\":2}}},\"SubMessage1\":{\"fields\":{\"message\":{\"type\":\"string\",\"id\":1}}},\"SubMessage2\":{\"fields\":{\"num\":{\"type\":\"int32\",\"id\":1}}}}}}}");
+module.exports = JSON.parse("{\"nested\":{\"multiplayer\":{\"nested\":{\"ControlsState\":{\"fields\":{\"msgId\":{\"type\":\"int32\",\"id\":1},\"yawTarget\":{\"type\":\"float\",\"id\":2},\"pitchTarget\":{\"type\":\"float\",\"id\":3},\"rollTarget\":{\"type\":\"float\",\"id\":4}}},\"FloatVector\":{\"fields\":{\"x\":{\"type\":\"float\",\"id\":1},\"y\":{\"type\":\"float\",\"id\":2},\"z\":{\"type\":\"float\",\"id\":3}}},\"InputAction\":{\"fields\":{\"yaw\":{\"type\":\"float\",\"id\":1},\"pitch\":{\"type\":\"float\",\"id\":2},\"rotationSpeed\":{\"type\":\"float\",\"id\":3},\"rollAngle\":{\"type\":\"float\",\"id\":4},\"objectId\":{\"type\":\"string\",\"id\":5}}},\"ObjectState\":{\"fields\":{\"id\":{\"type\":\"int32\",\"id\":1},\"objectType\":{\"type\":\"int32\",\"id\":2},\"position\":{\"type\":\"FloatVector\",\"id\":3},\"quaternion\":{\"type\":\"Quaternion\",\"id\":4},\"speed\":{\"type\":\"float\",\"id\":5},\"acceleration\":{\"type\":\"float\",\"id\":6},\"angularVelocity\":{\"type\":\"FloatVector\",\"id\":7},\"angularAcceleration\":{\"type\":\"FloatVector\",\"id\":8},\"rollAngleBtwCurrentAndTargetOrientation\":{\"type\":\"float\",\"id\":9},\"controlX\":{\"type\":\"FloatVector\",\"id\":11},\"controlQuaternion\":{\"type\":\"Quaternion\",\"id\":12}}},\"Quaternion\":{\"fields\":{\"imag\":{\"type\":\"FloatVector\",\"id\":1},\"real\":{\"type\":\"float\",\"id\":2}}},\"RequestRoot\":{\"oneofs\":{\"message\":{\"oneof\":[\"inputAction\",\"spawnRequest\"]}},\"fields\":{\"requestId\":{\"type\":\"int32\",\"id\":1},\"inputAction\":{\"type\":\"InputAction\",\"id\":2},\"spawnRequest\":{\"type\":\"SpawnRequest\",\"id\":3}}},\"SpawnRequest\":{\"fields\":{\"nickName\":{\"type\":\"string\",\"id\":1}}},\"ResponseRoot\":{\"oneofs\":{\"message\":{\"oneof\":[\"worldState\",\"spawnResponse\"]}},\"fields\":{\"requestId\":{\"type\":\"int32\",\"id\":1},\"worldState\":{\"type\":\"WorldState\",\"id\":2},\"spawnResponse\":{\"type\":\"SpawnResponse\",\"id\":3}}},\"WorldState\":{\"fields\":{\"objectStates\":{\"rule\":\"repeated\",\"type\":\"ObjectState\",\"id\":1}}},\"SpawnResponse\":{\"fields\":{\"assignedObjectId\":{\"type\":\"string\",\"id\":1},\"spawnRequestId\":{\"type\":\"string\",\"id\":2}}}}},\"helloworld\":{\"nested\":{\"HelloWorld\":{\"oneofs\":{\"event\":{\"oneof\":[\"submsg1\",\"submsg2\"]}},\"fields\":{\"submsg1\":{\"type\":\"SubMessage1\",\"id\":1},\"submsg2\":{\"type\":\"SubMessage2\",\"id\":2}}},\"SubMessage1\":{\"fields\":{\"message\":{\"type\":\"string\",\"id\":1}}},\"SubMessage2\":{\"fields\":{\"num\":{\"type\":\"int32\",\"id\":1}}}}}}}");
 
 /***/ }),
 
@@ -41365,7 +41365,7 @@ var MessageSerializerDeserializer = function () {
         }
 
         /**
-         * https://gist.github.com/TooTallNate/4750953
+         * @see https://gist.github.com/TooTallNate/4750953
          * @returns {string}
          * @private
          */
@@ -41379,9 +41379,10 @@ var MessageSerializerDeserializer = function () {
         }
 
         /**
-         * Taken from https://github.com/feross/buffer/blob/master/index.js
+         * @see https://github.com/feross/buffer/blob/master/index.js
          * @param {Buffer|Uint8Array} buffer
          * @private
+         * @returns {number}
          */
 
     }, {
@@ -41414,7 +41415,7 @@ var MessageSerializerDeserializer = function () {
         }
 
         /**
-         * https://github.com/protobufjs/protobuf.js/blob/master/src/reader.js#L86
+         * @see https://github.com/protobufjs/protobuf.js/blob/master/src/reader.js#L86
          * @param {Buffer|Uint8Array} buffer
          * @returns {number}
          * @private
@@ -41996,9 +41997,10 @@ var SOCKET_FILE = '/tmp/spaceships-world-simulator.sock';
     var sockerServer = new SocketServer(SOCKET_FILE, messageSerializerDeserializer);
     /*const stateDispatcher = new StateDispatcher(stateManager, sockerServer, messageEncoderDecoder)
     const simulation = new Simulation(stateManager);
-    simulation.onIterCompleted(stateDispatcher.handleStateUpdated);
-     sockerServer.start();
-    simulation.startGameLoop();*/
+    simulation.onIterCompleted(stateDispatcher.handleStateUpdated);*/
+
+    sockerServer.start();
+    //simulation.startGameLoop();
 
     function shutdown() {
         if (!shutdown.shuttingDown && sockerServer) {
@@ -42134,7 +42136,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
- * @typedef {import('../engine/net/format/MessageEncoderDecoder').default} MessageEncoderDecoder
+ * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
  * @typedef {import('net').Socket} Socket
  */
 
@@ -42144,17 +42146,17 @@ var fs = __webpack_require__(/*! fs */ "fs");
 
 var SocketServer = function () {
 
-    /** @type {MessageEncoderDecoder} */
-    function SocketServer(sockerFilePath, messageEncoderDecoder) {
+    /** @type {MessageSerializerDeserializer} */
+    function SocketServer(sockerFilePath, messageSerializerDeserializer) {
         _classCallCheck(this, SocketServer);
 
         this.connections = {};
 
         this.sockerFilePath = sockerFilePath;
-        this.messageEncoderDecoder = messageEncoderDecoder;
+        this.messageSerializerDeserializer = messageSerializerDeserializer;
     }
 
-    /** @type {Object.<string, Socket>} */
+    /** @type {object.<string, Socket>} */
 
 
     _createClass(SocketServer, [{
@@ -42220,8 +42222,7 @@ var SocketServer = function () {
     }, {
         key: '_handleDataReceived',
         value: function _handleDataReceived(clientId, data) {
-            //logger.debug("Received data: " + data.toString());
-            var messages = this.messageEncoderDecoder.decodeMsgs(data);
+            var messages = this.messageSerializerDeserializer.deserializeRequest(data);
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
             var _iteratorError = undefined;
@@ -42292,7 +42293,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 /**
  * @typedef {import('./SocketServer')} SocketServer
  * @typedef {import('../engine/state/StateManager').default} StateManager
- * @typedef {import('../engine/net/format/MessageEncoderDecoder').default} MessageEncoderDecoder
+ * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
  */
 
 var packetPeriodMs = __webpack_require__(/*! ../config */ "../src/config/index.js").packetPeriodMs;
@@ -42303,9 +42304,9 @@ var StateDispatcher = function () {
     /**
      * @param {StateManager} stateManager 
      * @param {SocketServer} socketServer 
-     * @param {MessageEncoderDecoder} messageEncoderDecoder 
+     * @param {MessageSerializerDeserializer} messageSerializerDeserializer
      */
-    function StateDispatcher(stateManager, socketServer, messageEncoderDecoder) {
+    function StateDispatcher(stateManager, socketServer, messageSerializerDeserializer) {
         var _this = this;
 
         _classCallCheck(this, StateDispatcher);
@@ -42321,67 +42322,44 @@ var StateDispatcher = function () {
 
         this.stateManager = stateManager;
         this.socketServer = socketServer;
-        this.messageEncoderDecoder = messageEncoderDecoder;
+        this.messageSerializerDeserializer = messageSerializerDeserializer;
         this.lastDispatchTimestamp = Date.now();
     }
 
     _createClass(StateDispatcher, [{
         key: 'dispatchState',
         value: function dispatchState() {
-            var objectStates = [];
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = this.stateManager.allObjects[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var object = _step.value;
-
-                    var data = {
-                        id: object.id,
-                        objectType: 1,
-                        position: this.messageEncoderDecoder.convertVector(object.object3d.position)
-                    };
-
-                    if (object.quaternion) {
-                        data.quaternion = this.messageEncoderDecoder.convertQuaternion(object.quaternion);
-                    }
-                    if (object.velocity) {
-                        data.velocity = this.messageEncoderDecoder.convertVector(object.velocity);
-                    }
-                    if (object.acceleration) {
-                        data.acceleration = this.messageEncoderDecoder.convertVector(object.acceleration);
-                    }
-                    if (object.angularVelocity) {
-                        data.angularVelocity = this.messageEncoderDecoder.convertVector(object.angularVelocity);
-                    }
-                    if (object.angularVelocity) {
-                        data.wVelocity = this.messageEncoderDecoder.convertVector(object.angularVelocity);
-                    }
-                    if (object.angularAcceleration) {
-                        data.wAcceleration = this.messageEncoderDecoder.convertVector(object.angularAcceleration);
-                    }
-
-                    objectStates.push(this.messageEncoderDecoder.ObjectState.create(data));
+            /*const objectStates = [];
+            for (const object of this.stateManager.allObjects) {
+                const data = {
+                    id: object.id,
+                    objectType: 1,
+                    position: this.messageEncoderDecoder.convertVector(object.object3d.position)
+                };
+                  if (object.quaternion) {
+                    data.quaternion = this.messageEncoderDecoder.convertQuaternion(object.quaternion);
                 }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
+                if (object.velocity) {
+                    data.velocity = this.messageEncoderDecoder.convertVector(object.velocity);
                 }
+                if (object.acceleration) {
+                    data.acceleration = this.messageEncoderDecoder.convertVector(object.acceleration);
+                }
+                if (object.angularVelocity) {
+                    data.angularVelocity = this.messageEncoderDecoder.convertVector(object.angularVelocity);
+                }
+                if (object.angularVelocity) {
+                    data.wVelocity = this.messageEncoderDecoder.convertVector(object.angularVelocity);
+                }
+                if (object.angularAcceleration) {
+                    data.wAcceleration = this.messageEncoderDecoder.convertVector(object.angularAcceleration);
+                }
+                
+                objectStates.push(this.messageEncoderDecoder.ObjectState.create(data));
             }
-
-            var WorldState = this.messageEncoderDecoder.WorldState;
-            var encoded = this.messageEncoderDecoder.encode(WorldState, WorldState.create({ objectStates: objectStates }));
-            this.socketServer.broadcast(encoded);
+              const WorldState = this.messageEncoderDecoder.WorldState;
+            const encoded = this.messageEncoderDecoder.encode(WorldState, WorldState.create({objectStates}));
+            this.socketServer.broadcast(encoded);*/
         }
     }]);
 

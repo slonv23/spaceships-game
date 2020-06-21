@@ -6,8 +6,9 @@ import "input-action.proto";
 import "spawn-request.proto";
 
 message RequestRoot {
+    int32 requestId = 1;
     oneof message {
-        InputAction inputAction = 1;
-        SpawnRequest spawnRequest = 2;
+        InputAction inputAction = 2;
+        SpawnRequest spawnRequest = 3;
     }
 }

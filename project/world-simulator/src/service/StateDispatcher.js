@@ -1,7 +1,7 @@
 /**
  * @typedef {import('./SocketServer')} SocketServer
  * @typedef {import('../engine/state/StateManager').default} StateManager
- * @typedef {import('../engine/net/format/MessageEncoderDecoder').default} MessageEncoderDecoder
+ * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
  */
 
 const packetPeriodMs = require('../config').packetPeriodMs;
@@ -12,12 +12,12 @@ class StateDispatcher {
     /**
      * @param {StateManager} stateManager 
      * @param {SocketServer} socketServer 
-     * @param {MessageEncoderDecoder} messageEncoderDecoder 
+     * @param {MessageSerializerDeserializer} messageSerializerDeserializer
      */
-    constructor(stateManager, socketServer, messageEncoderDecoder) {
+    constructor(stateManager, socketServer, messageSerializerDeserializer) {
         this.stateManager = stateManager;
         this.socketServer = socketServer;
-        this.messageEncoderDecoder = messageEncoderDecoder;
+        this.messageSerializerDeserializer = messageSerializerDeserializer;
         this.lastDispatchTimestamp = Date.now();
     }
 
@@ -31,7 +31,7 @@ class StateDispatcher {
     };
 
     dispatchState() {
-        const objectStates = [];
+        /*const objectStates = [];
         for (const object of this.stateManager.allObjects) {
             const data = {
                 id: object.id,
@@ -63,7 +63,7 @@ class StateDispatcher {
 
         const WorldState = this.messageEncoderDecoder.WorldState;
         const encoded = this.messageEncoderDecoder.encode(WorldState, WorldState.create({objectStates}));
-        this.socketServer.broadcast(encoded);
+        this.socketServer.broadcast(encoded);*/
     }
 
 }
