@@ -3,6 +3,6 @@ syntax = "proto3";
 package multiplayer;
 
 message SpawnResponse {
-    string assignedObjectId = 1;
+    int32 assignedObjectId = 1;
     string spawnRequestId = 2;
 }

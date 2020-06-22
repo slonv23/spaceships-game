@@ -1,7 +1,11 @@
 /**
  * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
+ * @typedef {import('../engine/state/StateManager').default} StateManager
  * @typedef {import('net').Socket} Socket
  */
+import FlyingObject from '../engine/physics/object/FlyingObject';
+import {controllers} from '../engine/object-control';
+import SpawnResponse from '../engine/net/models/SpawnResponse';
 
 const logger = require('../utils/logger');
 const net = require('net');
@@ -15,9 +19,13 @@ class SocketServer {
     /** @type {object.<string, Socket>} */
     connections = {};
 
-    constructor(sockerFilePath, messageSerializerDeserializer) {
+    /** @type {StateManager} */
+    stateManager;
+
+    constructor(sockerFilePath, messageSerializerDeserializer, stateManager) {
         this.sockerFilePath = sockerFilePath;
         this.messageSerializerDeserializer = messageSerializerDeserializer;
+        this.stateManager = stateManager;
     }
 
     async start() {
@@ -40,7 +48,7 @@ class SocketServer {
                     }
 
                     this._createServer();
-                });  
+                });
             }
         });
     }
@@ -50,7 +58,7 @@ class SocketServer {
             Object.keys(this.connections).forEach(clientId => {
                 // TODO send some termination command
                 // connections[clientId].write('__disconnect');
-                this.connections[clientId].end(); 
+                this.connections[clientId].end();
             });
 
             this.server.close();
@@ -72,22 +80,36 @@ class SocketServer {
         delete this.connections[clientId];
     }
 
-    _handleDataReceived(clientId, data) {
-        const messages = this.messageSerializerDeserializer.deserializeRequest(data);
-        for (const message of messages) {
-            if (!message.message) {
-                // not a valid message, should have message type
-                continue;
-            }
+    async _handleDataReceived(clientId, data) {
+        try {
+            const messages = this.messageSerializerDeserializer.deserializeRequest(data);
+            for (const message of messages) {
+                if (!message.message) {
+                    // not a valid message, should have message type
+                    continue;
+                }
 
-            switch (message.message) {
-                case "spawnRequest":
-                    // message.requestId
-                    break;
-            }
+                logger.debug("Incoming message: " + JSON.stringify(message));
 
-            logger.debug("Incoming message: " + JSON.stringify(message));
+                switch (message.message) {
+                    case "spawnRequest":
+                        await this._handleSpawnRequest(message);
+                        break;
+                }
+            }
+        } catch (err) {
+            logger.logError('Failed to process data received on socket', err);
         }
+    }
+
+    async _handleSpawnRequest(message) {
+        const controller = await this.stateManager.createObject(null, FlyingObject, controllers.FLYING_OBJECT_REMOTE_CONTROLLER);
+
+        const spawnResponse = new SpawnResponse();
+        spawnResponse.assignedObjectId = controller.gameObject.id;
+
+        const serializedMessage = this.messageSerializerDeserializer.serializeResponse(spawnResponse, {requestId: message.requestId});
+        this.broadcast(serializedMessage);
     }
 
     _createServer() {

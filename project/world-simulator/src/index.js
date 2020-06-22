@@ -16,9 +16,9 @@ const SOCKET_FILE = '/tmp/spaceships-world-simulator.sock';
     const diContainer = Engine.getDiContainer();
     diContainer.configure('messageSerializerDeserializer',  {protoBundle: require('../../common/proto/bundle.json')});
     const messageSerializerDeserializer = await diContainer.get('messageSerializerDeserializer');
-    //const stateManager = await diContainer.get('stateManager');
+    const stateManager = await diContainer.get('stateManager');
 
-    const sockerServer = new SocketServer(SOCKET_FILE, messageSerializerDeserializer);
+    const sockerServer = new SocketServer(SOCKET_FILE, messageSerializerDeserializer, stateManager);
     /*const stateDispatcher = new StateDispatcher(stateManager, sockerServer, messageEncoderDecoder)
     const simulation = new Simulation(stateManager);
     simulation.onIterCompleted(stateDispatcher.handleStateUpdated);*/
