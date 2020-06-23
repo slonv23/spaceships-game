@@ -58,7 +58,7 @@ class StateDispatcher {
         const worldState = new WorldState();
         worldState.objectStates = objectStates;
 
-        const serializedResponse = this.messageSerializerDeserializer.serializeResponse(worldState);
+        const serializedResponse = this.messageSerializerDeserializer.serializeResponse(worldState, {requestId: 0});
         this.socketServer.broadcast(serializedResponse);
 
         const deserialized = this.messageSerializerDeserializer.deserializeResponse(serializedResponse);
