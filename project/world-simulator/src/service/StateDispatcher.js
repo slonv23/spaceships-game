@@ -2,7 +2,12 @@
  * @typedef {import('./SocketServer')} SocketServer
  * @typedef {import('../engine/state/StateManager').default} StateManager
  * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
+ * @typedef {import('../engine/physics/object/FlyingObject').default} FlyingObject
+ * @typedef {import('../engine/object-control/flying-object/RemoteFlyingObjectController').default} RemoteFlyingObjectController
  */
+import ObjectState from "../engine/net/models/ObjectState";
+import objectTypes from "../engine/physics/object";
+import WorldState from "../engine/net/models/WorldState";
 
 const packetPeriodMs = require('../config').packetPeriodMs;
 const logger = require('../utils/logger');
@@ -31,39 +36,33 @@ class StateDispatcher {
     };
 
     dispatchState() {
-        /*const objectStates = [];
-        for (const object of this.stateManager.allObjects) {
-            const data = {
-                id: object.id,
-                objectType: 1,
-                position: this.messageEncoderDecoder.convertVector(object.object3d.position)
-            };
+        const objectStates = [];
+        for (/** @type {RemoteFlyingObjectController} */ const objectController of this.stateManager.controllers) {
+            /** @type {FlyingObject} */
+            const object = objectController.gameObject;
+            const objectState = new ObjectState();
 
-            if (object.quaternion) {
-                data.quaternion = this.messageEncoderDecoder.convertQuaternion(object.quaternion);
-            }
-            if (object.velocity) {
-                data.velocity = this.messageEncoderDecoder.convertVector(object.velocity);
-            }
-            if (object.acceleration) {
-                data.acceleration = this.messageEncoderDecoder.convertVector(object.acceleration);
-            }
-            if (object.angularVelocity) {
-                data.angularVelocity = this.messageEncoderDecoder.convertVector(object.angularVelocity);
-            }
-            if (object.angularVelocity) {
-                data.wVelocity = this.messageEncoderDecoder.convertVector(object.angularVelocity);
-            }
-            if (object.angularAcceleration) {
-                data.wAcceleration = this.messageEncoderDecoder.convertVector(object.angularAcceleration);
-            }
-            
-            objectStates.push(this.messageEncoderDecoder.ObjectState.create(data));
+            objectState.id = object.id;
+            objectState.rollAngleBtwCurrentAndTargetOrientation = object.rollAngleBtwCurrentAndTargetOrientation;
+            objectState.controlX = objectController.controlX;
+            objectState.controlQuaternion = objectController.controlsQuaternion;
+            objectState.speed = object.velocity.z;
+            objectState.objectType = objectTypes.FLYING_OBJECT;
+            objectState.angularAcceleration = object.angularAcceleration;
+            objectState.position = object.position;
+            objectState.quaternion = object.quaternion;
+
+            objectStates.push(objectState);
         }
 
-        const WorldState = this.messageEncoderDecoder.WorldState;
-        const encoded = this.messageEncoderDecoder.encode(WorldState, WorldState.create({objectStates}));
-        this.socketServer.broadcast(encoded);*/
+        const worldState = new WorldState();
+        worldState.objectStates = objectStates;
+
+        const serializedResponse = this.messageSerializerDeserializer.serializeResponse(worldState);
+        this.socketServer.broadcast(serializedResponse);
+
+        const deserialized = this.messageSerializerDeserializer.deserializeResponse(serializedResponse);
+        console.log("deserialized: " + JSON.stringify(deserialized));
     }
 
 }

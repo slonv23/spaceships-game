@@ -93,7 +93,7 @@
 /*! exports provided: nested, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"nested\":{\"multiplayer\":{\"nested\":{\"ControlsState\":{\"fields\":{\"msgId\":{\"type\":\"int32\",\"id\":1},\"yawTarget\":{\"type\":\"float\",\"id\":2},\"pitchTarget\":{\"type\":\"float\",\"id\":3},\"rollTarget\":{\"type\":\"float\",\"id\":4}}},\"FloatVector\":{\"fields\":{\"x\":{\"type\":\"float\",\"id\":1},\"y\":{\"type\":\"float\",\"id\":2},\"z\":{\"type\":\"float\",\"id\":3}}},\"InputAction\":{\"fields\":{\"yaw\":{\"type\":\"float\",\"id\":1},\"pitch\":{\"type\":\"float\",\"id\":2},\"rotationSpeed\":{\"type\":\"float\",\"id\":3},\"rollAngle\":{\"type\":\"float\",\"id\":4},\"objectId\":{\"type\":\"string\",\"id\":5}}},\"ObjectState\":{\"fields\":{\"id\":{\"type\":\"int32\",\"id\":1},\"objectType\":{\"type\":\"int32\",\"id\":2},\"position\":{\"type\":\"FloatVector\",\"id\":3},\"quaternion\":{\"type\":\"Quaternion\",\"id\":4},\"speed\":{\"type\":\"float\",\"id\":5},\"acceleration\":{\"type\":\"float\",\"id\":6},\"angularVelocity\":{\"type\":\"FloatVector\",\"id\":7},\"angularAcceleration\":{\"type\":\"FloatVector\",\"id\":8},\"rollAngleBtwCurrentAndTargetOrientation\":{\"type\":\"float\",\"id\":9},\"controlX\":{\"type\":\"FloatVector\",\"id\":11},\"controlQuaternion\":{\"type\":\"Quaternion\",\"id\":12}}},\"Quaternion\":{\"fields\":{\"imag\":{\"type\":\"FloatVector\",\"id\":1},\"real\":{\"type\":\"float\",\"id\":2}}},\"RequestRoot\":{\"oneofs\":{\"message\":{\"oneof\":[\"inputAction\",\"spawnRequest\"]}},\"fields\":{\"requestId\":{\"type\":\"int32\",\"id\":1},\"inputAction\":{\"type\":\"InputAction\",\"id\":2},\"spawnRequest\":{\"type\":\"SpawnRequest\",\"id\":3}}},\"SpawnRequest\":{\"fields\":{\"nickName\":{\"type\":\"string\",\"id\":1}}},\"ResponseRoot\":{\"oneofs\":{\"message\":{\"oneof\":[\"worldState\",\"spawnResponse\"]}},\"fields\":{\"requestId\":{\"type\":\"int32\",\"id\":1},\"worldState\":{\"type\":\"WorldState\",\"id\":2},\"spawnResponse\":{\"type\":\"SpawnResponse\",\"id\":3}}},\"WorldState\":{\"fields\":{\"objectStates\":{\"rule\":\"repeated\",\"type\":\"ObjectState\",\"id\":1}}},\"SpawnResponse\":{\"fields\":{\"assignedObjectId\":{\"type\":\"string\",\"id\":1},\"spawnRequestId\":{\"type\":\"string\",\"id\":2}}}}},\"helloworld\":{\"nested\":{\"HelloWorld\":{\"oneofs\":{\"event\":{\"oneof\":[\"submsg1\",\"submsg2\"]}},\"fields\":{\"submsg1\":{\"type\":\"SubMessage1\",\"id\":1},\"submsg2\":{\"type\":\"SubMessage2\",\"id\":2}}},\"SubMessage1\":{\"fields\":{\"message\":{\"type\":\"string\",\"id\":1}}},\"SubMessage2\":{\"fields\":{\"num\":{\"type\":\"int32\",\"id\":1}}}}}}}");
+module.exports = JSON.parse("{\"nested\":{\"multiplayer\":{\"nested\":{\"ControlsState\":{\"fields\":{\"msgId\":{\"type\":\"int32\",\"id\":1},\"yawTarget\":{\"type\":\"float\",\"id\":2},\"pitchTarget\":{\"type\":\"float\",\"id\":3},\"rollTarget\":{\"type\":\"float\",\"id\":4}}},\"FloatVector\":{\"fields\":{\"x\":{\"type\":\"float\",\"id\":1},\"y\":{\"type\":\"float\",\"id\":2},\"z\":{\"type\":\"float\",\"id\":3}}},\"InputAction\":{\"fields\":{\"yaw\":{\"type\":\"float\",\"id\":1},\"pitch\":{\"type\":\"float\",\"id\":2},\"rotationSpeed\":{\"type\":\"float\",\"id\":3},\"rollAngle\":{\"type\":\"float\",\"id\":4},\"objectId\":{\"type\":\"string\",\"id\":5}}},\"ObjectState\":{\"fields\":{\"id\":{\"type\":\"int32\",\"id\":1},\"objectType\":{\"type\":\"int32\",\"id\":2},\"position\":{\"type\":\"FloatVector\",\"id\":3},\"quaternion\":{\"type\":\"Quaternion\",\"id\":4},\"speed\":{\"type\":\"float\",\"id\":5},\"acceleration\":{\"type\":\"float\",\"id\":6},\"angularVelocity\":{\"type\":\"FloatVector\",\"id\":7},\"angularAcceleration\":{\"type\":\"FloatVector\",\"id\":8},\"rollAngleBtwCurrentAndTargetOrientation\":{\"type\":\"float\",\"id\":9},\"controlX\":{\"type\":\"FloatVector\",\"id\":11},\"controlQuaternion\":{\"type\":\"Quaternion\",\"id\":12}}},\"Quaternion\":{\"fields\":{\"imag\":{\"type\":\"FloatVector\",\"id\":1},\"real\":{\"type\":\"float\",\"id\":2}}},\"RequestRoot\":{\"oneofs\":{\"message\":{\"oneof\":[\"inputAction\",\"spawnRequest\"]}},\"fields\":{\"requestId\":{\"type\":\"int32\",\"id\":1},\"inputAction\":{\"type\":\"InputAction\",\"id\":2},\"spawnRequest\":{\"type\":\"SpawnRequest\",\"id\":3}}},\"SpawnRequest\":{\"fields\":{\"nickName\":{\"type\":\"string\",\"id\":1}}},\"ResponseRoot\":{\"oneofs\":{\"message\":{\"oneof\":[\"worldState\",\"spawnResponse\"]}},\"fields\":{\"requestId\":{\"type\":\"int32\",\"id\":1},\"worldState\":{\"type\":\"WorldState\",\"id\":2},\"spawnResponse\":{\"type\":\"SpawnResponse\",\"id\":3}}},\"WorldState\":{\"fields\":{\"objectStates\":{\"rule\":\"repeated\",\"type\":\"ObjectState\",\"id\":1}}},\"SpawnResponse\":{\"fields\":{\"assignedObjectId\":{\"type\":\"int32\",\"id\":1},\"spawnRequestId\":{\"type\":\"string\",\"id\":2}}}}},\"helloworld\":{\"nested\":{\"HelloWorld\":{\"oneofs\":{\"event\":{\"oneof\":[\"submsg1\",\"submsg2\"]}},\"fields\":{\"submsg1\":{\"type\":\"SubMessage1\",\"id\":1},\"submsg2\":{\"type\":\"SubMessage2\",\"id\":2}}},\"SubMessage1\":{\"fields\":{\"message\":{\"type\":\"string\",\"id\":1}}},\"SubMessage2\":{\"fields\":{\"num\":{\"type\":\"int32\",\"id\":1}}}}}}}");
 
 /***/ }),
 
@@ -41054,7 +41054,7 @@ var path = __webpack_require__(/*! path */ "path");
 
 module.exports = {
     protoDir: path.resolve(__dirname, "../../../common/proto"),
-    packetPeriodMs: 200
+    packetPeriodMs: 2000 // 200
 };
 /* WEBPACK VAR INJECTION */}.call(this, "../src/config"))
 
@@ -41165,7 +41165,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @typedef {import('three').Quaternion} Quaternion
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @typedef {import('protobufjs').Type} Type
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @typedef {import('protobufjs').Message} Message
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @typedef {import('../models/AbstractModel').default} AbstractModel
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */
 
 var _three = __webpack_require__(/*! three */ "../node_modules/three/build/three.module.js");
@@ -41174,11 +41173,11 @@ var THREE = _interopRequireWildcard(_three);
 
 var _string = __webpack_require__(/*! ../../util/string */ "../src/engine/util/string.js");
 
-var _InputAction = __webpack_require__(/*! ../models/InputAction */ "../src/engine/net/models/InputAction.js");
-
-var _InputAction2 = _interopRequireDefault(_InputAction);
-
 var _globals = __webpack_require__(/*! ../../globals */ "../src/engine/globals.js");
+
+var _AbstractModel = __webpack_require__(/*! ../models/AbstractModel */ "../src/engine/net/models/AbstractModel.js");
+
+var _AbstractModel2 = _interopRequireDefault(_AbstractModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41216,18 +41215,6 @@ var MessageSerializerDeserializer = function () {
 
             this.protoBundle = protoBundle;
             await this.loadProtoDefinitions(modelNames);
-            this.defaultRootMessageType = this.RequestRoot;
-
-            // test:
-            // const inputAction = new InputAction();
-            // inputAction.rollAngle = 5;
-            // inputAction.yaw = 2;
-            // inputAction.pitch = 3;
-            // inputAction.rotationSpeed = 6;
-            //
-            // const serialized = this.serialize(inputAction);
-            // const deserializedRequest = this.deserializeRequest(serialized);
-            // console.log(JSON.stringify(deserializedRequest));
         }
     }, {
         key: "loadProtoDefinitions",
@@ -41250,38 +41237,91 @@ var MessageSerializerDeserializer = function () {
 
         /**
          * @param {AbstractModel} model
+         * @param {object} [wrapperProps]
+         * @returns {Uint8Array}
+         */
+
+    }, {
+        key: "serializeResponse",
+        value: function serializeResponse(model) {
+            var wrapperProps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+            return this.serialize(model, this.ResponseRoot, wrapperProps);
+        }
+
+        /**
+         * @param {AbstractModel} model
+         * @param {object} [wrapperProps]
+         * @returns {Uint8Array}
+         */
+
+    }, {
+        key: "serializeRequest",
+        value: function serializeRequest(model) {
+            var wrapperProps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+            return this.serialize(model, this.RequestRoot, wrapperProps);
+        }
+
+        /**
+         * @param {AbstractModel} model
+         * @param {Type} wrapperType
+         * @param {object} [wrapperProps]
+         * @returns {Uint8Array}
          */
 
     }, {
         key: "serialize",
-        value: function serialize(model) {
+        value: function serialize(model, wrapperType) {
+            var wrapperProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
             var modelName = model.constructor.name;
             var type = this.modelNameToType[modelName];
             if (!type) {
                 throw new Error("Failed to get protobuf type associated with model " + modelName);
             }
 
+            var payload = this._buildPayload(model);
+
+            var wrappedMessage = this._wrapMessage(wrapperType, (0, _string.lowerFirst)(modelName), type.create(payload), wrapperProps);
+
+            return this._toByteArray(wrapperType, wrappedMessage);
+        }
+    }, {
+        key: "_buildPayload",
+        value: function _buildPayload(model) {
             var payload = {};
             for (var key in model) {
                 if (Object.prototype.hasOwnProperty.call(model, key)) {
-                    var property = model[key];
-                    if (property instanceof THREE.Vector3) {
-                        payload[key] = this.serializeVector(property);
-                    } else if (property instanceof THREE.Quaternion) {
-                        payload[key] = this.serializeQuaternion(property);
-                    } else {
-                        payload[key] = property;
-                    }
+                    payload[key] = this._buildProperty(model[key]);
                 }
             }
 
-            var wrappedMessage = this._wrapMessage(this.defaultRootMessageType, (0, _string.lowerFirst)(modelName), type.create(payload));
+            return payload;
+        }
+    }, {
+        key: "_buildProperty",
+        value: function _buildProperty(property) {
+            var _this2 = this;
 
-            return this._toByteArray(this.defaultRootMessageType, wrappedMessage);
+            if (Array.isArray(property)) {
+                return property.map(function (propElem) {
+                    return _this2._buildProperty(propElem);
+                });
+            } else if (property instanceof _AbstractModel2.default) {
+                return this._buildPayload(property);
+            } else if (property instanceof THREE.Vector3) {
+                return this.serializeVector(property);
+            } else if (property instanceof THREE.Quaternion) {
+                return this.serializeQuaternion(property);
+            } else {
+                return property;
+            }
         }
 
         /**
          * @param {Buffer|Uint8Array} buffer
+         * @returns {Array<*>}
          */
 
     }, {
@@ -41292,6 +41332,7 @@ var MessageSerializerDeserializer = function () {
 
         /**
          * @param {Buffer|Uint8Array} buffer
+         * @returns {Array<*>}
          */
 
     }, {
@@ -41342,8 +41383,8 @@ var MessageSerializerDeserializer = function () {
     }, {
         key: "serializeQuaternion",
         value: function serializeQuaternion(quaternion) {
-            var real = this.FloatVector.create({ x: quaternion.x, y: quaternion.y, z: quaternion.z });
-            var imag = quaternion.w;
+            var imag = this.FloatVector.create({ x: quaternion.x, y: quaternion.y, z: quaternion.z });
+            var real = quaternion.w;
 
             return this.Quaternion.create({ real: real, imag: imag });
         }
@@ -41352,6 +41393,7 @@ var MessageSerializerDeserializer = function () {
          * @param {Type} wrapperType
          * @param {string} messageName
          * @param {Message} message
+         * @param {object} [wrapperProps]
          * @returns {Message}
          * @private
          */
@@ -41359,8 +41401,14 @@ var MessageSerializerDeserializer = function () {
     }, {
         key: "_wrapMessage",
         value: function _wrapMessage(wrapperType, messageName, message) {
+            var wrapperProps = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+
             var wrappedMsg = wrapperType.create(_defineProperty({}, messageName, message));
             wrappedMsg.message = messageName;
+            for (var key in wrapperProps) {
+                wrappedMsg[key] = wrapperProps[key];
+            }
+
             return wrappedMsg;
         }
 
@@ -41461,7 +41509,7 @@ var _MessageSerializerDeserializer2 = _interopRequireDefault(_MessageSerializerD
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _globals.diContainer.registerClass("messageSerializerDeserializer", _MessageSerializerDeserializer2.default, {
-    modelNames: ['InputAction', 'ObjectState', 'SpawnRequest', 'SpawnResponse']
+    modelNames: ['InputAction', 'ObjectState', 'SpawnRequest', 'SpawnResponse', 'WorldState']
 });
 
 /***/ }),
@@ -41532,6 +41580,864 @@ exports.default = InputAction;
 
 /***/ }),
 
+/***/ "../src/engine/net/models/ObjectState.js":
+/*!***********************************************!*\
+  !*** ../src/engine/net/models/ObjectState.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _AbstractModel2 = __webpack_require__(/*! ./AbstractModel */ "../src/engine/net/models/AbstractModel.js");
+
+var _AbstractModel3 = _interopRequireDefault(_AbstractModel2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @typedef {import('three')} THREE
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var ObjectState = function (_AbstractModel) {
+    _inherits(ObjectState, _AbstractModel);
+
+    function ObjectState() {
+        _classCallCheck(this, ObjectState);
+
+        return _possibleConstructorReturn(this, (ObjectState.__proto__ || Object.getPrototypeOf(ObjectState)).apply(this, arguments));
+    }
+
+    return ObjectState;
+}(_AbstractModel3.default);
+
+exports.default = ObjectState;
+
+/***/ }),
+
+/***/ "../src/engine/net/models/SpawnResponse.js":
+/*!*************************************************!*\
+  !*** ../src/engine/net/models/SpawnResponse.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _AbstractModel2 = __webpack_require__(/*! ./AbstractModel */ "../src/engine/net/models/AbstractModel.js");
+
+var _AbstractModel3 = _interopRequireDefault(_AbstractModel2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SpawnResponse = function (_AbstractModel) {
+    _inherits(SpawnResponse, _AbstractModel);
+
+    function SpawnResponse() {
+        _classCallCheck(this, SpawnResponse);
+
+        return _possibleConstructorReturn(this, (SpawnResponse.__proto__ || Object.getPrototypeOf(SpawnResponse)).apply(this, arguments));
+    }
+
+    return SpawnResponse;
+}(_AbstractModel3.default);
+
+exports.default = SpawnResponse;
+
+/***/ }),
+
+/***/ "../src/engine/net/models/WorldState.js":
+/*!**********************************************!*\
+  !*** ../src/engine/net/models/WorldState.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _AbstractModel2 = __webpack_require__(/*! ./AbstractModel */ "../src/engine/net/models/AbstractModel.js");
+
+var _AbstractModel3 = _interopRequireDefault(_AbstractModel2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @typedef {import('three')} THREE
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @typedef {import('./ObjectState').default} ObjectState
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var WorldState = function (_AbstractModel) {
+  _inherits(WorldState, _AbstractModel);
+
+  function WorldState() {
+    _classCallCheck(this, WorldState);
+
+    return _possibleConstructorReturn(this, (WorldState.__proto__ || Object.getPrototypeOf(WorldState)).apply(this, arguments));
+  }
+
+  return WorldState;
+}(_AbstractModel3.default);
+
+exports.default = WorldState;
+
+/***/ }),
+
+/***/ "../src/engine/object-control/AbstractController.js":
+/*!**********************************************************!*\
+  !*** ../src/engine/object-control/AbstractController.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * @typedef {import('three')} THREE
+ * @typedef {import('../physics/object/AbstractObject').default} AbstractObject
+ * @typedef {import('../frontend/Renderer').default} Renderer
+ */
+
+var AbstractController = function () {
+    function AbstractController() {
+        _classCallCheck(this, AbstractController);
+    }
+
+    _createClass(AbstractController, [{
+        key: "init",
+
+
+        /**
+         * @param {AbstractObject} gameObject
+         */
+        value: function init(gameObject) {
+            this.gameObject = gameObject;
+        }
+
+        /**
+         * @param {number} delta
+         */
+
+
+        /** @type {AbstractObject} */
+
+    }, {
+        key: "update",
+        value: function update(delta) {
+            this.gameObject.update(delta);
+            this.updateControlParams(delta);
+        }
+
+        /**
+         * @param {number} delta
+         */
+        // eslint-disable-next-line no-unused-vars
+
+    }, {
+        key: "updateControlParams",
+        value: function updateControlParams(delta) {
+            throw new Error("Not implemented");
+        }
+    }]);
+
+    return AbstractController;
+}();
+
+exports.default = AbstractController;
+
+/***/ }),
+
+/***/ "../src/engine/object-control/flying-object/FlyingObjectBaseController.js":
+/*!********************************************************************************!*\
+  !*** ../src/engine/object-control/flying-object/FlyingObjectBaseController.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _three = __webpack_require__(/*! three */ "../node_modules/three/build/three.module.js");
+
+var THREE = _interopRequireWildcard(_three);
+
+var _AbstractController2 = __webpack_require__(/*! ../AbstractController */ "../src/engine/object-control/AbstractController.js");
+
+var _AbstractController3 = _interopRequireDefault(_AbstractController2);
+
+var _math = __webpack_require__(/*! ../../util/math */ "../src/engine/util/math.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @typedef {import('../../physics/object/FlyingObject').default} FlyingObject
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var FlyingObjectBaseController = function (_AbstractController) {
+    _inherits(FlyingObjectBaseController, _AbstractController);
+
+    function FlyingObjectBaseController() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, FlyingObjectBaseController);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = FlyingObjectBaseController.__proto__ || Object.getPrototypeOf(FlyingObjectBaseController)).call.apply(_ref, [this].concat(args))), _this), _this.controlX = new THREE.Vector3(1, 0, 0), _this.controlY = new THREE.Vector3(0, 1, 0), _this.controlZ = new THREE.Vector3(0, 0, 1), _this.controlZInWorldCoords = new THREE.Vector3(), _this.controlsQuaternion = new THREE.Quaternion(), _this.wPitchTarget = 0, _this.wYawTarget = 0, _this.rotationSpeed = 0, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    /** @type {FlyingObject} */
+
+
+    /** @type {THREE.Vector3} TODO change to Vector2 */
+
+    /** @type {THREE.Vector3} */
+
+    /** @type {THREE.Vector3} */
+
+    /** @type {THREE.Vector3} */
+
+
+    /** @type {THREE.Vector3} */
+
+
+    /** @type {THREE.Quaternion} used to convert control axes from local spaceship coordinate system (CS) to world CS */
+
+
+    /** @type {number} */
+
+    /** @type {number} */
+
+    /** @type {number} */
+
+
+    _createClass(FlyingObjectBaseController, [{
+        key: "init",
+
+
+        /**
+         * @param {FlyingObject} gameObject
+         */
+        value: function init(gameObject) {
+            _get(FlyingObjectBaseController.prototype.__proto__ || Object.getPrototypeOf(FlyingObjectBaseController.prototype), "init", this).call(this, gameObject);
+            this.controlZInWorldCoords = gameObject.nz;
+        }
+    }, {
+        key: "_updateControlsQuaternion",
+        value: function _updateControlsQuaternion() {
+            this.controlsQuaternion.multiplyQuaternions((0, _math.createQuaternionForRotation)(this.controlZInWorldCoords, this.gameObject.nz), this.controlsQuaternion);
+            this.controlsQuaternion.normalize();
+            this.controlZInWorldCoords.set(0, 0, 1).applyQuaternion(this.controlsQuaternion);
+        }
+
+        /**
+         * @param {number} angle
+         * @protected
+         */
+
+    }, {
+        key: "_rotateControlAxes",
+        value: function _rotateControlAxes(angle) {
+            this.controlX.add(this.controlY.multiplyScalar(angle));
+            this.controlX.normalize();
+            this.controlY.crossVectors(this.controlZ, this.controlX);
+        }
+
+        /**
+         * @param {number} delta
+         */
+
+    }, {
+        key: "updateControlParams",
+        value: function updateControlParams(delta) {
+            this._updateControlsQuaternion();
+            if (this.rotationSpeed !== 0) {
+                this._rotateControlAxes(this.rotationSpeed * delta);
+            }
+            this._updateAngularVelocities();
+        }
+    }, {
+        key: "_updateAngularVelocities",
+        value: function _updateAngularVelocities() {
+            /** @type {THREE.Vector3} */
+            this.rotationDirection = this.controlX.clone().multiplyScalar(this.wYawTarget).add(this.controlY.clone().multiplyScalar(this.wPitchTarget));
+            this.rotationDirection.applyQuaternion(this.controlsQuaternion);
+
+            this.gameObject.angularVelocity.y = this.gameObject.ny.dot(this.rotationDirection);
+            this.gameObject.angularVelocity.x = this.gameObject.nx.dot(this.rotationDirection);
+        }
+    }]);
+
+    return FlyingObjectBaseController;
+}(_AbstractController3.default);
+
+exports.default = FlyingObjectBaseController;
+
+/***/ }),
+
+/***/ "../src/engine/object-control/flying-object/FlyingObjectSingleplayerController.js":
+/*!****************************************************************************************!*\
+  !*** ../src/engine/object-control/flying-object/FlyingObjectSingleplayerController.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _FlyingObject = __webpack_require__(/*! ../../physics/object/FlyingObject */ "../src/engine/physics/object/FlyingObject.js");
+
+var _FlyingObject2 = _interopRequireDefault(_FlyingObject);
+
+var _browserKeycodes = __webpack_require__(/*! ../../util/browser-keycodes */ "../src/engine/util/browser-keycodes.js");
+
+var _browserKeycodes2 = _interopRequireDefault(_browserKeycodes);
+
+var _FlyingObjectBaseController = __webpack_require__(/*! ./FlyingObjectBaseController */ "../src/engine/object-control/flying-object/FlyingObjectBaseController.js");
+
+var _FlyingObjectBaseController2 = _interopRequireDefault(_FlyingObjectBaseController);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @typedef {import('three')} THREE
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @typedef {import('../../frontend/input/Mouse').default} Mouse
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @typedef {import('../../frontend/input/Keyboard').default} Keyboard
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var FlyingObjectSingleplayerController = function (_FlyingObjectBaseCont) {
+    _inherits(FlyingObjectSingleplayerController, _FlyingObjectBaseCont);
+
+    /**
+     * @param {Mouse} mouseInterface
+     * @param {Keyboard} keyboardInterface
+     */
+
+
+    /** @type {Keyboard} */
+    function FlyingObjectSingleplayerController(mouseInterface, keyboardInterface) {
+        _classCallCheck(this, FlyingObjectSingleplayerController);
+
+        var _this = _possibleConstructorReturn(this, (FlyingObjectSingleplayerController.__proto__ || Object.getPrototypeOf(FlyingObjectSingleplayerController)).call(this));
+
+        _this.mouse = mouseInterface;
+        _this.keyboard = keyboardInterface;
+
+        _this.controlCircleRadius = Math.min(window.innerWidth, window.innerHeight) * 0.2;
+        _this.controlCircleRadiusSq = _this.controlCircleRadius ** 2;
+        return _this;
+    }
+
+    /** @type {THREE.Vector3} */
+
+
+    /** user can change yaw and pitch by moving cursor to desired direction,
+     * but only in specified limits */
+
+
+    /** @type {Mouse} */
+
+
+    _createClass(FlyingObjectSingleplayerController, [{
+        key: "postConstruct",
+        value: function postConstruct() {
+            var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                enableAxesHelper = _ref.enableAxesHelper;
+
+            this.enableAxesHelper = enableAxesHelper;
+        }
+
+        /**
+         * @param {FlyingObject} gameObject
+         */
+
+    }, {
+        key: "init",
+        value: function init(gameObject) {
+            _get(FlyingObjectSingleplayerController.prototype.__proto__ || Object.getPrototypeOf(FlyingObjectSingleplayerController.prototype), "init", this).call(this, gameObject);
+            this.controlZInWorldCoords = gameObject.nz;
+        }
+
+        /**
+         * @param {number} delta
+         */
+
+    }, {
+        key: "updateControlParams",
+        value: function updateControlParams(delta) {
+            this._applyUserInputForRotation();
+            this._applyUserInputForAngularVelocities();
+
+            _get(FlyingObjectSingleplayerController.prototype.__proto__ || Object.getPrototypeOf(FlyingObjectSingleplayerController.prototype), "updateControlParams", this).call(this, delta);
+
+            this._correctObjectRollAngle();
+        }
+    }, {
+        key: "_applyUserInputForRotation",
+        value: function _applyUserInputForRotation() {
+            var pressedKey = this.keyboard.getFirstPressedKey();
+
+            this.rotationSpeed = 0;
+            if (pressedKey === _browserKeycodes2.default.ARROW_LEFT) {
+                this.rotationSpeed = 0.0006;
+            } else if (pressedKey === _browserKeycodes2.default.ARROW_RIGHT) {
+                this.rotationSpeed = -0.0006;
+            }
+        }
+    }, {
+        key: "_applyUserInputForAngularVelocities",
+        value: function _applyUserInputForAngularVelocities() {
+            var mousePos = this._calcMousePosInDimlessUnits();
+            this.wPitchTarget = -mousePos[1] * _FlyingObject2.default.angularVelocityMax.y;
+            this.wYawTarget = mousePos[0] * _FlyingObject2.default.angularVelocityMax.x;
+        }
+    }, {
+        key: "_correctObjectRollAngle",
+        value: function _correctObjectRollAngle() {
+            this.normalToRotationDirection = this.gameObject.nz.clone().cross(this.rotationDirection);
+            var currentSideAngle = this._calcSideAngle() * this._calcRotationDirection();
+            var targetSideAngle = this._calcTargetSideAngle();
+            var angleChange = -targetSideAngle - currentSideAngle;
+            this.gameObject.rollOnAngle(angleChange);
+        }
+    }, {
+        key: "_calcTargetSideAngle",
+        value: function _calcTargetSideAngle() {
+            return this.wYawTarget / _FlyingObject2.default.angularVelocityMax.x * Math.PI / 6;
+        }
+    }, {
+        key: "_calcSideAngle",
+        value: function _calcSideAngle() {
+            var nx = this.gameObject.nx.clone();
+            var ny = this.gameObject.ny.clone();
+            this.rotationDirectionForNonRotated = nx.multiplyScalar(this.wYawTarget).add(ny.multiplyScalar(this.wPitchTarget));
+
+            return this.rotationDirectionForNonRotated.angleTo(this.rotationDirection);
+        }
+    }, {
+        key: "_calcRotationDirection",
+        value: function _calcRotationDirection() {
+            var directionSign = Math.sign(this.normalToRotationDirection.dot(this.rotationDirectionForNonRotated));
+            return directionSign < 0 ? -1 : 1;
+        }
+
+        /**
+         * @returns {number[]} mouse position where x and y є [-1 1]
+         */
+
+    }, {
+        key: "_calcMousePosInDimlessUnits",
+        value: function _calcMousePosInDimlessUnits() {
+            var mousePos = this.mouse.position.slice();
+
+            // circle bounded
+            var distFromCenterSq = mousePos[0] * mousePos[0] + mousePos[1] * mousePos[1];
+            if (distFromCenterSq > this.controlCircleRadiusSq) {
+                var dimlessDist = this.controlCircleRadius / Math.sqrt(distFromCenterSq);
+                mousePos[0] = dimlessDist * mousePos[0];
+                mousePos[1] = dimlessDist * mousePos[1];
+            }
+            mousePos[0] /= this.controlCircleRadius;
+            mousePos[1] /= this.controlCircleRadius;
+
+            return mousePos;
+        }
+    }]);
+
+    return FlyingObjectSingleplayerController;
+}(_FlyingObjectBaseController2.default);
+
+exports.default = FlyingObjectSingleplayerController;
+
+/***/ }),
+
+/***/ "../src/engine/object-control/flying-object/RemoteFlyingObjectController.js":
+/*!**********************************************************************************!*\
+  !*** ../src/engine/object-control/flying-object/RemoteFlyingObjectController.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _FlyingObjectBaseController = __webpack_require__(/*! ./FlyingObjectBaseController */ "../src/engine/object-control/flying-object/FlyingObjectBaseController.js");
+
+var _FlyingObjectBaseController2 = _interopRequireDefault(_FlyingObjectBaseController);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @typedef {import('three')} THREE
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @typedef {import('../../net/models/ObjectState').default} ObjectState
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @typedef {import('../../net/models/InputAction').default} InputAction
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var RemoteFlyingObjectController = function (_FlyingObjectBaseCont) {
+    _inherits(RemoteFlyingObjectController, _FlyingObjectBaseCont);
+
+    function RemoteFlyingObjectController() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, RemoteFlyingObjectController);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RemoteFlyingObjectController.__proto__ || Object.getPrototypeOf(RemoteFlyingObjectController)).call.apply(_ref, [this].concat(args))), _this), _this.rollAnglePrev = 0, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(RemoteFlyingObjectController, [{
+        key: "sync",
+
+
+        /**
+         * @param {ObjectState} objectState
+         */
+        value: function sync(objectState) {
+            this._syncObject(objectState);
+
+            this.controlsQuaternion.copy(objectState.controlQuaternion);
+            this.controlX.copy(objectState.controlX);
+            this.controlZInWorldCoords.set(0, 0, 1).applyQuaternion(this.controlsQuaternion);
+            this.controlY.crossVectors(this.controlZ, this.controlX);
+
+            // calc rotation direction, yaw and pitch targets
+            var inverseQuaternion = this.controlsQuaternion.clone().inverse();
+            var nx = this.gameObject.nx.clone();
+            var ny = this.gameObject.ny.clone();
+            this.rotationDirection = nx.multiplyScalar(objectState.angularVelocity.x).add(ny.multiplyScalar(objectState.angularVelocity.y));
+            var rotDirectionInLocalCS = this.rotationDirection.clone().applyQuaternion(inverseQuaternion);
+            this.wYawTarget = this.controlX.dot(rotDirectionInLocalCS);
+            this.wPitchTarget = this.controlY.dot(rotDirectionInLocalCS);
+        }
+
+        /**
+         * @param {ObjectState} objectState
+         * @protected
+         */
+
+    }, {
+        key: "_syncObject",
+        value: function _syncObject(objectState) {
+            this.gameObject.quaternion.copy(objectState.quaternion);
+            this.gameObject.position = objectState.position;
+            this.gameObject.velocity.z = objectState.speed;
+            this.gameObject.angularVelocity.copy(objectState.angularVelocity);
+            this.gameObject.angularAcceleration.copy(objectState.angularAcceleration);
+            this.gameObject.rollAngleBtwCurrentAndTargetOrientation = objectState.rollAngleBtwCurrentAndTargetOrientation;
+        }
+
+        /**
+         * @param {InputAction} inputAction
+         */
+
+    }, {
+        key: "processInput",
+        value: function processInput(inputAction) {
+            this.gameObject.rollAngleBtwCurrentAndTargetOrientation += this.rollAnglePrev - inputAction.rollAngle;
+            this.rollAnglePrev = inputAction.rollAngle;
+            this.wYawTarget = inputAction.yaw;
+            this.wPitchTarget = inputAction.pitch;
+            this.rotationSpeed = inputAction.rotationSpeed;
+        }
+
+        /**
+         * @param {number} angle
+         * @private
+         */
+
+    }, {
+        key: "_rotateControlAxes",
+        value: function _rotateControlAxes(angle) {
+            _get(RemoteFlyingObjectController.prototype.__proto__ || Object.getPrototypeOf(RemoteFlyingObjectController.prototype), "_rotateControlAxes", this).call(this, angle);
+            this.gameObject.rollAngleBtwCurrentAndTargetOrientation += angle;
+        }
+    }]);
+
+    return RemoteFlyingObjectController;
+}(_FlyingObjectBaseController2.default);
+
+exports.default = RemoteFlyingObjectController;
+
+/***/ }),
+
+/***/ "../src/engine/object-control/flying-object/RemoteFlyingObjectControllerTest.js":
+/*!**************************************************************************************!*\
+  !*** ../src/engine/object-control/flying-object/RemoteFlyingObjectControllerTest.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+        value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ObjectState = __webpack_require__(/*! ../../net/models/ObjectState */ "../src/engine/net/models/ObjectState.js");
+
+var _ObjectState2 = _interopRequireDefault(_ObjectState);
+
+var _FlyingObject = __webpack_require__(/*! ../../physics/object/FlyingObject */ "../src/engine/physics/object/FlyingObject.js");
+
+var _FlyingObject2 = _interopRequireDefault(_FlyingObject);
+
+var _browserKeycodes = __webpack_require__(/*! ../../util/browser-keycodes */ "../src/engine/util/browser-keycodes.js");
+
+var _browserKeycodes2 = _interopRequireDefault(_browserKeycodes);
+
+var _InputAction = __webpack_require__(/*! ../../net/models/InputAction */ "../src/engine/net/models/InputAction.js");
+
+var _InputAction2 = _interopRequireDefault(_InputAction);
+
+var _RemoteFlyingObjectController = __webpack_require__(/*! ./RemoteFlyingObjectController */ "../src/engine/object-control/flying-object/RemoteFlyingObjectController.js");
+
+var _RemoteFlyingObjectController2 = _interopRequireDefault(_RemoteFlyingObjectController);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RemoteFlyingObjectControllerTest = function (_RemoteFlyingObjectCo) {
+        _inherits(RemoteFlyingObjectControllerTest, _RemoteFlyingObjectCo);
+
+        /**
+         * @param {Mouse} mouseInterface
+         * @param {Keyboard} keyboardInterface
+         */
+        function RemoteFlyingObjectControllerTest(mouseInterface, keyboardInterface) {
+                _classCallCheck(this, RemoteFlyingObjectControllerTest);
+
+                var _this = _possibleConstructorReturn(this, (RemoteFlyingObjectControllerTest.__proto__ || Object.getPrototypeOf(RemoteFlyingObjectControllerTest)).call(this));
+
+                _this.mouse = mouseInterface;
+                _this.keyboard = keyboardInterface;
+
+                _this.controlCircleRadius = Math.min(window.innerWidth, window.innerHeight) * 0.2;
+                _this.controlCircleRadiusSq = _this.controlCircleRadius ** 2;
+                return _this;
+        }
+
+        /**
+         * @param {number} delta
+         */
+
+
+        _createClass(RemoteFlyingObjectControllerTest, [{
+                key: 'updateControlParams',
+                value: function updateControlParams(delta) {
+                        /** create InputAction */
+                        var mousePos = this._calcMousePosInDimlessUnits();
+                        var wPitchTarget = -mousePos[1] * _FlyingObject2.default.angularVelocityMax.y;
+                        var wYawTarget = mousePos[0] * _FlyingObject2.default.angularVelocityMax.x;
+                        var rollAngle = wYawTarget / _FlyingObject2.default.angularVelocityMax.x * Math.PI / 6;
+
+                        var pressedKey = this.keyboard.getFirstPressedKey();
+
+                        var rotationSpeed = 0;
+                        if (pressedKey === _browserKeycodes2.default.ARROW_LEFT) {
+                                rotationSpeed = 0.0006;
+                        } else if (pressedKey === _browserKeycodes2.default.ARROW_RIGHT) {
+                                rotationSpeed = -0.0006;
+                        }
+
+                        var inputAction = new _InputAction2.default();
+                        inputAction.rotationSpeed = rotationSpeed;
+                        inputAction.pitch = wPitchTarget;
+                        inputAction.yaw = wYawTarget;
+                        inputAction.rollAngle = rollAngle;
+
+                        /** process InputAction */
+                        this.processInput(inputAction);
+
+                        /** create ObjectState */
+                        var objectState = new _ObjectState2.default();
+                        objectState.speed = this.gameObject.velocity.z;
+                        objectState.position = this.gameObject.position;
+                        objectState.quaternion = this.gameObject.quaternion;
+
+                        this._updateControlsQuaternion();
+                        if (this.rotationSpeed !== 0) {
+                                this._rotateControlAxes(this.rotationSpeed * delta);
+                        }
+                        objectState.controlX = this.controlX; // interesting effect when disabled // new THREE.Vector3(1, 0, 0);
+                        objectState.controlQuaternion = this.controlsQuaternion;
+
+                        this._updateAngularVelocities();
+                        objectState.angularVelocity = this.gameObject.angularVelocity;
+                        objectState.angularAcceleration = this.gameObject.angularAcceleration;
+                        objectState.rollAngleBtwCurrentAndTargetOrientation = this.gameObject.rollAngleBtwCurrentAndTargetOrientation;
+
+                        /** process ObjectState */
+                        this.sync(objectState);
+
+                        /** needed for CameraManager */
+                        this.normalToRotationDirection = this.gameObject.nz.clone().cross(this.rotationDirection);
+                }
+
+                /**
+                 * @returns {number[]} mouse position where x and y є [-1 1]
+                 */
+
+        }, {
+                key: '_calcMousePosInDimlessUnits',
+                value: function _calcMousePosInDimlessUnits() {
+                        var mousePos = this.mouse.position.slice();
+
+                        // circle bounded
+                        var distFromCenterSq = mousePos[0] * mousePos[0] + mousePos[1] * mousePos[1];
+                        if (distFromCenterSq > this.controlCircleRadiusSq) {
+                                var dimlessDist = this.controlCircleRadius / Math.sqrt(distFromCenterSq);
+                                mousePos[0] = dimlessDist * mousePos[0];
+                                mousePos[1] = dimlessDist * mousePos[1];
+                        }
+                        mousePos[0] /= this.controlCircleRadius;
+                        mousePos[1] /= this.controlCircleRadius;
+
+                        return mousePos;
+                }
+        }]);
+
+        return RemoteFlyingObjectControllerTest;
+}(_RemoteFlyingObjectController2.default);
+
+exports.default = RemoteFlyingObjectControllerTest;
+
+/***/ }),
+
+/***/ "../src/engine/object-control/index.js":
+/*!*********************************************!*\
+  !*** ../src/engine/object-control/index.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.controllers = undefined;
+
+var _globals = __webpack_require__(/*! ../globals */ "../src/engine/globals.js");
+
+var _FlyingObjectSingleplayerController = __webpack_require__(/*! ./flying-object/FlyingObjectSingleplayerController */ "../src/engine/object-control/flying-object/FlyingObjectSingleplayerController.js");
+
+var _FlyingObjectSingleplayerController2 = _interopRequireDefault(_FlyingObjectSingleplayerController);
+
+var _RemoteFlyingObjectController = __webpack_require__(/*! ./flying-object/RemoteFlyingObjectController */ "../src/engine/object-control/flying-object/RemoteFlyingObjectController.js");
+
+var _RemoteFlyingObjectController2 = _interopRequireDefault(_RemoteFlyingObjectController);
+
+var _RemoteFlyingObjectControllerTest = __webpack_require__(/*! ./flying-object/RemoteFlyingObjectControllerTest */ "../src/engine/object-control/flying-object/RemoteFlyingObjectControllerTest.js");
+
+var _RemoteFlyingObjectControllerTest2 = _interopRequireDefault(_RemoteFlyingObjectControllerTest);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var controllers = exports.controllers = Object.freeze({
+    FLYING_OBJECT_CONTROLLER: Symbol(),
+    FLYING_OBJECT_REMOTE_CONTROLLER: Symbol(),
+    FLYING_OBJECT_REMOTE_CONTROLLER_TEST: Symbol()
+});
+
+_globals.diContainer.registerClass(controllers.FLYING_OBJECT_CONTROLLER, _FlyingObjectSingleplayerController2.default, { enableAxesHelper: false });
+_globals.diContainer.registerClass(controllers.FLYING_OBJECT_REMOTE_CONTROLLER, _RemoteFlyingObjectController2.default);
+_globals.diContainer.registerClass(controllers.FLYING_OBJECT_REMOTE_CONTROLLER_TEST, _RemoteFlyingObjectControllerTest2.default);
+
+/***/ }),
+
 /***/ "../src/engine/physics/object/AbstractObject.js":
 /*!******************************************************!*\
   !*** ../src/engine/physics/object/AbstractObject.js ***!
@@ -41567,7 +42473,10 @@ var AbstractObject = function () {
         _classCallCheck(this, AbstractObject);
 
         this.id = id;
-        this.object3d = object3d;
+        if (object3d) {
+            this.object3d = object3d;
+            this.object3d.matrixAutoUpdate = false;
+        }
     }
 
     // eslint-disable-next-line no-unused-vars
@@ -41692,11 +42601,13 @@ var FlyingObject = function (_AbstractObject) {
             this.position.addScaledVector(this.nz, this.velocity.z * dt);
 
             /** Update object3d */
-            this.object3d.matrix.makeBasis(this.nx, this.ny, this.nz);
-            this.object3d.position.copy(this.position);
-            // this.object3d.matrix.makeRotationFromQuaternion(this.quaternion);
+            if (this.object3d) {
+                this.object3d.matrix.makeBasis(this.nx, this.ny, this.nz);
+                this.object3d.position.copy(this.position);
+                // this.object3d.matrix.makeRotationFromQuaternion(this.quaternion);
 
-            this.object3d.matrix.setPosition(this.position);
+                this.object3d.matrix.setPosition(this.position);
+            }
         }
     }, {
         key: "updateAxes",
@@ -41746,6 +42657,27 @@ var self = FlyingObject;
 
 /***/ }),
 
+/***/ "../src/engine/physics/object/index.js":
+/*!*********************************************!*\
+  !*** ../src/engine/physics/object/index.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var objectTypes = {
+    FLYING_OBJECT: 1
+};
+
+exports.default = objectTypes;
+
+/***/ }),
+
 /***/ "../src/engine/state/StateManager.js":
 /*!*******************************************!*\
   !*** ../src/engine/state/StateManager.js ***!
@@ -41768,22 +42700,31 @@ var _AbstractObject = __webpack_require__(/*! ../physics/object/AbstractObject *
 
 var _AbstractObject2 = _interopRequireDefault(_AbstractObject);
 
+var _AbstractController = __webpack_require__(/*! ../object-control/AbstractController */ "../src/engine/object-control/AbstractController.js");
+
+var _AbstractController2 = _interopRequireDefault(_AbstractController);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var StateManager = function () {
-    function StateManager() {
+
+    /** @type {number} */
+    function StateManager(diContainer) {
         _classCallCheck(this, StateManager);
 
         this.controllers = [];
         this.controllersCount = 0;
+        this.lastObjectId = 0;
+
+        this.diContainer = diContainer;
     }
 
-    /** @type {AbstractController[]} */
-
-
     /** @type {number} */
+
+
+    /** @type {AbstractController[]} */
 
 
     _createClass(StateManager, [{
@@ -41792,12 +42733,45 @@ var StateManager = function () {
             for (var i = 0; i < this.controllersCount; i++) {
                 this.controllers[i].update(delta);
             }
-            //this.allObjects.forEach(object => object.update(delta));
         }
+
+        /**
+         * @param {number|null} objectId - if 'null' will be auto-generated
+         * @param {Function} objectClass
+         * @param {symbol|string} controllerRef
+         * @param {object} model
+         * @returns {Promise<AbstractController>}
+         */
+
     }, {
-        key: "addObject",
-        value: function addObject(gameObject) {
-            //this.allObjects.push(gameObject);
+        key: "createObject",
+        value: async function createObject(objectId, objectClass, controllerRef) {
+            var model = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+            if (!objectId) {
+                objectId = ++this.lastObjectId;
+            }
+
+            if (!(objectClass.prototype instanceof _AbstractObject2.default)) {
+                throw new Error('Class must be inherited from AbstractObject');
+            }
+
+            var gameObject = new objectClass(objectId, model);
+
+            var controller = await this.diContainer.get(controllerRef, true);
+            if (!controller) {
+                throw new Error('Component not found');
+            }
+
+            if (!(controller instanceof _AbstractController2.default)) {
+                throw new Error("Object controller must be inherited from AbstractControls");
+            }
+
+            controller.init(gameObject);
+            this.controllers.push(controller);
+            this.controllersCount++;
+
+            return controller;
         }
     }]);
 
@@ -41827,6 +42801,29 @@ var _StateManager2 = _interopRequireDefault(_StateManager);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _globals.diContainer.registerClass("stateManager", _StateManager2.default);
+
+/***/ }),
+
+/***/ "../src/engine/util/browser-keycodes.js":
+/*!**********************************************!*\
+  !*** ../src/engine/util/browser-keycodes.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var ARROW_LEFT = 37,
+    ARROW_RIGHT = 39;
+
+exports.default = {
+    ARROW_LEFT: ARROW_LEFT,
+    ARROW_RIGHT: ARROW_RIGHT
+};
 
 /***/ }),
 
@@ -41992,22 +42989,22 @@ var SOCKET_FILE = '/tmp/spaceships-world-simulator.sock';
     var diContainer = _engine2.default.getDiContainer();
     diContainer.configure('messageSerializerDeserializer', { protoBundle: __webpack_require__(/*! ../../common/proto/bundle.json */ "../../common/proto/bundle.json") });
     var messageSerializerDeserializer = await diContainer.get('messageSerializerDeserializer');
-    //const stateManager = await diContainer.get('stateManager');
+    var stateManager = await diContainer.get('stateManager');
 
-    var sockerServer = new SocketServer(SOCKET_FILE, messageSerializerDeserializer);
-    /*const stateDispatcher = new StateDispatcher(stateManager, sockerServer, messageEncoderDecoder)
-    const simulation = new Simulation(stateManager);
-    simulation.onIterCompleted(stateDispatcher.handleStateUpdated);*/
+    var socketServer = new SocketServer(SOCKET_FILE, messageSerializerDeserializer, stateManager);
+    var stateDispatcher = new StateDispatcher(stateManager, socketServer, messageSerializerDeserializer);
+    var simulation = new Simulation(stateManager);
+    simulation.onIterCompleted(stateDispatcher.handleStateUpdated);
 
-    sockerServer.start();
-    //simulation.startGameLoop();
+    socketServer.start();
+    simulation.startGameLoop();
 
     function shutdown() {
-        if (!shutdown.shuttingDown && sockerServer) {
+        if (!shutdown.shuttingDown && socketServer) {
             shutdown.shuttingDown = true;
             logger.info('Terminating');
 
-            sockerServer.cleanup();
+            socketServer.cleanup();
 
             process.exit(0);
         }
@@ -42074,10 +43071,10 @@ var Simulation = function () {
             }
 
             var afterStateUpdatedTimestamp = Date.now();
-            var timeProcesing = afterStateUpdatedTimestamp - timestamp;
+            var timeProcessing = afterStateUpdatedTimestamp - timestamp;
             //logger.debug(`Time procesing: ` + timeProcesing);
 
-            var timeLeftToNextStateUpdate = _this.timestep - (timeProcesing + timeoutDelay);
+            var timeLeftToNextStateUpdate = _this.timestep - (timeProcessing + timeoutDelay);
 
             if (timeLeftToNextStateUpdate < 0) {
                 timeLeftToNextStateUpdate = 0;
@@ -42131,14 +43128,26 @@ module.exports = Simulation;
 "use strict";
 
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @typedef {import('../engine/state/StateManager').default} StateManager
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @typedef {import('net').Socket} Socket
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+
+
+var _FlyingObject = __webpack_require__(/*! ../engine/physics/object/FlyingObject */ "../src/engine/physics/object/FlyingObject.js");
+
+var _FlyingObject2 = _interopRequireDefault(_FlyingObject);
+
+var _objectControl = __webpack_require__(/*! ../engine/object-control */ "../src/engine/object-control/index.js");
+
+var _SpawnResponse = __webpack_require__(/*! ../engine/net/models/SpawnResponse */ "../src/engine/net/models/SpawnResponse.js");
+
+var _SpawnResponse2 = _interopRequireDefault(_SpawnResponse);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
- * @typedef {import('net').Socket} Socket
- */
 
 var logger = __webpack_require__(/*! ../utils/logger */ "../src/utils/logger.js");
 var net = __webpack_require__(/*! net */ "net");
@@ -42146,17 +43155,21 @@ var fs = __webpack_require__(/*! fs */ "fs");
 
 var SocketServer = function () {
 
-    /** @type {MessageSerializerDeserializer} */
-    function SocketServer(sockerFilePath, messageSerializerDeserializer) {
+    /** @type {object.<string, Socket>} */
+    function SocketServer(sockerFilePath, messageSerializerDeserializer, stateManager) {
         _classCallCheck(this, SocketServer);
 
         this.connections = {};
 
         this.sockerFilePath = sockerFilePath;
         this.messageSerializerDeserializer = messageSerializerDeserializer;
+        this.stateManager = stateManager;
     }
 
-    /** @type {object.<string, Socket>} */
+    /** @type {StateManager} */
+
+
+    /** @type {MessageSerializerDeserializer} */
 
 
     _createClass(SocketServer, [{
@@ -42221,32 +43234,58 @@ var SocketServer = function () {
         }
     }, {
         key: '_handleDataReceived',
-        value: function _handleDataReceived(clientId, data) {
-            var messages = this.messageSerializerDeserializer.deserializeRequest(data);
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
+        value: async function _handleDataReceived(clientId, data) {
             try {
-                for (var _iterator = messages[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var message = _step.value;
+                var messages = this.messageSerializerDeserializer.deserializeRequest(data);
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
 
-                    logger.debug("Incoming message: " + JSON.stringify(message));
+                try {
+                    for (var _iterator = messages[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var message = _step.value;
+
+                        if (!message.message) {
+                            // not a valid message, should have message type
+                            continue;
+                        }
+
+                        logger.debug("Incoming message: " + JSON.stringify(message));
+
+                        switch (message.message) {
+                            case "spawnRequest":
+                                await this._handleSpawnRequest(message);
+                                break;
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
                 }
             } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
+                logger.logError('Failed to process data received on socket', err);
             }
+        }
+    }, {
+        key: '_handleSpawnRequest',
+        value: async function _handleSpawnRequest(message) {
+            var controller = await this.stateManager.createObject(null, _FlyingObject2.default, _objectControl.controllers.FLYING_OBJECT_REMOTE_CONTROLLER);
+
+            var spawnResponse = new _SpawnResponse2.default();
+            spawnResponse.assignedObjectId = controller.gameObject.id;
+
+            var serializedMessage = this.messageSerializerDeserializer.serializeResponse(spawnResponse, { requestId: message.requestId });
+            this.broadcast(serializedMessage);
         }
     }, {
         key: '_createServer',
@@ -42286,15 +43325,30 @@ module.exports = SocketServer;
 "use strict";
 
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @typedef {import('./SocketServer')} SocketServer
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @typedef {import('../engine/state/StateManager').default} StateManager
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @typedef {import('../engine/physics/object/FlyingObject').default} FlyingObject
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @typedef {import('../engine/object-control/flying-object/RemoteFlyingObjectController').default} RemoteFlyingObjectController
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+
+
+var _ObjectState = __webpack_require__(/*! ../engine/net/models/ObjectState */ "../src/engine/net/models/ObjectState.js");
+
+var _ObjectState2 = _interopRequireDefault(_ObjectState);
+
+var _object = __webpack_require__(/*! ../engine/physics/object */ "../src/engine/physics/object/index.js");
+
+var _object2 = _interopRequireDefault(_object);
+
+var _WorldState = __webpack_require__(/*! ../engine/net/models/WorldState */ "../src/engine/net/models/WorldState.js");
+
+var _WorldState2 = _interopRequireDefault(_WorldState);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * @typedef {import('./SocketServer')} SocketServer
- * @typedef {import('../engine/state/StateManager').default} StateManager
- * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
- */
 
 var packetPeriodMs = __webpack_require__(/*! ../config */ "../src/config/index.js").packetPeriodMs;
 var logger = __webpack_require__(/*! ../utils/logger */ "../src/utils/logger.js");
@@ -42327,39 +43381,56 @@ var StateDispatcher = function () {
     }
 
     _createClass(StateDispatcher, [{
-        key: 'dispatchState',
+        key: "dispatchState",
         value: function dispatchState() {
-            /*const objectStates = [];
-            for (const object of this.stateManager.allObjects) {
-                const data = {
-                    id: object.id,
-                    objectType: 1,
-                    position: this.messageEncoderDecoder.convertVector(object.object3d.position)
-                };
-                  if (object.quaternion) {
-                    data.quaternion = this.messageEncoderDecoder.convertQuaternion(object.quaternion);
+            var objectStates = [];
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.stateManager.controllers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var objectController = _step.value;
+
+                    /** @type {FlyingObject} */
+                    var object = objectController.gameObject;
+                    var objectState = new _ObjectState2.default();
+
+                    objectState.id = object.id;
+                    objectState.rollAngleBtwCurrentAndTargetOrientation = object.rollAngleBtwCurrentAndTargetOrientation;
+                    objectState.controlX = objectController.controlX;
+                    objectState.controlQuaternion = objectController.controlsQuaternion;
+                    objectState.speed = object.velocity.z;
+                    objectState.objectType = _object2.default.FLYING_OBJECT;
+                    objectState.angularAcceleration = object.angularAcceleration;
+                    objectState.position = object.position;
+                    objectState.quaternion = object.quaternion;
+
+                    objectStates.push(objectState);
                 }
-                if (object.velocity) {
-                    data.velocity = this.messageEncoderDecoder.convertVector(object.velocity);
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
                 }
-                if (object.acceleration) {
-                    data.acceleration = this.messageEncoderDecoder.convertVector(object.acceleration);
-                }
-                if (object.angularVelocity) {
-                    data.angularVelocity = this.messageEncoderDecoder.convertVector(object.angularVelocity);
-                }
-                if (object.angularVelocity) {
-                    data.wVelocity = this.messageEncoderDecoder.convertVector(object.angularVelocity);
-                }
-                if (object.angularAcceleration) {
-                    data.wAcceleration = this.messageEncoderDecoder.convertVector(object.angularAcceleration);
-                }
-                
-                objectStates.push(this.messageEncoderDecoder.ObjectState.create(data));
             }
-              const WorldState = this.messageEncoderDecoder.WorldState;
-            const encoded = this.messageEncoderDecoder.encode(WorldState, WorldState.create({objectStates}));
-            this.socketServer.broadcast(encoded);*/
+
+            var worldState = new _WorldState2.default();
+            worldState.objectStates = objectStates;
+
+            var serializedResponse = this.messageSerializerDeserializer.serializeResponse(worldState);
+            this.socketServer.broadcast(serializedResponse);
+
+            var deserialized = this.messageSerializerDeserializer.deserializeResponse(serializedResponse);
+            console.log("deserialized: " + JSON.stringify(deserialized));
         }
     }]);
 

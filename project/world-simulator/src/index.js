@@ -18,20 +18,20 @@ const SOCKET_FILE = '/tmp/spaceships-world-simulator.sock';
     const messageSerializerDeserializer = await diContainer.get('messageSerializerDeserializer');
     const stateManager = await diContainer.get('stateManager');
 
-    const sockerServer = new SocketServer(SOCKET_FILE, messageSerializerDeserializer, stateManager);
-    /*const stateDispatcher = new StateDispatcher(stateManager, sockerServer, messageEncoderDecoder)
+    const socketServer = new SocketServer(SOCKET_FILE, messageSerializerDeserializer, stateManager);
+    const stateDispatcher = new StateDispatcher(stateManager, socketServer, messageSerializerDeserializer)
     const simulation = new Simulation(stateManager);
-    simulation.onIterCompleted(stateDispatcher.handleStateUpdated);*/
+    simulation.onIterCompleted(stateDispatcher.handleStateUpdated);
 
-    sockerServer.start();
-    //simulation.startGameLoop();
+    socketServer.start();
+    simulation.startGameLoop();
 
     function shutdown() {
-        if (!shutdown.shuttingDown && sockerServer) {
+        if (!shutdown.shuttingDown && socketServer) {
             shutdown.shuttingDown = true;
             logger.info('Terminating');
 
-            sockerServer.cleanup();
+            socketServer.cleanup();
 
             process.exit(0);
         }

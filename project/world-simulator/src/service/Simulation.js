@@ -47,10 +47,10 @@ class Simulation {
         }
 
         const afterStateUpdatedTimestamp = Date.now();
-        const timeProcesing = afterStateUpdatedTimestamp - timestamp;
+        const timeProcessing = afterStateUpdatedTimestamp - timestamp;
         //logger.debug(`Time procesing: ` + timeProcesing);
 
-        let timeLeftToNextStateUpdate = this.timestep - (timeProcesing + timeoutDelay);
+        let timeLeftToNextStateUpdate = this.timestep - (timeProcessing + timeoutDelay);
 
         if (timeLeftToNextStateUpdate < 0) {
             timeLeftToNextStateUpdate = 0;

@@ -190,7 +190,7 @@
         "SpawnResponse": {
           "fields": {
             "assignedObjectId": {
-              "type": "string",
+              "type": "int32",
               "id": 1
             },
             "spawnRequestId": {
