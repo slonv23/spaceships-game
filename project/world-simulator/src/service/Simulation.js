@@ -40,7 +40,7 @@ class Simulation {
 
         this.delta += timestamp - this.lastFrameTimeMs;
         this.lastFrameTimeMs = timestamp;
-    
+
         while (this.delta >= this.timestep) {
             this.stateManager.update(this.timestep);
             this.delta -= this.timestep;
@@ -48,13 +48,13 @@ class Simulation {
 
         const afterStateUpdatedTimestamp = Date.now();
         const timeProcessing = afterStateUpdatedTimestamp - timestamp;
-        //logger.debug(`Time procesing: ` + timeProcesing);
+        logger.debug(`Time processing: ` + timeProcessing);
 
         let timeLeftToNextStateUpdate = this.timestep - (timeProcessing + timeoutDelay);
 
         if (timeLeftToNextStateUpdate < 0) {
             timeLeftToNextStateUpdate = 0;
-            logger.warn("State update took too much time");
+            logger.warn("State update took too much time: " + timeLeftToNextStateUpdate);
         }
 
         setTimeout(this.gameLoop, timeLeftToNextStateUpdate);
