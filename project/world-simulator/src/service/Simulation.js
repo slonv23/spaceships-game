@@ -48,13 +48,14 @@ class Simulation {
 
         const afterStateUpdatedTimestamp = Date.now();
         const timeProcessing = afterStateUpdatedTimestamp - timestamp;
-        logger.debug(`Time processing: ` + timeProcessing);
 
         let timeLeftToNextStateUpdate = this.timestep - (timeProcessing + timeoutDelay);
 
         if (timeLeftToNextStateUpdate < 0) {
             timeLeftToNextStateUpdate = 0;
             logger.warn("State update took too much time: " + timeLeftToNextStateUpdate);
+            logger.debug(`Time processing: ` + timeProcessing);
+            logger.debug(`Timeout delay: ` + timeoutDelay);
         }
 
         setTimeout(this.gameLoop, timeLeftToNextStateUpdate);

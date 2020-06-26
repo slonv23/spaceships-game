@@ -84,15 +84,10 @@ class SocketServer {
         try {
             const messages = this.messageSerializerDeserializer.deserializeRequest(data);
             for (const message of messages) {
-                if (!message.message) {
-                    // not a valid message, should have message type
-                    continue;
-                }
-
                 logger.debug("Incoming message: " + JSON.stringify(message));
 
-                switch (message.message) {
-                    case "spawnRequest":
+                switch (message.constructor.name) {
+                    case "SpawnRequest":
                         await this._handleSpawnRequest(message);
                         break;
                 }
@@ -108,7 +103,7 @@ class SocketServer {
         const spawnResponse = new SpawnResponse();
         spawnResponse.assignedObjectId = controller.gameObject.id;
 
-        const serializedMessage = this.messageSerializerDeserializer.serializeResponse(spawnResponse, {requestId: message.requestId});
+        const serializedMessage = this.messageSerializerDeserializer.serializeResponse(spawnResponse, {requestId: message._requestId});
         this.broadcast(serializedMessage);
     }
 
