@@ -4,11 +4,13 @@ import './engine/state';
 
 import Engine from './engine';
 import FlyingObject from './engine/physics/object/FlyingObject';
+import {controllers} from "./engine/object-control";
 
 const logger = require('./utils/logger');
 const SocketServer = require('./service/SocketServer');
 const Simulation = require('./service/Simulation');
 const StateDispatcher = require('./service/StateDispatcher');
+import {gameObjectTypes} from "./constants";
 
 const SOCKET_FILE = '/tmp/spaceships-world-simulator.sock';
 
@@ -17,6 +19,7 @@ const SOCKET_FILE = '/tmp/spaceships-world-simulator.sock';
     diContainer.configure('messageSerializerDeserializer',  {protoBundle: require('../../common/proto/bundle.json')});
     const messageSerializerDeserializer = await diContainer.get('messageSerializerDeserializer');
     const stateManager = await diContainer.get('stateManager');
+    stateManager.registerGameObjectType(gameObjectTypes.SPACESHIP, FlyingObject, controllers.REMOTE_FLYING_OBJECT_CONTROLLER);
 
     const socketServer = new SocketServer(SOCKET_FILE, messageSerializerDeserializer, stateManager);
     const stateDispatcher = new StateDispatcher(stateManager, socketServer, messageSerializerDeserializer)

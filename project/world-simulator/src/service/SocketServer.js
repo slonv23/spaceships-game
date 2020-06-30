@@ -6,6 +6,7 @@
 import FlyingObject from '../engine/physics/object/FlyingObject';
 import {controllers} from '../engine/object-control';
 import SpawnResponse from '../engine/net/models/SpawnResponse';
+import {gameObjectTypes} from "../constants";
 
 const logger = require('../utils/logger');
 const net = require('net');
@@ -98,7 +99,7 @@ class SocketServer {
     }
 
     async _handleSpawnRequest(message) {
-        const controller = await this.stateManager.createObject(null, FlyingObject, controllers.FLYING_OBJECT_REMOTE_CONTROLLER);
+        const controller = await this.stateManager.createObject(null, gameObjectTypes.SPACESHIP);
 
         const spawnResponse = new SpawnResponse();
         spawnResponse.assignedObjectId = controller.gameObject.id;
@@ -115,7 +116,6 @@ class SocketServer {
 
             const clientId = Date.now();
             this.connections[clientId] = stream;
-            //stream.
             stream.on('end', this._handleClientDisconnected.bind(this, clientId));
             stream.on('data', this._handleDataReceived.bind(this, clientId));
         })

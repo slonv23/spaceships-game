@@ -49,6 +49,7 @@ class StateDispatcher {
             objectState.speed = object.velocity.z;
             objectState.objectType = objectTypes.FLYING_OBJECT;
             objectState.angularAcceleration = object.angularAcceleration;
+            objectState.angularVelocity = object.angularVelocity;
             objectState.position = object.position;
             objectState.quaternion = object.quaternion;
 
@@ -61,8 +62,8 @@ class StateDispatcher {
         const serializedResponse = this.messageSerializerDeserializer.serializeResponse(worldState, {requestId: 0});
         this.socketServer.broadcast(serializedResponse);
 
-        const deserialized = this.messageSerializerDeserializer.deserializeResponse(serializedResponse);
-        console.log("deserialized: " + JSON.stringify(deserialized));
+        //const deserialized = this.messageSerializerDeserializer.deserializeResponse(serializedResponse);
+        //console.log("deserialized: " + JSON.stringify(deserialized));
     }
 
 }
