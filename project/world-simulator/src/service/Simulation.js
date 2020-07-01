@@ -7,6 +7,7 @@ class Simulation {
     maxFPS = 60;
     delta = 0;
     timestep = 1000 / 60;
+    frameIndex = 0;
 
     handleIterCompleted = () => {};
 
@@ -60,7 +61,7 @@ class Simulation {
 
         setTimeout(this.gameLoop, timeLeftToNextStateUpdate);
 
-        this.handleIterCompleted();
+        this.handleIterCompleted(this.frameIndex++);
         //logger.debug(`Next state update in ${timeLeftToNextStateUpdate} milliseconds`);
     };
 
