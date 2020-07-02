@@ -53,10 +53,13 @@ class Simulation {
         let timeLeftToNextStateUpdate = this.timestep - (timeProcessing + timeoutDelay);
 
         if (timeLeftToNextStateUpdate < 0) {
+            logger.warn(
+                `State update took too much time
+                 Lag: ${timeLeftToNextStateUpdate}
+                 Time processing: ${timeProcessing}
+                 Timeout delay: ${timeoutDelay}`
+            );
             timeLeftToNextStateUpdate = 0;
-            logger.warn("State update took too much time: " + timeLeftToNextStateUpdate);
-            logger.debug(`Time processing: ` + timeProcessing);
-            logger.debug(`Timeout delay: ` + timeoutDelay);
         }
 
         setTimeout(this.gameLoop, timeLeftToNextStateUpdate);

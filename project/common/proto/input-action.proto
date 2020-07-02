@@ -8,5 +8,5 @@ message InputAction {
     float pitch = 3;
     float rotationSpeed = 4;
     float rollAngle = 5;
-    string objectId = 6;
+    string objectId = 6; // this set by gateway app and not passed by client
 }

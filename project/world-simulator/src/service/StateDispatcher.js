@@ -15,8 +15,8 @@ const logger = require('../utils/logger');
 class StateDispatcher {
 
     /**
-     * @param {StateManager} stateManager 
-     * @param {SocketServer} socketServer 
+     * @param {StateManager} stateManager
+     * @param {SocketServer} socketServer
      * @param {MessageSerializerDeserializer} messageSerializerDeserializer
      */
     constructor(stateManager, socketServer, messageSerializerDeserializer) {
@@ -44,11 +44,10 @@ class StateDispatcher {
 
             objectState.id = object.id;
             objectState.rollAngleBtwCurrentAndTargetOrientation = object.rollAngleBtwCurrentAndTargetOrientation;
-            objectState.controlX = objectController.controlX;
             objectState.controlQuaternion = objectController.controlsQuaternion;
             objectState.speed = object.velocity.z;
             objectState.objectType = objectTypes.FLYING_OBJECT;
-            objectState.angularAcceleration = object.angularAcceleration;
+            //objectState.angularAcceleration = object.angularAcceleration;
             objectState.angularVelocity = object.angularVelocity;
             objectState.position = object.position;
             objectState.quaternion = object.quaternion;

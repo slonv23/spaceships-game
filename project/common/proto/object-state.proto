@@ -16,8 +16,7 @@ message ObjectState {
     float acceleration = 6;
     FloatVector angularVelocity = 7;
     float rollAngleBtwCurrentAndTargetOrientation = 8; // angle btw object and control axes
-    FloatVector controlX = 9;
-    Quaternion controlQuaternion = 11;
+    Quaternion controlQuaternion = 9;
 
-    repeated InputAction actions = 12;
+    repeated InputAction actions = 10;
 }
