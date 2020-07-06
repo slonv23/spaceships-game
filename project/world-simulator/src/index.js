@@ -18,7 +18,7 @@ const SOCKET_FILE = '/tmp/spaceships-world-simulator.sock';
     const diContainer = Engine.getDiContainer();
     diContainer.configure('messageSerializerDeserializer',  {protoBundle: require('../../common/proto/bundle.json')});
     const messageSerializerDeserializer = await diContainer.get('messageSerializerDeserializer');
-    const stateManager = await diContainer.get('stateManager');
+    const stateManager = await diContainer.get('authoritativeStateManager');
     stateManager.registerGameObjectType(gameObjectTypes.SPACESHIP, FlyingObject, controllers.REMOTE_FLYING_OBJECT_CONTROLLER);
 
     const socketServer = new SocketServer(SOCKET_FILE, messageSerializerDeserializer, stateManager);
