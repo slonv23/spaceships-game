@@ -14,6 +14,10 @@ import {gameObjectTypes} from "./constants";
 
 const SOCKET_FILE = '/tmp/spaceships-world-simulator.sock';
 
+// setup EventTarget and CustomEvent polyfills
+import {EventTarget} from "event-target-shim";
+global.EventTarget = EventTarget;
+
 (async () => {
     const diContainer = Engine.getDiContainer();
     diContainer.configure('messageSerializerDeserializer',  {protoBundle: require('../../common/proto/bundle.json')});

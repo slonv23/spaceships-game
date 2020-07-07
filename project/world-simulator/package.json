@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "di-container-js": "^0.2.6",
+    "event-target-shim": "^5.0.1",
     "protobufjs": "~6.9.0",
     "simple-node-logger": "^18.12.24",
     "three": "^0.110.0"
