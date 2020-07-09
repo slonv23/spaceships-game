@@ -10,7 +10,7 @@ import objectTypes from "../engine/physics/object";
 import WorldState from "../engine/net/models/WorldState";
 
 const packetPeriodMs = require('../config').packetPeriodMs;
-const logger = require('../utils/logger');
+//const logger = require('../utils/logger');
 
 class StateDispatcher {
 
@@ -29,7 +29,7 @@ class StateDispatcher {
     handleStateUpdated = () => {
         const timestamp = Date.now();
         if ((timestamp - this.lastDispatchTimestamp) >= packetPeriodMs) {
-            logger.debug('Dispatching new state');
+            //logger.debug('Dispatching new state');
             this.lastDispatchTimestamp = timestamp;
             this.dispatchState(this.stateManager.currentFrameIndex);
         }

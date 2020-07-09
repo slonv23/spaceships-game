@@ -1,4 +1,6 @@
 const logger = require('../utils/logger');
+// eslint-disable-next-line no-unused-vars
+const process = require('process');
 
 class Simulation {
 
@@ -29,20 +31,18 @@ class Simulation {
 
     gameLoop = () => {
         const timestamp = Date.now();
-        /*if (timestamp < this.lastFrameTimeMs + this.timestep) {
-            setTimeout(this.gameLoop);
-            return;
-        }*/
-
         let timeoutDelay = (timestamp - this.lastFrameTimeMs) - this.timestep; // ideal case when delay = 0
         if (timeoutDelay < 0) {
             timeoutDelay = 0;
+            //process.nextTick(this.gameLoop);
+            //return;
         }
 
         this.delta += timestamp - this.lastFrameTimeMs;
         this.lastFrameTimeMs = timestamp;
 
         while (this.delta >= this.timestep) {
+            this.frameIndex++;
             this.stateManager.update(this.timestep);
             this.delta -= this.timestep;
         }
@@ -55,7 +55,7 @@ class Simulation {
         if (timeLeftToNextStateUpdate < 0) {
             logger.warn(
                 `State update took too much time
-                 Lag: ${timeLeftToNextStateUpdate}
+                 Lag: ${-timeLeftToNextStateUpdate}
                  Time processing: ${timeProcessing}
                  Timeout delay: ${timeoutDelay}`
             );
@@ -63,8 +63,9 @@ class Simulation {
         }
 
         setTimeout(this.gameLoop, timeLeftToNextStateUpdate);
+        //process.nextTick(this.gameLoop);
 
-        this.handleIterCompleted(this.frameIndex++);
+        this.handleIterCompleted(this.frameIndex);
         //logger.debug(`Next state update in ${timeLeftToNextStateUpdate} milliseconds`);
     };
 

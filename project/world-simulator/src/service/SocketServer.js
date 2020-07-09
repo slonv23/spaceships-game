@@ -85,7 +85,7 @@ class SocketServer {
         try {
             const messages = this.messageSerializerDeserializer.deserializeRequest(data);
             for (const message of messages) {
-                logger.debug("Incoming message: " + JSON.stringify(message));
+                //logger.debug("Incoming message: " + JSON.stringify(message));
 
                 switch (message.constructor.name) {
                     case "SpawnRequest":
