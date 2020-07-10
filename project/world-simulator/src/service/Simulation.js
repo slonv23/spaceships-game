@@ -1,6 +1,6 @@
 const logger = require('../utils/logger');
 // eslint-disable-next-line no-unused-vars
-const process = require('process');
+//const process = require('process');
 
 class Simulation {
 
@@ -35,7 +35,8 @@ class Simulation {
         if (timeoutDelay < 0) {
             timeoutDelay = 0;
             //process.nextTick(this.gameLoop);
-            //return;
+            setImmediate(this.gameLoop); // set immediate should provide most accurate ticks but loads 100% of cpu
+            return;
         }
 
         this.delta += timestamp - this.lastFrameTimeMs;
@@ -62,8 +63,9 @@ class Simulation {
             timeLeftToNextStateUpdate = 0;
         }
 
-        setTimeout(this.gameLoop, timeLeftToNextStateUpdate);
+        //setTimeout(this.gameLoop, timeLeftToNextStateUpdate);
         //process.nextTick(this.gameLoop);
+        setImmediate(this.gameLoop);
 
         this.handleIterCompleted(this.frameIndex);
         //logger.debug(`Next state update in ${timeLeftToNextStateUpdate} milliseconds`);
