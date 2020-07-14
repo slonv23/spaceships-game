@@ -4,11 +4,13 @@ package multiplayer;
 
 import "world-state.proto";
 import "spawn-response.proto";
+import "request-ack.proto";
 
 message ResponseRoot {
     int32 requestId = 1;
     oneof message {
         WorldState worldState = 2;
         SpawnResponse spawnResponse = 3;
+        RequestAck requestAck = 4;
     }
 }

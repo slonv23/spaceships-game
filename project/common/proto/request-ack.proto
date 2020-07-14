@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package multiplayer;
+
+message RequestAck {
+    int32 requestId = 1;
+    uint32 requestSentTimestamp = 2;
+}

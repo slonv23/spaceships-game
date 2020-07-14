@@ -37,7 +37,7 @@ class StateDispatcher {
 
     dispatchState(frameIndex) {
         const objectStates = [];
-        for (/** @type {RemoteFlyingObjectController} */ const objectController of this.stateManager.controllers) {
+        for (/** @type {RemoteFlyingObjectController} */ const objectController of this.stateManager.initializedControllers) {
             /** @type {FlyingObject} */
             const object = objectController.gameObject;
             const objectState = new ObjectState();

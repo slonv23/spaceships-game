@@ -16,13 +16,17 @@
               "type": "int32",
               "id": 1
             },
+            "requestSentTimestamp": {
+              "type": "uint32",
+              "id": 2
+            },
             "inputAction": {
               "type": "InputAction",
-              "id": 2
+              "id": 3
             },
             "spawnRequest": {
               "type": "SpawnRequest",
-              "id": 3
+              "id": 4
             }
           }
         },
@@ -185,7 +189,8 @@
             "message": {
               "oneof": [
                 "worldState",
-                "spawnResponse"
+                "spawnResponse",
+                "requestAck"
               ]
             }
           },
@@ -201,6 +206,22 @@
             "spawnResponse": {
               "type": "SpawnResponse",
               "id": 3
+            },
+            "requestAck": {
+              "type": "RequestAck",
+              "id": 4
+            }
+          }
+        },
+        "RequestAck": {
+          "fields": {
+            "requestId": {
+              "type": "int32",
+              "id": 1
+            },
+            "requestSentTimestamp": {
+              "type": "uint32",
+              "id": 2
             }
           }
         }
