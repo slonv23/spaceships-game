@@ -7,8 +7,9 @@ import "spawn-request.proto";
 
 message RequestRoot {
     int32 requestId = 1;
+    int32 requestSentTimestamp = 2;
     oneof message {
-        InputAction inputAction = 2;
-        SpawnRequest spawnRequest = 3;
+        InputAction inputAction = 3;
+        SpawnRequest spawnRequest = 4;
     }
 }
