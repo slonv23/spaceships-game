@@ -33,7 +33,7 @@ class Simulation {
         const timestamp = Date.now();
         let timeoutDelay = (timestamp - this.lastFrameTimeMs) - this.timestep; // ideal case when delay = 0
         if (timeoutDelay < 0) {
-            timeoutDelay = 0;
+            //timeoutDelay = 0;
             //process.nextTick(this.gameLoop);
             setImmediate(this.gameLoop); // set immediate should provide most accurate ticks but loads 100% of cpu
             return;
@@ -60,7 +60,7 @@ class Simulation {
                  Time processing: ${timeProcessing}
                  Timeout delay: ${timeoutDelay}`
             );
-            timeLeftToNextStateUpdate = 0;
+            //timeLeftToNextStateUpdate = 0;
         }
 
         //setTimeout(this.gameLoop, timeLeftToNextStateUpdate);

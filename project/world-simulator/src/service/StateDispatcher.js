@@ -30,7 +30,7 @@ class StateDispatcher {
         const timestamp = Date.now();
         if ((timestamp - this.lastDispatchTimestamp) >= packetPeriodMs) {
             //logger.debug('Dispatching new state');
-            this.lastDispatchTimestamp = timestamp;
+            this.lastDispatchTimestamp = this.lastDispatchTimestamp + packetPeriodMs; // timestamp;
             this.dispatchState(this.stateManager.currentFrameIndex);
         }
     };
