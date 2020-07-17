@@ -91,6 +91,9 @@ class SocketServer {
                     case "SpawnRequest":
                         await this._handleSpawnRequest(message);
                         break;
+                    case "InputAction":
+                        await this._handleInputAction(message);
+                        break;
                 }
             }
         } catch (err) {
@@ -106,6 +109,10 @@ class SocketServer {
 
         const serializedMessage = this.messageSerializerDeserializer.serializeResponse(spawnResponse, {requestId: message._requestId});
         this.broadcast(serializedMessage);
+    }
+
+    async _handleInputAction(message) {
+        // TODO
     }
 
     _createServer() {

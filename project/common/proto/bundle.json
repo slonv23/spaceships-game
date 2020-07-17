@@ -53,7 +53,7 @@
               "id": 5
             },
             "objectId": {
-              "type": "string",
+              "type": "int32",
               "id": 6
             }
           }
