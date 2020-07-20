@@ -1,6 +1,8 @@
 const path = require("path");
+const globalConfig = require("../../../config.json")
 
 module.exports = {
     protoDir: path.resolve(__dirname, "../../../common/proto"),
-    packetPeriodMs: 2000, // 200
+    packetPeriodFrames: globalConfig.packetPeriodFrames,
+    fps: globalConfig.fps,
 };

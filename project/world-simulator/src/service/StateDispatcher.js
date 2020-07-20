@@ -9,10 +9,12 @@ import ObjectState from "../engine/net/models/ObjectState";
 import objectTypes from "../engine/physics/object";
 import WorldState from "../engine/net/models/WorldState";
 
-const packetPeriodMs = require('../config').packetPeriodMs;
+const packetPeriodFrames = require('../config').packetPeriodFrames;
 //const logger = require('../utils/logger');
 
 class StateDispatcher {
+
+    lastDispatchedFrameIndex = 0;
 
     /**
      * @param {AuthoritativeStateManager} authoritativeStateManager
@@ -23,14 +25,12 @@ class StateDispatcher {
         this.stateManager = authoritativeStateManager;
         this.socketServer = socketServer;
         this.messageSerializerDeserializer = messageSerializerDeserializer;
-        this.lastDispatchTimestamp = Date.now();
     }
 
-    handleStateUpdated = () => {
-        const timestamp = Date.now();
-        if ((timestamp - this.lastDispatchTimestamp) >= packetPeriodMs) {
+    handleStateUpdated = (frameIndex) => {
+        if ((frameIndex - this.lastDispatchedFrameIndex) >= packetPeriodFrames) {
             //logger.debug('Dispatching new state');
-            this.lastDispatchTimestamp = this.lastDispatchTimestamp + packetPeriodMs; // timestamp;
+            this.lastDispatchedFrameIndex = frameIndex;
             this.dispatchState(this.stateManager.currentFrameIndex);
         }
     };

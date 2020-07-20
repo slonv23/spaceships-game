@@ -1,15 +1,13 @@
 const logger = require('../utils/logger');
-// eslint-disable-next-line no-unused-vars
-//const process = require('process');
+const config = require('../config')
 
 class Simulation {
 
     /** Timing */
-    lastFrameTimeMs;
-    maxFPS = 60;
     delta = 0;
-    timestep = 1000 / 60;
+    timestep = 1000 / config.fps;
     frameIndex = 0;
+    lastFrameTimeMs;
 
     handleIterCompleted = () => {};
 
@@ -24,7 +22,6 @@ class Simulation {
     startGameLoop() {
         setTimeout(() => {
             this.lastFrameTimeMs = Date.now();
-
             setTimeout(this.gameLoop, this.timestep);
         }, this.timestep);
     }
@@ -35,7 +32,7 @@ class Simulation {
         if (timeoutDelay < 0) {
             //timeoutDelay = 0;
             //process.nextTick(this.gameLoop);
-            setImmediate(this.gameLoop); // set immediate should provide most accurate ticks but loads 100% of cpu
+            setImmediate(this.gameLoop); // setImmediate should provide most accurate ticks but loads 100% of cpu
             return;
         }
 
@@ -44,6 +41,7 @@ class Simulation {
 
         while (this.delta >= this.timestep) {
             this.frameIndex++;
+            this.handleIterCompleted(this.frameIndex);
             this.stateManager.update(this.timestep);
             this.delta -= this.timestep;
         }
@@ -67,7 +65,6 @@ class Simulation {
         //process.nextTick(this.gameLoop);
         setImmediate(this.gameLoop);
 
-        this.handleIterCompleted(this.frameIndex);
         //logger.debug(`Next state update in ${timeLeftToNextStateUpdate} milliseconds`);
     };
 
