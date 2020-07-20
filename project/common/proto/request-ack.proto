@@ -4,5 +4,5 @@ package multiplayer;
 
 message RequestAck {
     int32 requestId = 1;
-    uint32 requestSentTimestamp = 2;
+    uint64 requestSentTimestamp = 2;
 }

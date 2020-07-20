@@ -1,6 +1,7 @@
 /**
  * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
- * @typedef {import('../engine/state/StateManager').default} StateManager
+ * @typedef {import('../engine/state/AuthoritativeStateManager').default} StateManager
+ * @typedef {import('../engine/net/models/InputAction').default} InputAction
  * @typedef {import('net').Socket} Socket
  */
 import FlyingObject from '../engine/physics/object/FlyingObject';
@@ -111,8 +112,20 @@ class SocketServer {
         this.broadcast(serializedMessage);
     }
 
+    /**
+     * @param {InputAction} message
+     * @returns {Promise<void>}
+     * @private
+     */
     async _handleInputAction(message) {
-        // TODO
+        logger.debug(`Input action received`);
+        if (this.stateManager.currentFrameIndex >= message.frameIndex) {
+            logger.debug(`Input action was scheduled by client at frame #${message.frameIndex}` +
+                         ` but will be added at frame #${this.stateManager.currentFrameIndex + 1}`);
+            message.frameIndex = this.stateManager.currentFrameIndex + 1;
+        }
+
+        this.stateManager.addInputAction(message.objectId, message);
     }
 
     _createServer() {
