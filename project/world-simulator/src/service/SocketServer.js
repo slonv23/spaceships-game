@@ -118,7 +118,6 @@ class SocketServer {
      * @private
      */
     async _handleInputAction(message) {
-        logger.debug(`Input action received`);
         if (this.stateManager.currentFrameIndex >= message.frameIndex) {
             logger.debug(`Input action was scheduled by client at frame #${message.frameIndex}` +
                          ` but will be added at frame #${this.stateManager.currentFrameIndex + 1}`);

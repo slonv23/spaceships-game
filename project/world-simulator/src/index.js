@@ -5,22 +5,24 @@ import './engine/state';
 import Engine from './engine';
 import FlyingObject from './engine/physics/object/FlyingObject';
 import {controllers} from "./engine/object-control";
+// setup EventTarget and CustomEvent polyfills
+import {EventTarget} from "event-target-shim";
+global.EventTarget = EventTarget;
+
+
+import {gameObjectTypes} from "./constants";
 
 const logger = require('./utils/logger');
 const SocketServer = require('./service/SocketServer');
 const Simulation = require('./service/Simulation');
 const StateDispatcher = require('./service/StateDispatcher');
-import {gameObjectTypes} from "./constants";
 
 const SOCKET_FILE = '/tmp/spaceships-world-simulator.sock';
+const diContainer = Engine.getDiContainer();
 
-// setup EventTarget and CustomEvent polyfills
-import {EventTarget} from "event-target-shim";
-global.EventTarget = EventTarget;
+configureEngine();
 
 (async () => {
-    const diContainer = Engine.getDiContainer();
-    diContainer.configure('messageSerializerDeserializer',  {protoBundle: require('../../common/proto/bundle.json')});
     const messageSerializerDeserializer = await diContainer.get('messageSerializerDeserializer');
     const stateManager = await diContainer.get('authoritativeStateManager');
     stateManager.registerGameObjectType(gameObjectTypes.SPACESHIP, FlyingObject, controllers.REMOTE_FLYING_OBJECT_CONTROLLER);
@@ -47,9 +49,7 @@ global.EventTarget = EventTarget;
     process.on('SIGINT', shutdown);
 })();
 
-function createBot() {
-    let gameObject = new FlyingObject(/* something */);
-    gameObject.object3d.matrixAutoUpdate = false;
-    this.renderer.scene.add(gameObject.object3d);
-    this.stateManager.addObject(gameObject);
+function configureEngine() {
+    diContainer.provide('logger', logger);
+    diContainer.configure('messageSerializerDeserializer',  {protoBundle: require('../../common/proto/bundle.json')});
 }

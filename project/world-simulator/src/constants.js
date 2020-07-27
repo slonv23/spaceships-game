@@ -1,3 +1,3 @@
 export const gameObjectTypes = {
-    SPACESHIP: 'spaceship',
+    SPACESHIP: 1,
 };
