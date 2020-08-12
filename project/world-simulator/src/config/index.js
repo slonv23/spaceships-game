@@ -5,4 +5,9 @@ module.exports = {
     protoDir: path.resolve(__dirname, "../../../common/proto"),
     packetPeriodFrames: globalConfig.packetPeriodFrames,
     fps: globalConfig.fps,
+    assets: {
+        assets3d: {
+            smallSpaceFighter: "SmallSpaceFighter.glb"
+        },
+    }
 };
