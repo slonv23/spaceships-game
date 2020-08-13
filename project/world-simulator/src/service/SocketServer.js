@@ -30,7 +30,7 @@ class SocketServer {
         this.stateManager = stateManager;
     }
 
-    async start() {
+    start() {
         // check for failed cleanup
         logger.debug('Checking for leftover socket');
 
