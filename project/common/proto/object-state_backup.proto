@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package multiplayer;
+
+import "float-vector.proto";
+import "quaternion.proto";
+import "input-action.proto";
+
+message ObjectState {
+    int32 id = 1;
+    int32 objectType = 2;
+
+    FloatVector position = 3;
+    Quaternion quaternion = 4;
+    float speed = 5; // object moves along z axis
+    float acceleration = 6;
+    FloatVector angularVelocity = 7;
+    float rollAngleBtwCurrentAndTargetOrientation = 8; // angle btw object and control axes
+    Quaternion controlQuaternion = 9;
+
+    repeated InputAction actions = 10;
+}

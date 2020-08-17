@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package multiplayer;
+
+import "space-fighter/space-fighter-input.proto";
+
+message ObjectAction {
+    int32 objectId = 1; // this set by gateway app and not passed by client
+    oneof action {
+        SpaceFighterInput spaceFighterInput = 2;
+    }
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package multiplayer;
+
+message GunshotsState {
+  int32 associatedWithObjectId = 1;
+  int32 lastShotAtFrameIndex = 2;
+}
