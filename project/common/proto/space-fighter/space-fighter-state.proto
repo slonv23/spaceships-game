@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package multiplayer;
+
+import "float-vector.proto";
+import "quaternion.proto";
+import "object-action.proto";
+
+message SpaceFighterState {
+    FloatVector position = 1;
+    Quaternion quaternion = 2;
+    float speed = 3; // object moves along z axis
+    float acceleration = 4;
+    FloatVector angularVelocity = 5;
+    float rollAngleBtwCurrentAndTargetOrientation = 6; // angle btw object and control axes
+    Quaternion controlQuaternion = 7;
+    bool shooting = 8;
+    repeated ObjectAction actions = 9;
+}

@@ -2,6 +2,206 @@
   "nested": {
     "multiplayer": {
       "nested": {
+        "RequestRoot": {
+          "oneofs": {
+            "message": {
+              "oneof": [
+                "objectAction",
+                "spawnRequest"
+              ]
+            }
+          },
+          "fields": {
+            "requestId": {
+              "type": "int32",
+              "id": 1
+            },
+            "requestSentTimestamp": {
+              "type": "uint64",
+              "id": 2
+            },
+            "objectAction": {
+              "type": "ObjectAction",
+              "id": 3
+            },
+            "spawnRequest": {
+              "type": "SpawnRequest",
+              "id": 4
+            }
+          }
+        },
+        "ObjectAction": {
+          "oneofs": {
+            "action": {
+              "oneof": [
+                "spaceFighterInput",
+                "spaceFighterOpenFire",
+                "SpaceFighterDestroy"
+              ]
+            }
+          },
+          "fields": {
+            "objectId": {
+              "type": "int32",
+              "id": 1
+            },
+            "frameIndex": {
+              "type": "int32",
+              "id": 2
+            },
+            "spaceFighterInput": {
+              "type": "SpaceFighterInput",
+              "id": 3
+            },
+            "spaceFighterOpenFire": {
+              "type": "SpaceFighterOpenFire",
+              "id": 4
+            },
+            "SpaceFighterDestroy": {
+              "type": "SpaceFighterDestroy",
+              "id": 5
+            }
+          }
+        },
+        "SpaceFighterInput": {
+          "fields": {
+            "yaw": {
+              "type": "float",
+              "id": 1
+            },
+            "pitch": {
+              "type": "float",
+              "id": 2
+            },
+            "rotationSpeed": {
+              "type": "float",
+              "id": 3
+            },
+            "rollAngle": {
+              "type": "float",
+              "id": 4
+            }
+          }
+        },
+        "SpaceFighterOpenFire": {
+          "fields": {}
+        },
+        "SpaceFighterDestroy": {
+          "fields": {}
+        },
+        "SpawnRequest": {
+          "fields": {
+            "nickName": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "Quaternion": {
+          "fields": {
+            "imag": {
+              "type": "FloatVector",
+              "id": 1
+            },
+            "real": {
+              "type": "float",
+              "id": 2
+            }
+          }
+        },
+        "FloatVector": {
+          "fields": {
+            "x": {
+              "type": "float",
+              "id": 1
+            },
+            "y": {
+              "type": "float",
+              "id": 2
+            },
+            "z": {
+              "type": "float",
+              "id": 3
+            }
+          }
+        },
+        "ObjectState": {
+          "oneofs": {
+            "state": {
+              "oneof": [
+                "spaceFighterState"
+              ]
+            }
+          },
+          "fields": {
+            "id": {
+              "type": "int32",
+              "id": 1
+            },
+            "objectType": {
+              "type": "int32",
+              "id": 2
+            },
+            "spaceFighterState": {
+              "type": "SpaceFighterState",
+              "id": 3
+            }
+          }
+        },
+        "SpaceFighterState": {
+          "fields": {
+            "position": {
+              "type": "FloatVector",
+              "id": 1
+            },
+            "quaternion": {
+              "type": "Quaternion",
+              "id": 2
+            },
+            "speed": {
+              "type": "float",
+              "id": 3
+            },
+            "acceleration": {
+              "type": "float",
+              "id": 4
+            },
+            "angularVelocity": {
+              "type": "FloatVector",
+              "id": 5
+            },
+            "rollAngleBtwCurrentAndTargetOrientation": {
+              "type": "float",
+              "id": 6
+            },
+            "controlQuaternion": {
+              "type": "Quaternion",
+              "id": 7
+            },
+            "shooting": {
+              "type": "bool",
+              "id": 8
+            },
+            "actions": {
+              "rule": "repeated",
+              "type": "ObjectAction",
+              "id": 9
+            }
+          }
+        },
+        "WorldState": {
+          "fields": {
+            "frameIndex": {
+              "type": "int32",
+              "id": 1
+            },
+            "objectStates": {
+              "rule": "repeated",
+              "type": "ObjectState",
+              "id": 2
+            }
+          }
+        },
         "ControlsState": {
           "fields": {
             "msgId": {
@@ -22,152 +222,15 @@
             }
           }
         },
-        "FloatVector": {
+        "SpawnResponse": {
           "fields": {
-            "x": {
-              "type": "float",
-              "id": 1
-            },
-            "y": {
-              "type": "float",
-              "id": 2
-            },
-            "z": {
-              "type": "float",
-              "id": 3
-            }
-          }
-        },
-        "InputAction": {
-          "fields": {
-            "frameIndex": {
+            "assignedObjectId": {
               "type": "int32",
               "id": 1
             },
-            "yaw": {
-              "type": "float",
-              "id": 2
-            },
-            "pitch": {
-              "type": "float",
-              "id": 3
-            },
-            "rotationSpeed": {
-              "type": "float",
-              "id": 4
-            },
-            "rollAngle": {
-              "type": "float",
-              "id": 5
-            },
-            "objectId": {
-              "type": "int32",
-              "id": 6
-            }
-          }
-        },
-        "ObjectState": {
-          "fields": {
-            "id": {
-              "type": "int32",
-              "id": 1
-            },
-            "objectType": {
-              "type": "int32",
-              "id": 2
-            },
-            "position": {
-              "type": "FloatVector",
-              "id": 3
-            },
-            "quaternion": {
-              "type": "Quaternion",
-              "id": 4
-            },
-            "speed": {
-              "type": "float",
-              "id": 5
-            },
-            "acceleration": {
-              "type": "float",
-              "id": 6
-            },
-            "angularVelocity": {
-              "type": "FloatVector",
-              "id": 7
-            },
-            "rollAngleBtwCurrentAndTargetOrientation": {
-              "type": "float",
-              "id": 8
-            },
-            "controlQuaternion": {
-              "type": "Quaternion",
-              "id": 9
-            },
-            "actions": {
-              "rule": "repeated",
-              "type": "InputAction",
-              "id": 10
-            }
-          }
-        },
-        "Quaternion": {
-          "fields": {
-            "imag": {
-              "type": "FloatVector",
-              "id": 1
-            },
-            "real": {
-              "type": "float",
-              "id": 2
-            }
-          }
-        },
-        "RequestAck": {
-          "fields": {
-            "requestId": {
-              "type": "int32",
-              "id": 1
-            },
-            "requestSentTimestamp": {
-              "type": "uint64",
-              "id": 2
-            }
-          }
-        },
-        "RequestRoot": {
-          "oneofs": {
-            "message": {
-              "oneof": [
-                "inputAction",
-                "spawnRequest"
-              ]
-            }
-          },
-          "fields": {
-            "requestId": {
-              "type": "int32",
-              "id": 1
-            },
-            "requestSentTimestamp": {
-              "type": "uint64",
-              "id": 2
-            },
-            "inputAction": {
-              "type": "InputAction",
-              "id": 3
-            },
-            "spawnRequest": {
-              "type": "SpawnRequest",
-              "id": 4
-            }
-          }
-        },
-        "SpawnRequest": {
-          "fields": {
-            "nickName": {
+            "spawnRequestId": {
               "type": "string",
-              "id": 1
+              "id": 2
             }
           }
         },
@@ -200,27 +263,14 @@
             }
           }
         },
-        "WorldState": {
+        "RequestAck": {
           "fields": {
-            "frameIndex": {
+            "requestId": {
               "type": "int32",
               "id": 1
             },
-            "objectStates": {
-              "rule": "repeated",
-              "type": "ObjectState",
-              "id": 2
-            }
-          }
-        },
-        "SpawnResponse": {
-          "fields": {
-            "assignedObjectId": {
-              "type": "int32",
-              "id": 1
-            },
-            "spawnRequestId": {
-              "type": "string",
+            "requestSentTimestamp": {
+              "type": "uint64",
               "id": 2
             }
           }

@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-package multiplayer;
-
-message OpenFire {
-    int32 frameIndex = 1;
-}

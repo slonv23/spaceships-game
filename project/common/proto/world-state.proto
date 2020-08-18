@@ -6,5 +6,5 @@ import "object-state.proto";
 
 message WorldState {
     int32 frameIndex = 1;
-    repeated ObjectState objectStates = 2; // TODO one of
+    repeated ObjectState objectStates = 2;
 }

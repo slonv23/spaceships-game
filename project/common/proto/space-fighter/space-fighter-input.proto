@@ -3,9 +3,8 @@ syntax = "proto3";
 package multiplayer;
 
 message SpaceFighterInput {
-    int32 frameIndex = 1;
-    float yaw = 2;
-    float pitch = 3;
-    float rotationSpeed = 4;
-    float rollAngle = 5;
+    float yaw = 1;
+    float pitch = 2;
+    float rotationSpeed = 3;
+    float rollAngle = 4;
 }

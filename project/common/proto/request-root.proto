@@ -2,14 +2,14 @@ syntax = "proto3";
 
 package multiplayer;
 
-import "input-action.proto";
+import "object-action.proto";
 import "spawn-request.proto";
 
 message RequestRoot {
     int32 requestId = 1;
     uint64 requestSentTimestamp = 2;
     oneof message {
-        InputAction inputAction = 3;
+        ObjectAction objectAction = 3;
         SpawnRequest spawnRequest = 4;
     }
 }
