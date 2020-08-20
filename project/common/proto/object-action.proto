@@ -12,6 +12,6 @@ message ObjectAction {
     oneof action {
         SpaceFighterInput spaceFighterInput = 3;
         SpaceFighterOpenFire spaceFighterOpenFire = 4;
-        SpaceFighterDestroy SpaceFighterDestroy = 5;
+        SpaceFighterDestroy spaceFighterDestroy = 5;
     }
 }

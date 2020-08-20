@@ -36,7 +36,7 @@
               "oneof": [
                 "spaceFighterInput",
                 "spaceFighterOpenFire",
-                "SpaceFighterDestroy"
+                "spaceFighterDestroy"
               ]
             }
           },
@@ -57,7 +57,7 @@
               "type": "SpaceFighterOpenFire",
               "id": 4
             },
-            "SpaceFighterDestroy": {
+            "spaceFighterDestroy": {
               "type": "SpaceFighterDestroy",
               "id": 5
             }
