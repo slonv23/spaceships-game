@@ -4,6 +4,7 @@ package multiplayer;
 
 import "space-fighter/space-fighter-input.proto";
 import "space-fighter/space-fighter-open-fire.proto";
+import "space-fighter/space-fighter-stop-fire.proto";
 import "space-fighter/space-fighter-destroy.proto";
 
 message ObjectAction {
@@ -13,5 +14,6 @@ message ObjectAction {
         SpaceFighterInput spaceFighterInput = 3;
         SpaceFighterOpenFire spaceFighterOpenFire = 4;
         SpaceFighterDestroy spaceFighterDestroy = 5;
+        SpaceFighterStopFire spaceFighterStopFire = 6;
     }
 }
