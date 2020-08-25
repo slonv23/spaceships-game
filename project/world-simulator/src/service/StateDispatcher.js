@@ -1,11 +1,12 @@
 /**
  * @typedef {import('./SocketServer')} SocketServer
  * @typedef {import('../engine/state/AuthoritativeStateManager').default} AuthoritativeStateManager
- * @typedef {import('../engine/net/models/InputAction').default} InputAction
+ * ///////@typedef {import('../engine/net/models/InputAction').default} InputAction
  * @typedef {import('../engine/physics/object/AbstractObject').default} AbstractObject
  * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
  * @typedef {import('../engine/physics/object/FlyingObject').default} FlyingObject
- * @typedef {import('../engine/object-control/flying-object/RemoteFlyingObjectController').default} RemoteFlyingObjectController
+ * @typedef {import('../engine/object-control/space-fighter/RemoteSpaceFighterController').default} RemoteSpaceFighterController
+ * ///////@typedef {import('../engine/object-control/flying-object/RemoteFlyingObjectController').default} RemoteFlyingObjectController
  */
 import ObjectState from "../engine/net/models/ObjectState";
 import objectTypes from "../engine/physics/object";
@@ -61,7 +62,7 @@ class StateDispatcher {
 
     dispatchState(frameIndex) {
         const objectStates = [];
-        for (/** @type {RemoteFlyingObjectController} */ const objectController of this.stateManager.initializedControllers) {
+        for (/** @type {RemoteSpaceFighterController} */ const objectController of this.stateManager.initializedControllers) {
             /** @type {FlyingObject} */
             const object = objectController.gameObject;
             const objectState = new ObjectState();

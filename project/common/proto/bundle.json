@@ -36,7 +36,8 @@
               "oneof": [
                 "spaceFighterInput",
                 "spaceFighterOpenFire",
-                "spaceFighterDestroy"
+                "spaceFighterDestroy",
+                "spaceFighterStopFire"
               ]
             }
           },
@@ -60,6 +61,10 @@
             "spaceFighterDestroy": {
               "type": "SpaceFighterDestroy",
               "id": 5
+            },
+            "spaceFighterStopFire": {
+              "type": "SpaceFighterStopFire",
+              "id": 6
             }
           }
         },
@@ -84,6 +89,9 @@
           }
         },
         "SpaceFighterOpenFire": {
+          "fields": {}
+        },
+        "SpaceFighterStopFire": {
           "fields": {}
         },
         "SpaceFighterDestroy": {

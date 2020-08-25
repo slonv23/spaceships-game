@@ -3,13 +3,13 @@ import './polyfills'
 import './engine/net/format';
 import './engine/state';
 import './engine/asset-management';
+// register controllers
+import './controllers';
 
 import Engine from './engine';
 import {config as engineConfig} from './engine/globals';
-import {controllers} from "./engine/object-control";
-
-import {gameObjectTypes} from "./constants";
-import {spaceFighterFactory} from "./game-objects";
+import {controllers} from './controllers';
+import {gameObjectTypes} from './constants';
 
 const logger = require('./utils/logger');
 const SocketServer = require('./service/SocketServer');
@@ -35,7 +35,7 @@ class GameServer {
     async start() {
         this.messageSerializerDeserializer = await this.diContainer.get('messageSerializerDeserializer');
         this.stateManager = await this.diContainer.get('authoritativeStateManager');
-        this.stateManager.registerGameObjectType(gameObjectTypes.SPACESHIP, spaceFighterFactory, controllers.REMOTE_SPACE_FIGHTER_CONTROLLER);
+        this.stateManager.associateControllerWithGameObjectType(gameObjectTypes.SPACESHIP, controllers.REMOTE_SPACE_FIGHTER_CONTROLLER);
 
         this.socketServer = new SocketServer(config.socketFilePath, this.messageSerializerDeserializer, this.stateManager);
         this.stateDispatcher = new StateDispatcher(this.stateManager, this.socketServer, this.messageSerializerDeserializer)
