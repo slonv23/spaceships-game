@@ -1,16 +1,16 @@
 /**
  * @typedef {import('./SocketServer')} SocketServer
  * @typedef {import('../engine/state/AuthoritativeStateManager').default} AuthoritativeStateManager
- * ///////@typedef {import('../engine/net/models/InputAction').default} InputAction
+ * @typedef {import('../engine/net/models/ObjectAction').default} ObjectAction
  * @typedef {import('../engine/physics/object/AbstractObject').default} AbstractObject
  * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
  * @typedef {import('../engine/physics/object/FlyingObject').default} FlyingObject
  * @typedef {import('../engine/object-control/space-fighter/RemoteSpaceFighterController').default} RemoteSpaceFighterController
- * ///////@typedef {import('../engine/object-control/flying-object/RemoteFlyingObjectController').default} RemoteFlyingObjectController
  */
 import ObjectState from "../engine/net/models/ObjectState";
-import objectTypes from "../engine/physics/object";
 import WorldState from "../engine/net/models/WorldState";
+import SpaceFighterState from "../engine/net/models/space-fighter/SpaceFighterState";
+import {gameObjectTypes} from "../constants";
 
 const packetPeriodFrames = require('../config').packetPeriodFrames;
 //const logger = require('../utils/logger');
@@ -19,7 +19,7 @@ class StateDispatcher {
 
     lastDispatchedFrameIndex = 0;
 
-    processedInputActionsByObjectId = {};
+    processedObjectActionsByObjectId = {};
 
     /**
      * @param {AuthoritativeStateManager} authoritativeStateManager
@@ -32,7 +32,7 @@ class StateDispatcher {
         this.messageSerializerDeserializer = messageSerializerDeserializer;
 
         this.stateManager.addEventListener('object-created', this.handleObjectCreated);
-        this.stateManager.addEventListener('actions-processed', this.handleInputActionProcessed);
+        this.stateManager.addEventListener('actions-processed', this.handleObjectActionProcessed);
     }
 
     handleStateUpdated = (frameIndex) => {
@@ -46,17 +46,17 @@ class StateDispatcher {
     handleObjectCreated = (event) => {
         /** @type {AbstractObject} gameObject */
         const gameObject = event.detail;
-        this.processedInputActionsByObjectId[gameObject.id] = [];
+        this.processedObjectActionsByObjectId[gameObject.id] = [];
     }
 
 
-    handleInputActionProcessed = (event) => {
-        /** @type {InputAction[]} */
+    handleObjectActionProcessed = (event) => {
+        /** @type {ObjectAction[]} */
         const actions = event.detail;
         const actionsCount = actions.length;
         for (let i = 0; i < actionsCount; i++) {
             const action = actions[i];
-            this.processedInputActionsByObjectId[action.objectId].push(action);
+            this.processedObjectActionsByObjectId[action.objectId].push(action);
         }
     };
 
@@ -65,18 +65,22 @@ class StateDispatcher {
         for (/** @type {RemoteSpaceFighterController} */ const objectController of this.stateManager.initializedControllers) {
             /** @type {FlyingObject} */
             const object = objectController.gameObject;
-            const objectState = new ObjectState();
+            const spaceFighterState = new SpaceFighterState();
 
+            const objectState = new ObjectState();
             objectState.id = object.id;
-            objectState.rollAngleBtwCurrentAndTargetOrientation = object.rollAngleBtwCurrentAndTargetOrientation;
-            objectState.controlQuaternion = objectController.controlsQuaternion;
-            objectState.speed = object.velocity.z;
-            objectState.objectType = objectTypes.FLYING_OBJECT;
-            //objectState.angularAcceleration = object.angularAcceleration;
-            objectState.angularVelocity = object.angularVelocity;
-            objectState.position = object.position;
-            objectState.quaternion = object.quaternion;
-            objectState.actions = this.processedInputActionsByObjectId[object.id];
+            objectState.objectType = gameObjectTypes.SPACESHIP;
+            objectState.state = this.messageSerializerDeserializer.getFieldNameInsideOneOfForModel(spaceFighterState);
+            objectState.spaceFighterState = spaceFighterState;
+
+            spaceFighterState.rollAngleBtwCurrentAndTargetOrientation = object.rollAngleBtwCurrentAndTargetOrientation;
+            spaceFighterState.controlQuaternion = objectController.controlsQuaternion;
+            spaceFighterState.speed = object.velocity.z;
+            //spaceFighterState.angularAcceleration = object.angularAcceleration;
+            spaceFighterState.angularVelocity = object.angularVelocity;
+            spaceFighterState.position = object.position;
+            spaceFighterState.quaternion = object.quaternion;
+            spaceFighterState.actions = this.processedObjectActionsByObjectId[object.id];
 
             objectStates.push(objectState);
         }
@@ -95,8 +99,8 @@ class StateDispatcher {
     }
 
     _cleanup() {
-        for (const objectId in this.processedInputActionsByObjectId) {
-            this.processedInputActionsByObjectId[objectId] = [];
+        for (const objectId in this.processedObjectActionsByObjectId) {
+            this.processedObjectActionsByObjectId[objectId] = [];
         }
     }
 

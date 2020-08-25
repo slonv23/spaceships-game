@@ -8,7 +8,8 @@ module.exports = {
     fps: globalConfig.fps,
     assets: {
         assets3d: {
-            smallSpaceFighter: "SmallSpaceFighter.glb"
+            spaceFighter: "StarSparrow2.glb"
+            //smallSpaceFighter: "SmallSpaceFighter.glb"
         },
     }
 };

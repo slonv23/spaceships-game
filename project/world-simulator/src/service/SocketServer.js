@@ -1,11 +1,9 @@
 /**
  * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
  * @typedef {import('../engine/state/AuthoritativeStateManager').default} StateManager
- * @typedef {import('../engine/net/models/InputAction').default} InputAction
+ * @typedef {import('../engine/net/models/ObjectAction').default} ObjectAction
  * @typedef {import('net').Socket} Socket
  */
-import FlyingObject from '../engine/physics/object/FlyingObject';
-import {controllers} from '../engine/object-control';
 import SpawnResponse from '../engine/net/models/SpawnResponse';
 import {gameObjectTypes} from "../constants";
 
@@ -92,8 +90,8 @@ class SocketServer {
                     case "SpawnRequest":
                         await this._handleSpawnRequest(message);
                         break;
-                    case "InputAction":
-                        await this._handleInputAction(message);
+                    case "ObjectAction":
+                        await this._handleObjectAction(message);
                         break;
                 }
             }
@@ -103,7 +101,7 @@ class SocketServer {
     }
 
     async _handleSpawnRequest(message) {
-        const controller = await this.stateManager.createObject(null, gameObjectTypes.SPACESHIP);
+        const controller = await this.stateManager.createGameObject(null, gameObjectTypes.SPACESHIP);
 
         const spawnResponse = new SpawnResponse();
         spawnResponse.assignedObjectId = controller.gameObject.id;
@@ -113,18 +111,18 @@ class SocketServer {
     }
 
     /**
-     * @param {InputAction} message
+     * @param {ObjectAction} objectAction
      * @returns {Promise<void>}
      * @private
      */
-    async _handleInputAction(message) {
-        if (this.stateManager.currentFrameIndex >= message.frameIndex) {
-            logger.debug(`Input action was scheduled by client at frame #${message.frameIndex}` +
+    async _handleObjectAction(objectAction) {
+        if (this.stateManager.currentFrameIndex >= objectAction.frameIndex) {
+            logger.debug(`Input action was scheduled by client at frame #${objectAction.frameIndex}` +
                          ` but will be added at frame #${this.stateManager.currentFrameIndex + 1}`);
-            message.frameIndex = this.stateManager.currentFrameIndex + 1;
+            objectAction.frameIndex = this.stateManager.currentFrameIndex + 1;
         }
 
-        this.stateManager.addInputAction(message.objectId, message);
+        this.stateManager.addObjectAction(objectAction.objectId, objectAction);
     }
 
     _createServer() {
