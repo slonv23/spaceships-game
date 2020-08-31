@@ -5,6 +5,7 @@
  * @typedef {import('../engine/physics/object/AbstractObject').default} AbstractObject
  * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
  * @typedef {import('../engine/physics/object/FlyingObject').default} FlyingObject
+ * @typedef {import('../engine/object-control/AbstractObjectController').default} AbstractObjectController
  * @typedef {import('../engine/object-control/space-fighter/RemoteSpaceFighterController').default} RemoteSpaceFighterController
  */
 import ObjectState from "../engine/net/models/ObjectState";
@@ -31,7 +32,7 @@ class StateDispatcher {
         this.socketServer = socketServer;
         this.messageSerializerDeserializer = messageSerializerDeserializer;
 
-        this.stateManager.addEventListener('object-created', this.handleObjectCreated);
+        this.stateManager.addEventListener('game-object-created', this.handleGameObjectCreated);
         this.stateManager.addEventListener('actions-processed', this.handleObjectActionProcessed);
     }
 
@@ -43,10 +44,10 @@ class StateDispatcher {
         }
     };
 
-    handleObjectCreated = (event) => {
-        /** @type {AbstractObject} gameObject */
-        const gameObject = event.detail;
-        this.processedObjectActionsByObjectId[gameObject.id] = [];
+    handleGameObjectCreated = (event) => {
+        /** @type {AbstractObjectController} controller */
+        const controller = event.detail;
+        this.processedObjectActionsByObjectId[controller.gameObject.id] = [];
     }
 
 
