@@ -76,6 +76,7 @@ class StateDispatcher {
 
             spaceFighterState.rollAngleBtwCurrentAndTargetOrientation = object.rollAngleBtwCurrentAndTargetOrientation;
             spaceFighterState.controlQuaternion = objectController.controlsQuaternion;
+            spaceFighterState.controlRotQuaternion = objectController.controlsRotQuaternion;
             spaceFighterState.speed = object.velocity.z;
             //spaceFighterState.angularAcceleration = object.angularAcceleration;
             spaceFighterState.angularVelocity = object.angularVelocity;

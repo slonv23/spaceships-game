@@ -13,7 +13,8 @@ message SpaceFighterState {
     float acceleration = 4;
     FloatVector angularVelocity = 5;
     float rollAngleBtwCurrentAndTargetOrientation = 6; // angle btw object and control axes
-    Quaternion controlQuaternion = 7;
-    bool shooting = 8;
-    repeated ObjectAction actions = 9;
+    Quaternion controlQuaternion = 7; // transforms control local axes to world axes
+    Quaternion controlRotQuaternion = 8; // rotates control x and y axes around z axis
+    bool shooting = 9;
+    repeated ObjectAction actions = 10;
 }
