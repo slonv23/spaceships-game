@@ -15,10 +15,9 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
-    "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.8.0",
-    "babel-loader": "^7.1.5",
+    "babel-loader": "^8.0.0-beta.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "define-global-webpack-plugin": "0.0.2",
@@ -31,7 +30,7 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "di-container-js": "^0.3.5",
+    "di-container-js": "^0.4.1",
     "event-target-shim": "^5.0.1",
     "protobufjs": "~6.9.0",
     "simple-node-logger": "^18.12.24",
