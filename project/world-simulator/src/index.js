@@ -3,13 +3,12 @@ import './polyfills'
 import './engine/net/format';
 import './engine/state';
 import './engine/asset-management';
-// register controllers
-import './controllers';
 
 import Engine from './engine';
 import {config as engineConfig} from './engine/globals';
-import {controllers} from './controllers';
 import {gameObjectTypes} from './constants';
+import ProjectileSequenceController from "./engine/object-control/projectile/ProjectileSequenceController";
+import RemoteSpaceFighterController from "./engine/object-control/space-fighter/RemoteSpaceFighterController";
 
 const logger = require('./utils/logger');
 const SocketServer = require('./service/SocketServer');
@@ -35,7 +34,13 @@ class GameServer {
     async start() {
         this.messageSerializerDeserializer = await this.diContainer.get('messageSerializerDeserializer');
         this.stateManager = await this.diContainer.get('authoritativeStateManager');
-        this.stateManager.associateControllerWithGameObjectType(gameObjectTypes.SPACESHIP, controllers.REMOTE_SPACE_FIGHTER_CONTROLLER);
+
+        const projectileSequenceControllerFactory = await this.diContainer.createFactory(ProjectileSequenceController);
+        this.diContainer.provide('projectileSequenceControllerFactory', projectileSequenceControllerFactory);
+        const remoteSpaceFighterControllerFactory = await this.diContainer.createFactory(RemoteSpaceFighterController);
+
+        this.stateManager.associateControllerFactoryWithGameObjectType(gameObjectTypes.SPACESHIP,
+                                                                       remoteSpaceFighterControllerFactory);
 
         this.socketServer = new SocketServer(config.socketFilePath, this.messageSerializerDeserializer, this.stateManager);
         this.stateDispatcher = new StateDispatcher(this.stateManager, this.socketServer, this.messageSerializerDeserializer)
