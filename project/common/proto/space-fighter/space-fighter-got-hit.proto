@@ -4,7 +4,8 @@ package multiplayer;
 
 import "float-vector.proto";
 
-message SpaceFighterOpenFire {
+message SpaceFighterGotHit {
   int32 projectileSeqId = 1;
-  FloatVector direction = 2;
+  uint32 projectileIndex1 = 2;
+  uint32 projectileIndex2 = 3;
 }
