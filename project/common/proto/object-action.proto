@@ -6,6 +6,7 @@ import "space-fighter/space-fighter-input.proto";
 import "space-fighter/space-fighter-open-fire.proto";
 import "space-fighter/space-fighter-stop-fire.proto";
 import "space-fighter/space-fighter-destroy.proto";
+import "space-fighter/space-fighter-got-hit.proto";
 
 message ObjectAction {
     int32 objectId = 1; // this set by gateway app and not passed by client
@@ -15,5 +16,6 @@ message ObjectAction {
         SpaceFighterOpenFire spaceFighterOpenFire = 4;
         SpaceFighterDestroy spaceFighterDestroy = 5;
         SpaceFighterStopFire spaceFighterStopFire = 6;
+        SpaceFighterGotHit spaceFighterGotHit = 7;
     }
 }

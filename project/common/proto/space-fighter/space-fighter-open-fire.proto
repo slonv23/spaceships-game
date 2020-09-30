@@ -6,5 +6,4 @@ import "float-vector.proto";
 
 message SpaceFighterOpenFire {
   int32 projectileSeqId = 1;
-  FloatVector direction = 2;
 }
