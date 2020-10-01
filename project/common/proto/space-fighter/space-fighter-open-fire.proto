@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package multiplayer;
 
-import "float-vector.proto";
-
 message SpaceFighterOpenFire {
   int32 projectileSeqId = 1;
 }

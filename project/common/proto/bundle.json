@@ -45,7 +45,8 @@
                 "spaceFighterInput",
                 "spaceFighterOpenFire",
                 "spaceFighterDestroy",
-                "spaceFighterStopFire"
+                "spaceFighterStopFire",
+                "spaceFighterGotHit"
               ]
             }
           },
@@ -73,6 +74,10 @@
             "spaceFighterStopFire": {
               "type": "SpaceFighterStopFire",
               "id": 6
+            },
+            "spaceFighterGotHit": {
+              "type": "SpaceFighterGotHit",
+              "id": 7
             }
           }
         },
@@ -97,13 +102,34 @@
           }
         },
         "SpaceFighterOpenFire": {
-          "fields": {}
+          "fields": {
+            "projectileSeqId": {
+              "type": "int32",
+              "id": 1
+            }
+          }
         },
         "SpaceFighterStopFire": {
           "fields": {}
         },
         "SpaceFighterDestroy": {
           "fields": {}
+        },
+        "SpaceFighterGotHit": {
+          "fields": {
+            "projectileSeqId": {
+              "type": "int32",
+              "id": 1
+            },
+            "projectileIndex1": {
+              "type": "uint32",
+              "id": 2
+            },
+            "projectileIndex2": {
+              "type": "uint32",
+              "id": 3
+            }
+          }
         },
         "ObjectState": {
           "oneofs": {
