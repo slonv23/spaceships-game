@@ -1,7 +1,7 @@
 // initialize required modules
 import './polyfills'
 import './engine/net/format';
-import './engine/state';
+import './engine/state/authoritative-state-manager';
 import './engine/asset-management';
 
 import Engine from './engine';
@@ -33,7 +33,7 @@ class GameServer {
 
     async start() {
         this.messageSerializerDeserializer = await this.diContainer.get('messageSerializerDeserializer');
-        this.stateManager = await this.diContainer.get('authoritativeStateManager');
+        this.stateManager = await this.diContainer.get('stateManager');
 
         const projectileSequenceControllerFactory = await this.diContainer.createFactory(ProjectileSequenceController);
         this.diContainer.provide('projectileSequenceControllerFactory', projectileSequenceControllerFactory);
