@@ -16,5 +16,6 @@ message SpaceFighterState {
     Quaternion controlQuaternion = 7; // transforms control local axes to world axes
     Quaternion controlRotQuaternion = 8; // rotates control x and y axes around z axis
     bool shooting = 9;
-    repeated ObjectAction actions = 10;
+    int32 health = 10;
+    repeated ObjectAction actions = 11;
 }
