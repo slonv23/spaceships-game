@@ -83,6 +83,7 @@ class StateDispatcher {
             spaceFighterState.position = object.position;
             spaceFighterState.quaternion = object.quaternion;
             spaceFighterState.actions = this.processedObjectActionsByObjectId[object.id];
+            spaceFighterState.health = objectController.health;
 
             objectStates.push(objectState);
         }

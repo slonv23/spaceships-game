@@ -9,6 +9,8 @@ import {config as engineConfig} from './engine/globals';
 import {gameObjectTypes} from './constants';
 import ProjectileSequenceController from "./engine/object-control/projectile/ProjectileSequenceController";
 import RemoteSpaceFighterController from "./engine/object-control/space-fighter/RemoteSpaceFighterController";
+import {handleProjectileHitsMixin} from "./engine/object-control/space-fighter/_mixins";
+import applyMixin from "./engine/util/apply-mixin";
 
 const logger = require('./utils/logger');
 const SocketServer = require('./service/SocketServer');
@@ -37,6 +39,8 @@ class GameServer {
 
         const projectileSequenceControllerFactory = await this.diContainer.createFactory(ProjectileSequenceController);
         this.diContainer.provide('projectileSequenceControllerFactory', projectileSequenceControllerFactory);
+
+        //applyMixin(RemoteSpaceFighterController, handleProjectileHitsMixin);
         const remoteSpaceFighterControllerFactory = await this.diContainer.createFactory(RemoteSpaceFighterController);
 
         this.stateManager.associateControllerFactoryWithGameObjectType(gameObjectTypes.SPACESHIP,

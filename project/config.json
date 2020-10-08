@@ -1,5 +1,5 @@
 {
 	"fps": 60,
-	"packetPeriodFrames": 120,
-	"inputGatheringPeriodFrames": 60
+	"packetPeriodFrames": 20,
+	"inputGatheringPeriodFrames": 10
 }
