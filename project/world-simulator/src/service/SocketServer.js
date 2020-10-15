@@ -122,7 +122,7 @@ class SocketServer {
             objectAction.frameIndex = this.stateManager.currentFrameIndex + 1;
         }
 
-        this.stateManager.scheduleObjectAction(objectAction.objectId, objectAction);
+        this.stateManager.addObjectAction(objectAction.objectId, objectAction);//scheduleObjectAction(objectAction.objectId, objectAction);
     }
 
     _createServer() {
