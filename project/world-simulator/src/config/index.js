@@ -6,6 +6,7 @@ module.exports = {
     protoDir: path.resolve(__dirname, "../../../common/proto"),
     packetPeriodFrames: globalConfig.packetPeriodFrames,
     fps: globalConfig.fps,
+    simulateStateDrops: false,
     assets: {
         assets3d: {
             spaceFighter: "StarSparrow2.glb"

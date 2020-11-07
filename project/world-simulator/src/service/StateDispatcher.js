@@ -13,14 +13,17 @@ import WorldState from "../engine/net/models/WorldState";
 import SpaceFighterState from "../engine/net/models/space-fighter/SpaceFighterState";
 import {gameObjectTypes} from "../constants";
 
-const packetPeriodFrames = require('../config').packetPeriodFrames;
-//const logger = require('../utils/logger');
+const config = require('../config');
+const packetPeriodFrames = config.packetPeriodFrames;
+const logger = require('../utils/logger');
 
 class StateDispatcher {
 
     lastDispatchedFrameIndex = 0;
 
     processedObjectActionsByObjectId = {};
+
+    objectStatesToDispatch = [];
 
     /**
      * @param {AuthoritativeStateManager} authoritativeStateManager
@@ -33,7 +36,11 @@ class StateDispatcher {
         this.messageSerializerDeserializer = messageSerializerDeserializer;
 
         this.stateManager.addEventListener('game-object-created', this.handleGameObjectCreated);
-        this.stateManager.addEventListener('actions-processed', this.handleObjectActionProcessed);
+        this.stateManager.addEventListener('actions-processed', this.handleObjectActionsProcessed);
+
+        /*if (config.simulateStateDrops) {
+            this.statesDispatchedBeforeDrop = 0;
+        }*/
     }
 
     handleStateUpdated = (frameIndex) => {
@@ -51,18 +58,42 @@ class StateDispatcher {
     }
 
 
-    handleObjectActionProcessed = (event) => {
+    handleObjectActionsProcessed = (event) => {
         /** @type {ObjectAction[]} */
         const actions = event.detail;
         const actionsCount = actions.length;
         for (let i = 0; i < actionsCount; i++) {
             const action = actions[i];
             this.processedObjectActionsByObjectId[action.objectId].push(action);
+            if (action.spaceFighterDestroy) {
+                // after .update() controller will be removed, we should add object state to objectStatesToDispatch before that
+                const object = this.stateManager.controllersByObjectId[action.objectId].gameObject;
+                const spaceFighterState = new SpaceFighterState();
+
+                const objectState = new ObjectState();
+                objectState.id = object.id;
+                objectState.objectType = gameObjectTypes.SPACESHIP;
+                // TODO refactor somehow to omit this line (maybe add another abstract class)
+                objectState.state = this.messageSerializerDeserializer.getFieldNameInsideOneOfForModel(spaceFighterState);
+                objectState.spaceFighterState = spaceFighterState;
+                spaceFighterState.actions = this.processedObjectActionsByObjectId[object.id];
+                this.objectStatesToDispatch.push(objectState);
+            }
         }
     };
 
     dispatchState(frameIndex) {
-        const objectStates = [];
+        /*if (config.simulateStateDrops) {
+            if (this.statesDispatchedBeforeDrop > 10) {
+                logger.debug('Simulate state drop');
+                this.statesDispatchedBeforeDrop = 0;
+                this._cleanup();
+                return;
+            }
+            this.statesDispatchedBeforeDrop++;
+        }*/
+
+        //const objectStates = [];
         for (/** @type {RemoteSpaceFighterController} */ const objectController of this.stateManager.initializedControllers) {
             /** @type {FlyingObject} */
             const object = objectController.gameObject;
@@ -71,6 +102,7 @@ class StateDispatcher {
             const objectState = new ObjectState();
             objectState.id = object.id;
             objectState.objectType = gameObjectTypes.SPACESHIP;
+            // TODO refactor somehow to omit this line (maybe add another abstract class)
             objectState.state = this.messageSerializerDeserializer.getFieldNameInsideOneOfForModel(spaceFighterState);
             objectState.spaceFighterState = spaceFighterState;
 
@@ -85,23 +117,21 @@ class StateDispatcher {
             spaceFighterState.actions = this.processedObjectActionsByObjectId[object.id];
             spaceFighterState.health = objectController.health;
 
-            objectStates.push(objectState);
+            this.objectStatesToDispatch.push(objectState);
         }
 
         const worldState = new WorldState();
-        worldState.objectStates = objectStates;
+        worldState.objectStates = this.objectStatesToDispatch;
         worldState.frameIndex = frameIndex;
 
         const serializedResponse = this.messageSerializerDeserializer.serializeResponse(worldState, {requestId: 0});
         this.socketServer.broadcast(serializedResponse);
 
         this._cleanup();
-
-        //const deserialized = this.messageSerializerDeserializer.deserializeResponse(serializedResponse);
-        //console.log("deserialized: " + JSON.stringify(deserialized));
     }
 
     _cleanup() {
+        this.objectStatesToDispatch = [];
         for (const objectId in this.processedObjectActionsByObjectId) {
             this.processedObjectActionsByObjectId[objectId] = [];
         }

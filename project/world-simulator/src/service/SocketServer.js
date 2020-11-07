@@ -1,11 +1,13 @@
 /**
  * @typedef {import('../engine/net/format/MessageSerializerDeserializer').default} MessageSerializerDeserializer
- * @typedef {import('../engine/state/AuthoritativeStateManager').default} StateManager
+ * @typedef {import('../engine/state/authoritative-state-manager/AuthoritativeStateManager').default} StateManager
  * @typedef {import('../engine/net/models/ObjectAction').default} ObjectAction
+ * @typedef {import('../engine/net/models/Disconnect').default} Disconnect
  * @typedef {import('net').Socket} Socket
  */
 import SpawnResponse from '../engine/net/models/SpawnResponse';
 import {gameObjectTypes} from "../constants";
+import SpaceFighterDestroy from "../engine/net/models/space-fighter/SpaceFighterDestroy";
 
 const logger = require('../utils/logger');
 const net = require('net');
@@ -93,6 +95,9 @@ class SocketServer {
                     case "ObjectAction":
                         await this._handleObjectAction(message);
                         break;
+                    case "Disconnect":
+                        await this._handleDisconnect(message);
+                        break;
                 }
             }
         } catch (err) {
@@ -123,6 +128,15 @@ class SocketServer {
         }
 
         this.stateManager.addObjectAction(objectAction.objectId, objectAction);//scheduleObjectAction(objectAction.objectId, objectAction);
+    }
+
+    /**
+     * @param {Disconnect} disconnect
+     * @returns {Promise<void>}
+     * @private
+     */
+    async _handleDisconnect(disconnect) {
+        this.stateManager.wrapAndAddSpecificAction(disconnect.objectId, new SpaceFighterDestroy());
     }
 
     _createServer() {

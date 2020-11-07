@@ -40,7 +40,7 @@ class GameServer {
         const projectileSequenceControllerFactory = await this.diContainer.createFactory(ProjectileSequenceController);
         this.diContainer.provide('projectileSequenceControllerFactory', projectileSequenceControllerFactory);
 
-        //applyMixin(RemoteSpaceFighterController, handleProjectileHitsMixin);
+        applyMixin(RemoteSpaceFighterController, handleProjectileHitsMixin);
         const remoteSpaceFighterControllerFactory = await this.diContainer.createFactory(RemoteSpaceFighterController);
 
         this.stateManager.associateControllerFactoryWithGameObjectType(gameObjectTypes.SPACESHIP,

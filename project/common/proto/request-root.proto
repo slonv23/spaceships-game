@@ -4,6 +4,7 @@ package multiplayer;
 
 import "object-action.proto";
 import "spawn-request.proto";
+import "disconnect.proto";
 
 message RequestRoot {
     int32 requestId = 1;
@@ -11,5 +12,6 @@ message RequestRoot {
     oneof message {
         ObjectAction objectAction = 3;
         SpawnRequest spawnRequest = 4;
+        Disconnect disconnect = 5;
     }
 }
