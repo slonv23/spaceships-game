@@ -34,7 +34,7 @@
     "event-target-shim": "^5.0.1",
     "protobufjs": "~6.9.0",
     "simple-node-logger": "^18.12.24",
-    "three": "^0.118.3"
+    "three": "^0.125.0"
   },
   "sideEffects": false
 }
